@@ -34,8 +34,4 @@ The renderer embeds CSS, mathematical fonts, and local images in one offline-rea
 
 ## Source and license
 
-Adapted from [Xiaofeng Shi's paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill) at commit `33a055f6124a8bb64bfe5a8be623d66fb32ed07a`, under the MIT license. The original copyright and license are retained in `LICENSE`; provenance is recorded in `UPSTREAM.json`. Upstream examples and their reading materials are retained as rendering fixtures, with their original source attribution. Upstream entrypoint and README snapshots are kept under `references/` for provenance.
-
-This adaptation replaces the paper-specific default workflow with a general report workflow, adds the supplied writing rules, reduces subsection fragmentation, and adds generic report labels while retaining legacy rendering compatibility. Dependency sources are installed from the lockfile and are excluded from the repository.
-
-The tests check rendering behavior. The accuracy of each generated report requires checking its source materials, calculations, and interpretation.
+Adapted from [paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill), under the [MIT license](LICENSE).

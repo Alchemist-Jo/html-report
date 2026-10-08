@@ -26,8 +26,6 @@ node scripts/render-report.cjs input.md output.html
 
 页面内嵌 CSS、数学字体与本地图片。具体结构由内容决定，论文是支持的材料类型之一。
 
-## 来源与验证
+## 来源与许可
 
-本项目改编自 MIT 许可的 [xiaofengShi/paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill)，固定提交见 `UPSTREAM.json`。保留原始版权声明、许可证、示例来源和上游入口备份。上游示例用于渲染测试；定制版以本项目 `SKILL.md` 为入口。
-
-当前定制版加入通用报告流程、原文写作规则、少分小节要求和通用界面标签。依赖通过锁文件安装，源码仓库不包含 node_modules。测试验证渲染行为，每份报告的事实、数学与结论还须按实际材料核查。
+改编自 [paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill)，采用 [MIT 许可证](LICENSE)。
