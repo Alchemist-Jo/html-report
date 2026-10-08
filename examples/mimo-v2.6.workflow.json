@@ -1,0 +1,169 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "MiMo-V2.6 的训练主线",
+    "subtitle": "从基础模型、混合 RL 到多教师能力整合",
+    "locale": "zh-CN",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "whole",
+        "label": "全局路径",
+        "focus": [
+          "pretrain",
+          "midtrain",
+          "mixrl",
+          "mopd",
+          "final"
+        ],
+        "note": "基础能力与长上下文训练进入混合 RL；任务环境提供探索，grader 决定轨迹如何转成学习信号；MOPD2 最后整合领域教师。"
+      },
+      {
+        "id": "rl",
+        "label": "RL 放大",
+        "focus": [
+          "mixrl",
+          "env",
+          "grader"
+        ],
+        "note": "大批次增加可探索轨迹；环境与 harness 增加任务变化；GRS/GAR 区分同样过测的解法质量。三者是相互配合的扩展轴。"
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "model",
+      "label": "模型训练主路径"
+    },
+    {
+      "id": "rl_support",
+      "label": "混合 RL 的两类支持"
+    }
+  ],
+  "mainPath": [
+    "pretrain",
+    "midtrain",
+    "mixrl",
+    "mopd",
+    "final"
+  ],
+  "nodes": [
+    {
+      "id": "pretrain",
+      "lane": "model",
+      "col": 0,
+      "type": "database",
+      "label": "预训练",
+      "sublabel": "MoE + 多模态基础",
+      "width": 150
+    },
+    {
+      "id": "midtrain",
+      "lane": "model",
+      "col": 1,
+      "type": "backend",
+      "label": "中训与短 SFT",
+      "sublabel": "长上下文至 1M",
+      "width": 150
+    },
+    {
+      "id": "mixrl",
+      "lane": "model",
+      "col": 2,
+      "type": "backend",
+      "label": "混合任务 RL",
+      "sublabel": "约 25K 轨迹/步",
+      "width": 150
+    },
+    {
+      "id": "mopd",
+      "lane": "model",
+      "col": 3,
+      "type": "backend",
+      "label": "MOPD2 蒸馏",
+      "sublabel": "完整轨迹 + 前缀",
+      "width": 150
+    },
+    {
+      "id": "final",
+      "lane": "model",
+      "col": 4,
+      "type": "cloud",
+      "label": "最终模型",
+      "sublabel": "跨领域整体评测",
+      "width": 150
+    },
+    {
+      "id": "env",
+      "lane": "rl_support",
+      "col": 1,
+      "type": "external",
+      "label": "任务与 Harness",
+      "sublabel": "代码/通用/视觉/安全",
+      "width": 150
+    },
+    {
+      "id": "grader",
+      "lane": "rl_support",
+      "col": 3,
+      "type": "security",
+      "label": "分组评分",
+      "sublabel": "GRS / GAR 质量信号",
+      "width": 150
+    }
+  ],
+  "edges": [
+    {
+      "from": "pretrain",
+      "to": "midtrain",
+      "label": "扩展能力基础"
+    },
+    {
+      "from": "mixrl",
+      "to": "mopd",
+      "label": "RL 后蒸馏"
+    },
+    {
+      "from": "mopd",
+      "to": "final",
+      "label": "合并能力"
+    },
+    {
+      "from": "env",
+      "to": "mixrl",
+      "label": "提供交互轨迹",
+      "role": "branch"
+    },
+    {
+      "from": "grader",
+      "to": "mixrl",
+      "label": "细化学习信号",
+      "role": "branch"
+    },
+    {
+      "from": "midtrain",
+      "to": "mixrl",
+      "label": "初始化 RL"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "混合 RL 的三条扩展轴",
+      "items": [
+        "训练计算：典型一步有约 25K 条长轨迹；Pro 的 RL 成本中探索、评分、更新分别占 43.8%、12.7%、43.5%。",
+        "任务与环境：同一策略在代码、通用、视觉和安全任务中交互；多 harness 训练后，三个 held-out harness 的均值约从 50% 到 66%。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "评分轴如何接上训练",
+      "items": [
+        "测试先判断是否完成任务；GRS 或 GAR 再区分通过解的质量，把差异转成奖励或优势。",
+        "因此图中的两条支路不是额外训练阶段：任务提供轨迹，评分决定同组轨迹的学习权重。"
+      ]
+    }
+  ]
+}

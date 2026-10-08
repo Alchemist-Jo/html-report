@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "MiMo-V2.6：从轨迹到学习信号",
+    "subtitle": "GRS 与 GAR 作用于不同代码任务子集",
+    "locale": "zh-CN",
+    "visual_preset": "editorial",
+    "quality_profile": "showcase",
+    "views": [
+      {"id": "flow", "label": "一轮更新", "focus": ["task", "rollout", "test", "grade", "update"], "note": "每题生成多条轨迹；测试给出完成与否；代码任务按子集选 GRS 或 GAR，随后将序列优势广播到模型生成的响应 token。"},
+      {"id": "branches", "label": "GRS / GAR", "focus": ["test", "grs", "gar", "grade"], "note": "GRS 预先建立任务 rubric 并逐条评分；GAR 在当前混合结果组里比较通过解、重分配正向优势。两条分支不串行。"}
+    ]
+  },
+  "lanes": [
+    {"id": "main", "label": "RL 主路径"},
+    {"id": "grade_methods", "label": "按代码任务选择评分方法"}
+  ],
+  "mainPath": ["task", "rollout", "test", "grade", "update"],
+  "nodes": [
+    {"id": "task", "lane": "main", "col": 0, "type": "database", "label": "任务批次", "sublabel": "多域混合采样", "width": 150},
+    {"id": "rollout", "lane": "main", "col": 1, "type": "backend", "label": "多条 rollout", "sublabel": "每题 16 条", "width": 150},
+    {"id": "test", "lane": "main", "col": 2, "type": "security", "label": "执行测试", "sublabel": "通过 / 失败", "width": 150},
+    {"id": "grade", "lane": "main", "col": 3, "type": "backend", "label": "计算优势", "sublabel": "质量决定权重", "width": 150},
+    {"id": "update", "lane": "main", "col": 4, "type": "cloud", "label": "策略更新", "sublabel": "响应 token 目标", "width": 150},
+    {"id": "grs", "lane": "grade_methods", "col": 2, "type": "database", "label": "GRS 离线 rubric", "sublabel": "高通过率子集", "width": 150},
+    {"id": "gar", "lane": "grade_methods", "col": 4, "type": "messagebus", "label": "GAR 在线比较", "sublabel": "其余代码任务", "width": 150}
+  ],
+  "edges": [
+    {"from": "task", "to": "rollout", "label": "采样"},
+    {"from": "rollout", "to": "test", "label": "提交轨迹"},
+    {"from": "test", "to": "grade", "label": "原始奖励"},
+    {"from": "grade", "to": "update", "label": "优势信号"},
+    {"from": "grs", "to": "grade", "label": "逐条质量分数", "role": "branch"},
+    {"from": "gar", "to": "grade", "label": "组内排序", "role": "branch"}
+  ],
+  "cards": [
+    {"dot": "cyan", "title": "GRS：把通过解分出质量", "items": ["离线综合任务、仓库和多条尝试造 rubric；训练时逐条看解法与行为。", "最终奖励 = 测试奖励 × 解法分 × 行为分。全通过的组也能有质量差异。"]},
+    {"dot": "amber", "title": "GAR：让好解得到更多权重", "items": ["在线比较同组成功/失败轨迹，确认依赖泄露答案的轨迹后先归零。", "对较差通过解降低正优势，把正向总量重分给较好解；再限制放大并校正组均值。"]}
+  ]
+}
