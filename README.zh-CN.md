@@ -1,31 +1,49 @@
 # html-report
 
-将研究笔记、技术文档、概念、代码与系统、数据分析、方案比较、调研综述和论文讲清楚，输出可离线阅读的 HTML 报告。
+[English](README.md) · 简体中文
 
-正文使用少量主要章节与连贯段落，保留完整推导、证明条件和可复算例子。判断紧接具体依据，图解用于解释关系，交互用于探索变化。用户提供的写作规则原文保存在 `references/writing-requirements-original.md`，入口将其设为必读。
+将视频课程、文档、代码、数据和论文制作成可独立阅读的报告或学习资料。agent 完成取材、长材料分段、机制与证据讲解、图示与交互、构建、检查和具体问题修正。
+
+learning-html 的流程和资源已合并到本仓库。通用报告保留原有用途；学习任务增加完整示例、练习与参考解。入口简短，参考按当前动作加载。
 
 ## 安装与使用
 
-```sh
-git clone https://github.com/Alchemist-Jo/html-report.git ~/.codex/skills/html-report
-cd ~/.codex/skills/html-report
+~~~sh
+npx skills add Alchemist-Jo/html-report --skill html-report -g
+~~~
+
+~~~text
+使用 $html-report，把这套课程制作成可独立学习的中文 HTML。
+讲清机制和执行流程，保留必要图示、来源与视频时间，
+加入完整示例、实践变化和有理由的参考解。
+~~~
+
+默认不修改真实项目，不生成额外格式；用户明确指定的范围、语言和交付方式优先。
+
+## 构建
+
+~~~sh
 npm ci --ignore-scripts --no-audit --no-fund
-npm run doctor
-npm test
-```
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements-html.txt
+node scripts/build-html.mjs examples/retries.source.html docs/learning-example.html
+~~~
 
-渲染器需要 Node.js 20+。安装后可调用 `$html-report`：
+构建需要 Node 20+ 和 Python 3.10+。成品内嵌 CSS、脚本、图片与字体子集，可直接离线打开。独立 Python 环境可通过 SKILL_HTML_PYTHON 指定。
 
-> 用 $html-report 把这些材料讲清楚，少分小节，按论证自然展开，保留完整推导、例子和证据，输出中文 HTML 报告。
+[交互示例](docs/learning-example.html) · [可编辑源码](examples/retries.source.html) · [Agent 工作流程](references/agent-workflow.md)
 
-Markdown 首行声明 `<!-- report-lang: zh-CN -->` 或 `<!-- report-lang: en -->`，正文使用一个 # 标题和按内容需要设置的 ## 章节。本地图片放在 Markdown 所在目录的子目录。
+原 Markdown 报告与结构化图表继续使用：
 
-```sh
+~~~sh
 node scripts/render-report.cjs input.md output.html
-```
+npm test
+npm run doctor
+~~~
 
-页面内嵌 CSS、数学字体与本地图片。具体结构由内容决定，论文是支持的材料类型之一。
+动画按同一状态更新图形、数值与解释，支持暂停、逐步查看和重播。简短引用连接文末来源区，必要图注与时间保留在图片旁。构建与运行测试、视觉检查和内容正确性分别核实。
 
-## 来源与许可
+## 来源
 
-改编自 [paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill)，采用 [MIT 许可证](LICENSE)。
+报告渲染器基于 [paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill)，取材与教学流程参考 [youtube-render-pdf](https://github.com/wdkns/wdkns-skills/tree/main/skills/youtube-render-pdf)。许可见 [LICENSE](LICENSE) 和 [第三方说明](THIRD_PARTY_NOTICES.md)。

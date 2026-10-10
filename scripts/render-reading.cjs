@@ -18,7 +18,7 @@ const languageMarker = source.match(/^<!-- (?:paper-reading|report)-lang: (en|zh
 if (!languageMarker) throw new Error('Declare the reading language on the first line: <!-- paper-reading-lang: en --> or <!-- paper-reading-lang: zh-CN -->');
 const lang = languageMarker[1];
 const themeMarker = source.slice(languageMarker[0].length).match(/^<!-- paper-reading-theme: ([a-z-]+) -->\r?\n/);
-const theme = themeMarker?.[1] || 'forest';
+const theme = themeMarker?.[1] || (source.startsWith('<!-- report-lang:') ? 'cobalt' : 'forest');
 if (!['forest', 'cobalt', 'plum', 'saffron'].includes(theme)) throw new Error(`Unknown paper-reading theme: ${theme}`);
 const labels = {
   'zh-CN': {
@@ -89,7 +89,7 @@ const localFile = relative => {
 };
 const imageData = relative => {
   const file = localFile(relative);
-  const mime = file.endsWith('.webp') ? 'image/webp' : file.endsWith('.png') ? 'image/png' : file.endsWith('.svg') ? 'image/svg+xml' : null;
+  const mime = {'.webp':'image/webp','.png':'image/png','.svg':'image/svg+xml','.jpg':'image/jpeg','.jpeg':'image/jpeg','.gif':'image/gif'}[path.extname(file).toLowerCase()];
   if (!mime) throw new Error(`Unsupported image: ${relative}`);
   return `data:${mime};base64,${fs.readFileSync(file).toString('base64')}`;
 };
@@ -197,10 +197,13 @@ body = body.replace(/<h2>([\s\S]*?)<\/h2>/g, (_, heading) => {
 const title = (body.match(/<h1>([\s\S]*?)<\/h1>/) || [,generalReport ? 'HTML Report' : 'Paper Reading'])[1].replace(/<[^>]*>/g,'');
 body = body.replace(/<h1>[\s\S]*?<\/h1>/, '');
 const nav = sections.map(s => `<a href="#${s.id}">${esc(s.heading)}</a>`).join('');
-const heroVisual = heroMap ? `<div class="hero-map"><p class="hero-map-title">${t.wholeMap} <span>01 — ${String(heroMap.items.length).padStart(2, '0')}</span></p><ol>${heroMap.items.map(x => `<li><span class="hero-map-index">${esc(x.number)}</span><div><div class="hero-map-heading"><strong>${esc(x.label)}</strong>${x.signal ? `<b>${esc(x.signal)}</b>` : ''}</div><p>${esc(x.text)}</p>${sourceBadge(x.source)}</div></li>`).join('')}</ol>${heroMap.outcome ? `<div class="hero-map-outcome"><span aria-hidden="true">↳</span><div><strong>${esc(heroMap.outcome)}</strong>${heroMap.outcomeSource ? sourceBadge(heroMap.outcomeSource) : ''}</div></div>` : ''}</div>` : '';
+const heroVisual = heroMap ? `<div class="hero-map"><p class="hero-map-title">${t.wholeMap} <span>01 / ${String(heroMap.items.length).padStart(2, '0')}</span></p><ol>${heroMap.items.map(x => `<li><span class="hero-map-index">${esc(x.number)}</span><div><div class="hero-map-heading"><strong>${esc(x.label)}</strong>${x.signal ? `<b>${esc(x.signal)}</b>` : ''}</div><p>${esc(x.text)}</p>${sourceBadge(x.source)}</div></li>`).join('')}</ol>${heroMap.outcome ? `<div class="hero-map-outcome"><span aria-hidden="true">↳</span><div><strong>${esc(heroMap.outcome)}</strong>${heroMap.outcomeSource ? sourceBadge(heroMap.outcomeSource) : ''}</div></div>` : ''}</div>` : '';
 const output = `<!doctype html>
 <html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="${esc(title)}${lang === 'zh-CN' ? '：' : ': '}${t.description}"><title>${esc(title)} · ${t.titleSuffix}</title><style>${katexCss}\n${css}</style></head>
 <body data-theme="${theme}"><a class="skip-link" href="#content">${t.skip}</a><input class="source-toggle" id="show-sources" type="checkbox"><header class="topbar"><a class="brand" href="#top">${generalReport ? 'HTML / REPORT' : 'PAPER / READING'}</a><span>${t.topbar}</span><label class="source-toggle-label" for="show-sources">${t.showSources}</label><a href="#content">${t.startReading} ↘</a></header><div id="top" class="hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">${t.heroKicker}</p><h1>${esc(title)}</h1><p class="hero-sub">${esc(heroMap?.thesis || t.defaultThesis)}</p><a class="hero-link" href="${sections.length ? '#section-1' : '#content'}">${t.enter} <span aria-hidden="true">↘</span></a></div>${heroVisual}</div></div><div class="reading-shell"><nav class="toc" aria-label="${t.nav}"><div class="toc-title">${t.route}</div>${nav}</nav><main id="content" class="article"><div class="article-inner">${body}</div></main></div><footer class="page-footer"><span>${generalReport ? 'HTML Report' : 'Paper Reading Skill'} · ${t.footer}</span><a href="#top">${t.back} ↑</a></footer></body></html>`;
-const cleanOutput = output.replace(/[ \t]+$/gm, '');
+const fonts = require('./embed-fonts.cjs')(output);
+const reportTheme = fs.readFileSync(path.join(__dirname, '../assets/report-theme.css'), 'utf8');
+const styledOutput = output.replace('</style></head>', fonts.css + '\n' + reportTheme + '</style><!-- Fandol license:\n' + fonts.license + ' --></head>');
+const cleanOutput = styledOutput.replace(/[ \t]+$/gm, '');
 fs.writeFileSync(outputPath, cleanOutput);
 console.log(`Built ${outputPath} (${Buffer.byteLength(cleanOutput)} bytes, ${sections.length} sections, ${slots.length} visuals)`);

@@ -38,7 +38,7 @@ try {
       process.exitCode = 1;
     } else {
       console.log(`Ready: Node.js ${process.versions.node}, dependencies, and one offline example render passed.`);
-      console.log('Restart your agent and ask it to read a PDF or paper URL deeply.');
+      console.log('Invoke $html-report with the material and the explanation or learning outcome you need.');
     }
   }
 } finally {

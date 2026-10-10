@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="用一个可运行的串行示例，解释请求重试、幂等标识与结果重放。">
+  <title>重试与幂等：从执行流程到修改练习</title>
+  <link rel="stylesheet" href="skill:lesson.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <nav class="site-nav" data-toc aria-label="章节导航"></nav>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">HTML REPORT / 独立教学示例</div>
+        <h1>重复请求，<br><em>为何只执行一次</em></h1>
+        <p class="hero-lead">从一次响应丢失开始，追踪请求、记录与返回值。读完后，你应能解释重试如何重复产生副作用，并修改一个最小幂等实现。</p>
+        <div class="hero-meta"><span>先修：函数与字典</span><span>实践：Python 3</span><span>范围：单进程串行调用</span></div>
+      </div>
+      <figure class="hero-visual">
+        <p class="visual-label">REQUEST A / 同一标识，两次调用</p>
+        <svg viewBox="0 0 420 216" role="img" aria-labelledby="hero-title">
+          <title id="hero-title">首次调用累加金额并保存结果，重试返回已有结果。</title>
+          <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="var(--figure-arrow)" stroke-width="1.3"/></marker></defs>
+          <g font-family="sans-serif" font-size="18" fill="var(--figure-text)">
+            <rect x="1" y="16" width="112" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="57" y="39" text-anchor="middle">首次请求 A</text><text x="57" y="58" text-anchor="middle" font-size="16" fill="var(--figure-muted)">金额 10</text>
+            <path d="M114 43H154" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/>
+            <rect x="164" y="16" width="102" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="215" y="39" text-anchor="middle">累计金额</text><text x="215" y="59" text-anchor="middle" fill="#e3cea5">0 → 10</text>
+            <path d="M267 43H305" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/>
+            <rect x="316" y="16" width="102" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="367" y="39" text-anchor="middle">保存结果</text><text x="367" y="59" text-anchor="middle" font-size="16">A ↦ 10</text>
+            <path d="M367 71V126" stroke="var(--figure-arrow)" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
+            <rect x="1" y="137" width="112" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="57" y="160" text-anchor="middle">重试请求 A</text><text x="57" y="179" text-anchor="middle" font-size="16" fill="var(--figure-muted)">金额 10</text>
+            <path d="M114 164H305" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/><text x="210" y="150" text-anchor="middle" font-size="16" fill="#e3cea5">匹配已有记录</text>
+            <rect x="316" y="137" width="102" height="54" rx="9" fill="var(--figure-selected)" stroke="var(--figure-selected-stroke)"/><text x="367" y="160" text-anchor="middle">返回结果</text><text x="367" y="179" text-anchor="middle" fill="#e3cea5">10</text>
+          </g>
+        </svg>
+        <figcaption>相同请求标识命中已有结果，累计金额保持 10。串行处理示意。</figcaption>
+      </figure>
+    </div>
+    <div class="hero-foot"><span>01 追踪状态</span><span>02 运行代码</span><span>03 修改条件</span><span>04 解释设计</span></div>
+  </header>
+  <main id="main">
+    <section id="problem">
+      <div class="section-label">01 / 从问题开始</div>
+      <h2 data-nav="问题">响应丢失后，客户端知道什么？</h2>
+      <p class="intro">客户端发起一次累加 10 的请求，服务端已经执行，响应却没有到达。此时再次发送请求，可能使累计金额从 10 变成 20。<a class="source-ref" href="#ref-aws" aria-label="来源 1：AWS">[1]</a></p>
+      <p>这里有两个独立事件：业务动作已经完成，客户端得到了结果。响应丢失只能说明第二个事件没有被客户端确认。客户端仅凭超时无法判断服务端是否完成了动作，因此重试需要考虑重复执行的影响。</p>
+      <p>我们用一个内存中的累计金额示例研究这个问题。累计金额从 0 开始，每次新请求增加 10。示例只处理串行调用，记录不会过期，执行过程中也不模拟进程崩溃。</p>
+      <div class="compare-grid">
+        <article><h3>每次调用都执行</h3><p>执行两次相同的累加，累计金额依次为 10、20。程序只看金额，无法识别第二次调用的意图。</p></article>
+        <article><h3>按请求标识识别</h3><p>两次调用都携带 A。首次执行后保存记录，再次收到 A 时检查参数并返回原结果，累计金额保持 10。</p></article>
+      </div>
+    </section>
+
+    <section id="mechanism">
+      <div class="section-label">02 / 解释机制</div>
+      <h2 data-nav="机制">请求身份、状态与历史结果</h2>
+      <p>服务端保存“请求标识、原始金额、返回结果”的对应记录。新的标识触发累加；已有标识先核对金额，再返回该标识原先保存的结果。金额相同的两次独立操作使用不同标识。<a class="source-ref" href="#ref-stripe" aria-label="来源 2：Stripe API v1">[2]</a></p>
+      <p>在请求标识和参数固定时，重复执行应保持业务状态。这可以用一个状态变换表达：</p>
+      <div class="math" data-tex="F_k(F_k(S)) = F_k(S)" data-display="true"></div>
+      <ul class="symbols">
+        <li><var>S</var>：服务端状态，包含累计金额和已处理请求记录。</li>
+        <li><var>k</var>：固定的请求标识，本式同时假设请求金额相同。</li>
+        <li><span class="math" data-tex="F_k"></span>：处理该请求对状态产生的变换。</li>
+      </ul>
+      <p>左侧处理同一请求两次，右侧处理一次，最终状态相等。这个性质约束业务效果；实际调用仍然可以发生多次。示例另外保存并重放历史结果，使客户端能够获得首次执行时的返回值。</p>
+      <aside class="callout important"><strong>区分两种数值</strong><p>当前累计金额属于现在的系统状态，返回结果属于某次请求的执行记录。其他请求发生后，两者可能不同。重试 A 应返回 A 的原结果。</p></aside>
+      <div class="diagram-panel" id="trace">
+        <span class="pill">可操作示例 / 串行调用</span>
+        <h3 style="margin-top:16px">先预测，再逐步执行</h3>
+        <p>依次执行 A、重试 A、新请求 B、再次重试 A，默认每次金额为 10。最后一次返回多少？你可以逐步查看，也可以播放完整过程。</p>
+        <div class="trace-grid">
+          <button type="button" class="trace-step" data-step="1"><span>01</span><strong>请求 A</strong><small>新标识</small></button>
+          <button type="button" class="trace-step" data-step="2"><span>02</span><strong>重试 A</strong><small>已有记录</small></button>
+          <button type="button" class="trace-step" data-step="3"><span>03</span><strong>请求 B</strong><small>独立操作</small></button>
+          <button type="button" class="trace-step" data-step="4"><span>04</span><strong>重试 A</strong><small>重放旧结果</small></button>
+        </div>
+        <div class="parameter-control"><label for="amount">单次金额</label><input id="amount" type="range" min="5" max="25" step="5" value="10"><output id="amount-value" for="amount">10</output></div>
+        <p class="small">调整金额会重置演示。下方静态表与 Python 示例使用默认金额 10。</p>
+        <div class="mechanism-flow">
+          <div class="flow-node"><span>请求输入</span><strong id="flow-request">等待请求</strong><small id="flow-amount">请求金额 10</small></div>
+          <span class="flow-connector" aria-hidden="true"><svg viewBox="0 0 40 20"><path d="M3 10H34M28 5L34 10L28 15" fill="none" stroke="#aac7e1" stroke-width="1.5"/><circle class="flow-packet" cx="6" cy="10" r="3"/></svg></span>
+          <div class="flow-node"><span>按标识查询记录</span><strong id="flow-lookup">尚无记录</strong><small id="flow-lookup-detail">等待请求标识</small></div>
+          <span class="flow-connector" aria-hidden="true"><svg viewBox="0 0 40 20"><path d="M3 10H34M28 5L34 10L28 15" fill="none" stroke="#aac7e1" stroke-width="1.5"/><circle class="flow-packet" cx="6" cy="10" r="3"/></svg></span>
+          <div class="flow-node"><span>状态与返回值</span><strong id="flow-effect">累计金额 0</strong><small id="flow-result">返回结果尚无</small></div>
+        </div>
+        <p class="small">箭头表示处理顺序，数值按当前条件计算。</p>
+        <div class="controls"><button type="button" id="play" aria-pressed="false">播放演示</button><button type="button" id="previous" class="secondary" disabled>上一步</button><button type="button" id="next" class="secondary">下一步</button><button type="button" id="reset" class="secondary">重置</button><span class="small" id="step-label">尚未执行</span></div>
+        <div class="comparison-bars" aria-label="两种处理方式的累计金额">
+          <div class="comparison-row"><span>每次都执行</span><div class="comparison-track"><i id="without-bar" class="comparison-fill"></i></div><strong id="without-value" class="comparison-value">0</strong></div>
+          <div class="comparison-row"><span>按请求标识去重</span><div class="comparison-track"><i id="with-bar" class="comparison-fill deduplicated"></i></div><strong id="with-value" class="comparison-value">0</strong></div>
+        </div>
+        <p class="small">共同刻度 0–100，表示累计金额。重试命中记录时，去重后的累计金额保持不变。</p>
+        <div class="state-output" aria-live="polite" aria-atomic="true"><p id="state">当前累计金额：0；本次返回：尚无。</p><p class="small" id="reason">先预测首次请求执行后的累计金额与返回值。</p></div>
+      </div>
+      <details><summary>查看四步的完整结果</summary><div class="answer"><div class="table-scroll"><table><thead><tr><th>调用</th><th>处理动作</th><th>当前累计金额</th><th>返回结果</th></tr></thead><tbody><tr><td>A，10</td><td>执行并保存</td><td>10</td><td>10</td></tr><tr><td>A，10</td><td>返回 A 的记录</td><td>10</td><td>10</td></tr><tr><td>B，10</td><td>执行并保存</td><td>20</td><td>20</td></tr><tr><td>A，10</td><td>返回 A 的记录</td><td>20</td><td>10</td></tr></tbody></table></div><p>第四步没有再次累加。返回值仍然来自 A 首次执行时保存的结果。</p></div></details>
+    </section>
+
+    <section id="implementation">
+      <div class="section-label">03 / 从流程到实现</div>
+      <h2 data-nav="实现">把每一步对应到代码</h2>
+      <p>字典保存请求记录。命中记录时，代码检查金额并立即返回；未命中时，代码才修改累计金额、生成结果并保存对应关系。下面是完整实现，<a href="retry.py" download>retry.py</a> 还包含可直接运行的演示与行为检查。</p>
+      <div class="code-block"><div class="code-caption">示例 1 / Python，保存请求参数与不可变结果</div><pre><code class="language-python">from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class Receipt:
+    total: int
+
+class Ledger:
+    def __init__(self):
+        self.total = 0
+        self.results = {}
+
+    def charge(self, request_id: str, amount: int) -&gt; Receipt:
+        if request_id in self.results:
+            original_amount, receipt = self.results[request_id]
+            if original_amount != amount:
+                raise ValueError("request_id 已用于其他金额")
+            return receipt
+        self.total += amount
+        receipt = Receipt(total=self.total)
+        self.results[request_id] = (amount, receipt)
+        return receipt</code></pre></div>
+      <p>首次收到 A 时，字典中没有 A，累计金额变成 10，并保存金额与结果。第二次收到 A 时，代码在修改累计金额之前返回，因此没有重复累加。首次收到 B 时没有命中旧记录，累计金额变成 20。</p>
+      <div class="code-block"><div class="code-caption">示例 2 / 运行命令与实际输出</div><pre><code class="language-text">python3 retry.py
+
+返回结果: 10 10 20 10
+当前累计金额: 20
+冲突请求: request_id 已用于其他金额
+已确认: 重试不重复累加，新标识独立执行，参数冲突被拒绝</code></pre></div>
+      <aside class="callout warning"><strong>实现的适用条件</strong><p>这个字典只在当前进程中有效。示例没有实现持久化、并发下的原子性或外部支付调用，不能据此声称完成了实际支付系统。练习首先围绕当前串行模型验证理解。</p></aside>
+    </section>
+
+    <section id="practice">
+      <div class="section-label">04 / 实践与解释</div>
+      <h2 data-nav="实践">改变条件后，你能定位修改吗？</h2>
+      <div class="exercise"><div class="section-label">练习 1 / 预测与解释</div><h3>相同金额，是否就是相同操作？</h3><p>从空 Ledger 开始，依次调用 A，10；B，10；A，10。先写出每次返回值和最终累计金额，再运行验证。解释为什么第二次调用需要执行。</p><details><summary>查看参考解</summary><div class="answer"><p>返回值依次为 10、20、10，最终累计金额为 20。A 与 B 表达两次独立操作，金额相同不足以判断它们是重试。第三次调用命中 A 的记录，因此返回首次结果 10。</p><p>如果只以金额作为字典键，B 会被错误地识别为 A 的重试。这个修改破坏了“独立操作独立执行”的要求。</p></div></details></div>
+      <div class="exercise"><div class="section-label">练习 2 / 局部修改</div><h3>增加收款人后，哪部分记录要变化？</h3><p>给 charge 增加 recipient 参数。同一标识的金额与收款人都相同时重放结果，任一项变化时拒绝。保留串行、内存记录的条件，写出修改位置与三项检查。</p><details><summary>查看参考解</summary><div class="answer"><p>把请求参数保存为金额和收款人的二元组，命中记录时比较整个二元组。金额更新和历史结果的生成位置保持在未命中分支。</p><div class="code-block"><div class="code-caption">参考修改 / 参数一致性</div><pre><code class="language-python">parameters = (amount, recipient)
+if request_id in self.results:
+    original_parameters, receipt = self.results[request_id]
+    if original_parameters != parameters:
+        raise ValueError("request_id 已用于其他参数")
+    return receipt
+# 未命中时执行原有累加，再保存：
+self.results[request_id] = (parameters, receipt)</code></pre></div><p>检查同标识同参数不会重复累加；同标识改收款人会拒绝且金额保持；不同标识同参数仍执行。只测试金额变化会遗漏新增条件。</p></div></details></div>
+      <div class="exercise"><div class="section-label">练习 3 / 迁移与设计追问</div><h3>把机制用于发送通知</h3><p>某个流程会因超时重复发起同一通知。说明请求标识由谁生成、重试是否复用标识、服务端保存什么。再解释为什么当前内存示例还不足以覆盖“通知发出后进程退出”的情况。</p><details><summary>查看参考解</summary><div class="answer"><p>在一次通知意图建立时生成标识，该意图的重试复用它。保存标识、接收方与内容等参数以及发送结果，防止同一标识被用于不同通知。</p><p>通知发出后、记录写入前退出，会使外部动作已经发生但本地记录缺失。当前字典模型不能保证这两步一起完成。实际方案需要结合通知服务的去重能力与持久记录设计，再验证具体失败路径；仅把字典换成数据库还不能证明问题已经解决。</p></div></details></div>
+    </section>
+
+    <section id="synthesis">
+      <div class="section-label">05 / 总结与延伸</div>
+      <h2 data-nav="总结">把理解落实到三个判断</h2>
+      <p>面对重试，先判断哪些业务效果可能重复发生，再判断怎样识别同一次操作，最后确认记录与业务动作在什么条件下保持一致。三个判断分别影响副作用的位置、请求标识的生成方式和状态保存方式。</p>
+      <p>在当前模型中，你可以通过解释四步流程、运行代码、增加一个参数并验证结果来检查理解。迁移到真实系统时，再检查进程生命周期、并发与外部动作，按系统实际出现的条件扩展设计。</p>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer-brand"><span>HTML REPORT / 从理解到实践</span><span>独立教学案例 · 可离线阅读</span></div>
+    <details class="references"><summary>来源与制作说明</summary><div class="reference-content">
+      <ol class="reference-list">
+        <li id="ref-aws"><a href="https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/">AWS · Making retries safe with idempotent APIs</a>：重试副作用与请求标识。</li>
+        <li id="ref-stripe"><a href="https://docs.stripe.com/api/idempotent_requests">Stripe · Idempotent requests</a>：API v1 的参数检查与历史响应重放。</li>
+      </ol>
+      <p class="provenance-note">本例为教学构造，代码输出已在本地核对；交互按选定金额计算四次串行调用。</p>
+    </div></details>
+  </footer>
+  <style>
+    .trace-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:26px; }
+    .trace-step { padding:17px 15px; border:1px solid #799bbe88; border-radius:10px; background:#ffffff04; }
+    .trace-step span { display:block; font:12px var(--mono); color:#bfd1e8; margin-bottom:8px; }
+    .trace-step strong { display:block; font-size:16px; }
+    .trace-step small { display:block; color:#bdcde3; font-size:12px; margin-top:4px; }
+    .trace-step.active { background:#344d6d; border-color:#d3bc8e; }
+    .diagram-panel button:disabled { opacity:.65; cursor:default; }
+    @media(max-width:600px) { .trace-grid {grid-template-columns:repeat(2,minmax(0,1fr));} }
+  </style>
+  <script src="skill:lesson.js"></script>
+  <script src="retry-model.js"></script>
+  <script src="retry-demo.js"></script>
+</body>
+</html>

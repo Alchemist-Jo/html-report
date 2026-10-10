@@ -1,37 +1,51 @@
 # html-report
 
-An agent skill for clear, source-grounded HTML reports: technical explanations, research notes, concepts, code and systems, data analysis, comparisons, surveys, and paper readings.
+[English](README.md) · [简体中文](README.zh-CN.md)
 
-Reports use a few main sections and connected prose. Mathematical derivations and proofs retain their intermediate steps, assumptions, and worked examples. Claims point to source material or explicit reasoning. Figures and interactions explain relationships without replacing the main argument.
+An agent workflow for source-grounded reports and learning materials. It acquires the actual input, organizes long material, explains mechanisms and evidence, builds purposeful visuals and interactions, checks examples and repairs the delivered artifact.
+
+The learning-html workflow is merged into this repository. Reports, course notes, code explanations, data analysis and paper readings share the same acquisition and delivery standard. Learning tasks add worked examples, practice and reasoned solutions.
 
 ## Install and use
 
-Copy this repository into your agent's personal skills directory. For Codex:
+~~~sh
+npx skills add Alchemist-Jo/html-report --skill html-report -g
+~~~
 
-```sh
-git clone https://github.com/Alchemist-Jo/html-report.git ~/.codex/skills/html-report
-cd ~/.codex/skills/html-report
+Invoke $html-report with the source and the outcome you need. Chinese is the default; an explicit language and format take precedence. The skill uses a short entrypoint and conditional references, with no required companion skill.
+
+~~~text
+Use $html-report to turn this course into independent learning material.
+Explain the mechanisms, preserve useful figures and source times, and include
+worked examples, practical variations and reasoned answers. Deliver HTML.
+~~~
+
+## Build a reading artifact
+
+The native HTML route provides Fandol fonts, pre-rendered math, an offline layout, compact source notes, code copying and purposeful interactions.
+
+~~~sh
 npm ci --ignore-scripts --no-audit --no-fund
-npm run doctor
-npm test
-```
+python3 -m venv .venv
+source .venv/bin/activate
+python3 -m pip install -r requirements-html.txt
+node scripts/build-html.mjs examples/retries.source.html docs/learning-example.html
+~~~
 
-Node.js 20 or newer is required for the bundled renderer. The skill can also author equivalent standalone HTML directly. Invoke `$html-report` with your source materials and the topic you want explained. Chinese is the default when no output language is specified.
+Node 20+ and Python 3.10+ are needed to build; the resulting HTML opens without those tools or a network connection. If using a separate Python environment, set SKILL_HTML_PYTHON to its executable.
 
-> Use $html-report to explain these materials in a complete HTML report. Keep a few main sections, show the reasoning and worked examples, and connect conclusions to evidence.
+[Worked interactive example](docs/learning-example.html) · [Editable source](examples/retries.source.html) · [Agent workflow](references/agent-workflow.md)
 
-The original Chinese writing requirements are preserved in `references/writing-requirements-original.md`. The entrypoint reads them alongside `references/technical-explanation.md`.
+Existing report Markdown and structured charts remain available:
 
-## Render a report
-
-Start Markdown with `<!-- report-lang: zh-CN -->` or `<!-- report-lang: en -->`, then add one title and the main sections your content needs. Place local images in a subdirectory beside the Markdown source.
-
-```sh
+~~~sh
 node scripts/render-report.cjs input.md output.html
-```
+npm test
+npm run doctor
+~~~
 
-The renderer embeds CSS, mathematical fonts, and local images in one offline-readable HTML file. It supports KaTeX formulas and optional structured visual blocks inherited from the upstream renderer. Plain Markdown is sufficient for ordinary reports.
+Use a first-line report-lang marker as documented in [Markdown reports](references/markdown-report.md). Calculation and isolated DOM tests check behavior; visual inspection establishes the final appearance.
 
-## Source and license
+## Sources and license
 
-Adapted from [paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill), under the [MIT license](LICENSE).
+The report renderer is adapted from [paper-reading-skill](https://github.com/xiaofengShi/paper-reading-skill); the procedural teaching workflow is informed by [youtube-render-pdf](https://github.com/wdkns/wdkns-skills/tree/main/skills/youtube-render-pdf). See [LICENSE](LICENSE), [third-party notices](THIRD_PARTY_NOTICES.md) and [method sources](references/html-basis.md).

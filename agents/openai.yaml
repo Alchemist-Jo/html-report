@@ -1,0 +1,6 @@
+interface:
+  display_name: "HTML Report"
+  short_description: "制作讲清机制与证据的报告和学习资料。"
+  default_prompt: "使用 $html-report，检查来源并制作完整、可验证的学习资料，按需使用图示、公式、实践和参考解。"
+policy:
+  allow_implicit_invocation: false
