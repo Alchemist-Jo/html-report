@@ -1,6 +1,6 @@
-body { background: radial-gradient(ellipse at 0 20%, #dbe8ff88, transparent 48%), radial-gradient(ellipse at 100% 70%, #e8e3fa66, transparent 44%), #f3f6fb; font-family: "Times New Roman", "Learning Fandol Song", serif; font-size: 18px; line-height: 1.85; }
-h1, h2, h3, .topbar, .toc, figcaption, .source-badge, .hero-map, .hero-sub, .page-footer { font-family: Arial, "Learning Fandol Hei", sans-serif; }
-pre, code { font-family: ui-monospace, "SFMono-Regular", Menlo, "Learning Fandol Fang", monospace; }
+body { background: radial-gradient(ellipse at 0 20%, #dbe8ff88, transparent 48%), radial-gradient(ellipse at 100% 70%, #e8e3fa66, transparent 44%), #f3f6fb; font-family: "Learning Fandol Song", "Times New Roman", serif; font-size: 18px; line-height: 1.85; }
+h1, h2, h3, .topbar, .toc, figcaption, .source-badge, .hero-map, .hero-sub, .page-footer { font-family: "Learning Fandol Hei", Arial, sans-serif; }
+pre, code { font-family: "Learning Fandol Fang", ui-monospace, "SFMono-Regular", Menlo, monospace; }
 .topbar { position: sticky; top: 0; z-index: 40; background: #f9fbfff0; backdrop-filter: blur(16px); border-color: #d9e3f0; }
 .hero { background: radial-gradient(ellipse at 82% 24%, color-mix(in srgb, var(--teal) 36%, transparent), transparent 50%), radial-gradient(ellipse at 14% 0, color-mix(in srgb, var(--teal) 30%, transparent), transparent 50%), var(--hero); }
 .hero-map { border: 1px solid #a9c9f04a; padding: 16px 22px; border-radius: 16px; background: #d1e6ff08; }
