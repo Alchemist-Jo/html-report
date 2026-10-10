@@ -35,5 +35,5 @@ jobs:
           path: |
             docs/*.html
             build/audit/*/report.json
-            build/audit/*/*-overview.png
+            build/audit/*/*.png
             build/audit/*/print.pdf
