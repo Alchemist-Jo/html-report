@@ -2,7 +2,7 @@ body { background: radial-gradient(ellipse at 0 20%, #dbe8ff88, transparent 48%)
 h1, h2, h3, .topbar, .toc, figcaption, .source-badge, .hero-map, .hero-sub, .page-footer { font-family: Arial, "Learning Fandol Hei", sans-serif; }
 pre, code { font-family: ui-monospace, "SFMono-Regular", Menlo, "Learning Fandol Fang", monospace; }
 .topbar { position: sticky; top: 0; z-index: 40; background: #f9fbfff0; backdrop-filter: blur(16px); border-color: #d9e3f0; }
-.hero { background: radial-gradient(ellipse at 82% 24%, #246c865c, transparent 50%), radial-gradient(ellipse at 14% 0, #5966d15e, transparent 50%), var(--hero); }
+.hero { background: radial-gradient(ellipse at 82% 24%, color-mix(in srgb, var(--teal) 36%, transparent), transparent 50%), radial-gradient(ellipse at 14% 0, color-mix(in srgb, var(--teal) 30%, transparent), transparent 50%), var(--hero); }
 .hero-map { border: 1px solid #a9c9f04a; padding: 16px 22px; border-radius: 16px; background: #d1e6ff08; }
 .reading-shell { position: relative; z-index: 2; padding-top: 28px; gap: 18px; }
 .article { background: #ffffffed; border: 1px solid #dae3f0; border-radius: 20px; box-shadow: 0 12px 42px #223f6d06; margin-right: 22px; }
