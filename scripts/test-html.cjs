@@ -64,6 +64,7 @@ test('the native HTML route embeds fonts, math, scripts and source anchors', () 
     const html = fs.readFileSync(output, 'utf8');
     assert.match(html, /data:font\/woff2;base64,/);
     assert.match(html, /class="katex"/);
+    assert.ok((html.match(/@font-face\{font-family:KaTeX_/g) || []).length >= 20, "each KaTeX face keeps its own @font-face rule");
     assert.match(html, /id="ref-aws"/);
     assert.match(html, /function retryState/);
     assert.doesNotMatch(html, /<script[^>]+src=/);

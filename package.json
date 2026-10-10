@@ -8,14 +8,16 @@
     "doctor": "node scripts/doctor.cjs",
     "test": "node --test scripts/test-*.cjs",
     "build:html": "node scripts/build-html.mjs",
-    "build:learning": "node scripts/build-html.mjs examples/retries.source.html docs/learning-example.html"
+    "build:learning": "node scripts/build-html.mjs examples/retries.source.html docs/learning-example.html",
+    "audit": "node scripts/render-audit.mjs",
+    "audit:learning": "node scripts/render-audit.mjs docs/learning-example.html --widths 1440,390 --out build/audit/learning-example --print"
   },
   "dependencies": {
     "katex": "0.16.22",
     "marked": "17.0.5",
     "parse5": "7.3.0"
   },
-  "version": "2.0.0",
+  "version": "3.0.0",
   "engines": {
     "node": ">=20"
   },

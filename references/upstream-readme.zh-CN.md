@@ -3,7 +3,7 @@
 <p align="center"><strong>一页读懂整篇论文。</strong> 提供 PDF 或论文链接，获得串起全局论证、机制、原图、公式与实验的自包含 HTML 深读图谱。</p>
 <p align="center"><a href="https://xiaofengshi.github.io/paper-reading-skill/zh.html">项目主页 ↗</a> · <a href="https://xiaofengshi.github.io/paper-reading-skill/mimo-v2.6-deep-read.html">阅读完整样例 ↗</a> · <a href="#开始使用">开始使用</a> · <a href="README.md">English</a></p>
 
-![MiMo-V2.6 阅读图谱预览：把论文全局、RL 机制和实验证据连在一起。](docs/assets/atlas-preview.svg)
+![MiMo-V2.6 阅读图谱预览：把论文全局、RL 机制和实验证据连在一起。](https://raw.githubusercontent.com/xiaofengShi/paper-reading-skill/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/docs/assets/atlas-preview.svg)
 
 ## 阅读完整样例
 
@@ -38,7 +38,7 @@ MiMo 样例基于一份 44 页的本地 PDF 编写，仓库不分发该 PDF。�
 
 这三项原则形成上文的五层阅读顺序：全局图、主路径、机制、实验图谱和综合理解。衡量深读是否有用，要看读者能否说清核心机制、指出重要结论由哪些证据支撑，而不必为补全关键解释反复查 PDF。这是本项目的方法设计；现有样例尚未经独立读者研究验证。
 
-[公开的深读质量检查](evals/reading-quality.md)将来源覆盖、科学事实、主张与证据的对应、独立可读性和离线交付变成交付门槛。[六篇样例的读者题目与答案](evals/reader-tasks.md)可供未参与编写的人测试理解效果。渲染器测试通过或作者自查，都不等于完成了独立读者研究。
+[公开的深读质量检查](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/evals/reading-quality.md)将来源覆盖、科学事实、主张与证据的对应、独立可读性和离线交付变成交付门槛。[六篇样例的读者题目与答案](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/evals/reader-tasks.md)可供未参与编写的人测试理解效果。渲染器测试通过或作者自查，都不等于完成了独立读者研究。
 
 ## 开始使用
 
@@ -77,9 +77,9 @@ git clone https://github.com/xiaofengShi/paper-reading-skill.git "$HOME/.claude/
 
 ## 工作方式
 
-[Skill 指令](SKILL.md)引导 agent 依次建立全局认知、重建全文、编写解释并核对来源。[论文类型协议](references/paper-types.md)为实证、系统、基准、数据集、理论和综述论文选择合适图形；[可视化阅读规则](references/visual-reading.md)要求图示与解释、证据对应。[阅读模式](references/reading-modes.md)定义可选的快筛、审稿和研究视角。
+[Skill 指令](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/SKILL.md)引导 agent 依次建立全局认知、重建全文、编写解释并核对来源。[论文类型协议](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/references/paper-types.md)为实证、系统、基准、数据集、理论和综述论文选择合适图形；[可视化阅读规则](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/references/visual-reading.md)要求图示与解释、证据对应。[阅读模式](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/references/reading-modes.md)定义可选的快筛、审稿和研究视角。
 
-仓库附带的[渲染器](scripts/render-reading.cjs)把 Markdown 审计源与本地图形生成单文件 HTML，内嵌图片、图示、KaTeX 数学排版和字体。每份源文档都必须在首行写明 `<!-- paper-reading-lang: en -->` 或 `<!-- paper-reading-lang: zh-CN -->`，导航和图表标签也据此选择语种。可在第二行选择四种内置视觉主题之一：`<!-- paper-reading-theme: forest -->`、`cobalt`、`plum`、`saffron`；省略时使用 `forest`。作者按论文内容选择主题，渲染器不猜测主题。Skill 会逐篇判断探索分支、状态变化或反馈环是否能增加理解；若不能，使用静态图。交互图可用 Archify 或自包含的 HTML/SVG 制作，关键解释仍须在无脚本时可读。构建不依赖 Archify 或其他本地 skill。[Transformer](examples/attention-is-all-you-need-deep-read.md)、[DeepSeek](examples/deepseek-v4.1-flash-deep-read.md)、[MiMo](examples/mimo-v2.6-deep-read.md)、[RAFT](examples/raft-deep-read.md)、[MechVQA](examples/mechvqa-deep-read.md)和[IAR](examples/iar-deep-read.md)的 Markdown 与图形输入都是构建材料，不要求读者分别打开。
+仓库附带的[渲染器](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/scripts/render-reading.cjs)把 Markdown 审计源与本地图形生成单文件 HTML，内嵌图片、图示、KaTeX 数学排版和字体。每份源文档都必须在首行写明 `<!-- paper-reading-lang: en -->` 或 `<!-- paper-reading-lang: zh-CN -->`，导航和图表标签也据此选择语种。可在第二行选择四种内置视觉主题之一：`<!-- paper-reading-theme: forest -->`、`cobalt`、`plum`、`saffron`；省略时使用 `forest`。作者按论文内容选择主题，渲染器不猜测主题。Skill 会逐篇判断探索分支、状态变化或反馈环是否能增加理解；若不能，使用静态图。交互图可用 Archify 或自包含的 HTML/SVG 制作，关键解释仍须在无脚本时可读。构建不依赖 Archify 或其他本地 skill。[Transformer](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/examples/attention-is-all-you-need-deep-read.md)、[DeepSeek](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/examples/deepseek-v4.1-flash-deep-read.md)、[MiMo](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/examples/mimo-v2.6-deep-read.md)、[RAFT](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/examples/raft-deep-read.md)、[MechVQA](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/examples/mechvqa-deep-read.md)和[IAR](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/examples/iar-deep-read.md)的 Markdown 与图形输入都是构建材料，不要求读者分别打开。
 
 本地重建所有已发布样例：
 
@@ -96,8 +96,8 @@ npm test
 
 [Archify](https://github.com/tt-a1i/archify)是可选的交互结构图呈现工具。科学内容仍须对照论文核查。
 
-欢迎在 [GitHub Issues](https://github.com/xiaofengShi/paper-reading-skill/issues)提交问题、缺陷或其他论文类型的样例。项目使用 [MIT 许可证](LICENSE)。
+欢迎在 [GitHub Issues](https://github.com/xiaofengShi/paper-reading-skill/issues)提交问题、缺陷或其他论文类型的样例。项目使用 [MIT 许可证](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/LICENSE)。
 
 ## 维护说明
 
-本文是[中文主页](https://xiaofengshi.github.io/paper-reading-skill/zh.html)的内容源；[README.md](README.md)是默认[英文主页](https://xiaofengshi.github.io/paper-reading-skill/)的内容源。修改任一语言后运行 `npm run build:docs`，将生成的 HTML 与 Markdown 一同提交。主页生成器见 [scripts/build-docs.cjs](scripts/build-docs.cjs)。
+本文是[中文主页](https://xiaofengshi.github.io/paper-reading-skill/zh.html)的内容源；[README.md](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/README.md)是默认[英文主页](https://xiaofengshi.github.io/paper-reading-skill/)的内容源。修改任一语言后运行 `npm run build:docs`，将生成的 HTML 与 Markdown 一同提交。主页生成器见 [scripts/build-docs.cjs](https://github.com/xiaofengShi/paper-reading-skill/blob/33a055f6124a8bb64bfe5a8be623d66fb32ed07a/scripts/build-docs.cjs)。

@@ -25,14 +25,14 @@
           <title id="hero-title">首次调用累加金额并保存结果，重试返回已有结果。</title>
           <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="var(--figure-arrow)" stroke-width="1.3"/></marker></defs>
           <g font-family="sans-serif" font-size="18" fill="var(--figure-text)">
-            <rect x="1" y="16" width="112" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="57" y="39" text-anchor="middle">首次请求 A</text><text x="57" y="58" text-anchor="middle" font-size="16" fill="var(--figure-muted)">金额 10</text>
+            <rect x="1" y="16" width="112" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="57" y="39" text-anchor="middle">首次请求 A</text><text x="57" y="58" text-anchor="middle" font-size="17" fill="var(--figure-muted)">金额 10</text>
             <path d="M114 43H154" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/>
             <rect x="164" y="16" width="102" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="215" y="39" text-anchor="middle">累计金额</text><text x="215" y="59" text-anchor="middle" fill="#e3cea5">0 → 10</text>
             <path d="M267 43H305" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/>
-            <rect x="316" y="16" width="102" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="367" y="39" text-anchor="middle">保存结果</text><text x="367" y="59" text-anchor="middle" font-size="16">A ↦ 10</text>
+            <rect x="316" y="16" width="102" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="367" y="39" text-anchor="middle">保存结果</text><text x="367" y="59" text-anchor="middle" font-size="17">A ↦ 10</text>
             <path d="M367 71V126" stroke="var(--figure-arrow)" stroke-dasharray="4 5" marker-end="url(#arrow)"/>
-            <rect x="1" y="137" width="112" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="57" y="160" text-anchor="middle">重试请求 A</text><text x="57" y="179" text-anchor="middle" font-size="16" fill="var(--figure-muted)">金额 10</text>
-            <path d="M114 164H305" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/><text x="210" y="150" text-anchor="middle" font-size="16" fill="#e3cea5">匹配已有记录</text>
+            <rect x="1" y="137" width="112" height="54" rx="9" fill="var(--figure-node)" stroke="var(--figure-stroke)"/><text x="57" y="160" text-anchor="middle">重试请求 A</text><text x="57" y="179" text-anchor="middle" font-size="17" fill="var(--figure-muted)">金额 10</text>
+            <path d="M114 164H305" stroke="var(--figure-arrow)" marker-end="url(#arrow)"/><text x="210" y="150" text-anchor="middle" font-size="17" fill="#e3cea5">匹配已有记录</text>
             <rect x="316" y="137" width="102" height="54" rx="9" fill="var(--figure-selected)" stroke="var(--figure-selected-stroke)"/><text x="367" y="160" text-anchor="middle">返回结果</text><text x="367" y="179" text-anchor="middle" fill="#e3cea5">10</text>
           </g>
         </svg>
@@ -44,7 +44,7 @@
   <main id="main">
     <section id="problem">
       <div class="section-label">01 / 从问题开始</div>
-      <h2 data-nav="问题">响应丢失后，客户端知道什么？</h2>
+      <h2 data-nav="问题">响应丢失后，超时无法说明动作是否完成</h2>
       <p class="intro">客户端发起一次累加 10 的请求，服务端已经执行，响应却没有到达。此时再次发送请求，可能使累计金额从 10 变成 20。<a class="source-ref" href="#ref-aws" aria-label="来源 1：AWS">[1]</a></p>
       <p>这里有两个独立事件：业务动作已经完成，客户端得到了结果。响应丢失只能说明第二个事件没有被客户端确认。客户端仅凭超时无法判断服务端是否完成了动作，因此重试需要考虑重复执行的影响。</p>
       <p>我们用一个内存中的累计金额示例研究这个问题。累计金额从 0 开始，每次新请求增加 10。示例只处理串行调用，记录不会过期，执行过程中也不模拟进程崩溃。</p>
@@ -135,9 +135,9 @@ class Ledger:
 
     <section id="practice">
       <div class="section-label">04 / 实践与解释</div>
-      <h2 data-nav="实践">改变条件后，你能定位修改吗？</h2>
-      <div class="exercise"><div class="section-label">练习 1 / 预测与解释</div><h3>相同金额，是否就是相同操作？</h3><p>从空 Ledger 开始，依次调用 A，10；B，10；A，10。先写出每次返回值和最终累计金额，再运行验证。解释为什么第二次调用需要执行。</p><details><summary>查看参考解</summary><div class="answer"><p>返回值依次为 10、20、10，最终累计金额为 20。A 与 B 表达两次独立操作，金额相同不足以判断它们是重试。第三次调用命中 A 的记录，因此返回首次结果 10。</p><p>如果只以金额作为字典键，B 会被错误地识别为 A 的重试。这个修改破坏了“独立操作独立执行”的要求。</p></div></details></div>
-      <div class="exercise"><div class="section-label">练习 2 / 局部修改</div><h3>增加收款人后，哪部分记录要变化？</h3><p>给 charge 增加 recipient 参数。同一标识的金额与收款人都相同时重放结果，任一项变化时拒绝。保留串行、内存记录的条件，写出修改位置与三项检查。</p><details><summary>查看参考解</summary><div class="answer"><p>把请求参数保存为金额和收款人的二元组，命中记录时比较整个二元组。金额更新和历史结果的生成位置保持在未命中分支。</p><div class="code-block"><div class="code-caption">参考修改 / 参数一致性</div><pre><code class="language-python">parameters = (amount, recipient)
+      <h2 data-nav="实践">改变条件后定位修改位置</h2>
+      <div class="exercise"><div class="section-label">练习 1 / 预测与解释</div><h3>区分相同金额与相同操作</h3><p>从空 Ledger 开始，依次调用 A，10；B，10；A，10。先写出每次返回值和最终累计金额，再运行验证。解释为什么第二次调用需要执行。</p><details><summary>查看参考解</summary><div class="answer"><p>返回值依次为 10、20、10，最终累计金额为 20。A 与 B 表达两次独立操作，金额相同不足以判断它们是重试。第三次调用命中 A 的记录，因此返回首次结果 10。</p><p>如果只以金额作为字典键，B 会被错误地识别为 A 的重试。这个修改破坏了“独立操作独立执行”的要求。</p></div></details></div>
+      <div class="exercise"><div class="section-label">练习 2 / 局部修改</div><h3>增加收款人后修改记录内容</h3><p>给 charge 增加 recipient 参数。同一标识的金额与收款人都相同时重放结果，任一项变化时拒绝。保留串行、内存记录的条件，写出修改位置与三项检查。</p><details><summary>查看参考解</summary><div class="answer"><p>把请求参数保存为金额和收款人的二元组，命中记录时比较整个二元组。金额更新和历史结果的生成位置保持在未命中分支。</p><div class="code-block"><div class="code-caption">参考修改 / 参数一致性</div><pre><code class="language-python">parameters = (amount, recipient)
 if request_id in self.results:
     original_parameters, receipt = self.results[request_id]
     if original_parameters != parameters:
@@ -168,9 +168,9 @@ self.results[request_id] = (parameters, receipt)</code></pre></div><p>检查同�
   <style>
     .trace-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:26px; }
     .trace-step { padding:17px 15px; border:1px solid #799bbe88; border-radius:10px; background:#ffffff04; }
-    .trace-step span { display:block; font:12px var(--mono); color:#bfd1e8; margin-bottom:8px; }
-    .trace-step strong { display:block; font-size:16px; }
-    .trace-step small { display:block; color:#bdcde3; font-size:12px; margin-top:4px; }
+    .trace-step span { display:block; font:var(--fs-small) var(--mono); color:#bfd1e8; margin-bottom:8px; }
+    .trace-step strong { display:block; font-size:1em; }
+    .trace-step small { display:block; color:#bdcde3; font-size:var(--fs-small); margin-top:4px; }
     .trace-step.active { background:#344d6d; border-color:#d3bc8e; }
     .diagram-panel button:disabled { opacity:.65; cursor:default; }
     @media(max-width:600px) { .trace-grid {grid-template-columns:repeat(2,minmax(0,1fr));} }

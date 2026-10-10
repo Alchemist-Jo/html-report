@@ -22,7 +22,7 @@
 
 视觉方向参考用户提供的 PLSD_论文解读.html 中的宽幅开头、悬浮导航和机制演示。模板的颜色、排版、组件与脚本重新编写；未复制参考文件中的正文、图片或原脚本。
 
-根据用户明确指定的 figure-designer 与 pre-submission-reviewer，进一步吸收图的解释任务、流程与系统布局、字体一致性、双重编码、自包含图注和最终尺寸检查。来源为 [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)，本地版本标注 CC-BY-4.0；此处按教学 HTML 场景重新表述。不迁移固定图数、图号、页数、字号阈值或整套投稿审查。
+根据用户明确指定的 figure-designer 与 pre-submission-reviewer，进一步吸收图的解释任务、流程与系统布局、字体一致性、双重编码、自包含图注和最终尺寸检查。来源为 [HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)，许可为 CC BY-NC-SA 4.0；此处按教学 HTML 场景重新表述。不迁移固定图数、图号、页数、字号阈值或整套投稿审查。
 
 字体依据为 youtube-render-pdf 模板中的 fontset=fandol，并核对了 ctex 的 Fandol 字体映射。HTML 正文使用 FandolSong，标题和图示使用 FandolHei，中文代码使用 FandolFang；这是按网页中的文字职责做的适配。WOFF2 字体来自 Fandol v0.3，仅转换格式，许可与字体例外随包保存。
 
