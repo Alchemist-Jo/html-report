@@ -5,11 +5,11 @@
   color-scheme: light;
   --ink: #18313b;
   --ink-soft: #455b60;
-  --subtle: #607276;
+  --subtle: #5d6f72;
   --teal: #16685f;
   --teal-dark: #123e40;
   --teal-pale: #eaf3ef;
-  --orange: #c16736;
+  --orange: #a2572d;
   --orange-pale: #fff2e9;
   --line: #dce6e2;
   --paper: #fffefa;
@@ -25,11 +25,11 @@
 body[data-theme="cobalt"] {
   --ink: #1b2b44;
   --ink-soft: #3f536f;
-  --subtle: #62748b;
+  --subtle: #5c6d83;
   --teal: #255ea2;
   --teal-dark: #194879;
   --teal-pale: #e8f0fa;
-  --orange: #b85a34;
+  --orange: #a95330;
   --orange-pale: #fff0e7;
   --line: #dce4ee;
   --paper: #fff;
@@ -49,7 +49,7 @@ body[data-theme="plum"] {
   --teal: #70529a;
   --teal-dark: #4e3571;
   --teal-pale: #f1eaf6;
-  --orange: #ad5066;
+  --orange: #aa4e64;
   --orange-pale: #fcebf0;
   --line: #e5dce9;
   --paper: #fffefd;
@@ -79,7 +79,7 @@ body[data-theme="saffron"] {
   --hero-muted: #eadccd;
   --hero-kicker: #f2cf92;
   --hero-line: #eed8ae77;
-  --hero-secondary: #f2aaa1;
+  --hero-secondary: #f5b8ae;
   --hero-button-hover: #fff0cc;
 }
 * { box-sizing: border-box; }
@@ -90,121 +90,123 @@ a:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outli
 .skip-link { position: absolute; left: -9999px; }
 .skip-link:focus { left: 1rem; top: 1rem; padding: .5rem 1rem; background: #fff; z-index: 10; }
 .topbar { height: 56px; padding: 0 clamp(1rem, 4vw, 4rem); display: flex; align-items: center; gap: 1.5rem; background: #fff; border-bottom: 1px solid var(--line); }
-.topbar .brand { font-size: .8rem; font-weight: 900; letter-spacing: .16em; text-decoration: none; color: var(--ink); white-space: nowrap; }
-.topbar span { color: var(--subtle); font-size: .82rem; margin-right: auto; }
-.topbar > a:last-child { font-size: .82rem; font-weight: 700; text-decoration: none; }
+.topbar .brand { font-size: .8125rem; font-weight: 900; letter-spacing: .16em; text-decoration: none; color: var(--ink); white-space: nowrap; }
+.topbar span { color: var(--subtle); font-size: .8125rem; margin-right: auto; }
+.topbar > a:last-child { font-size: .8125rem; font-weight: 700; text-decoration: none; }
 .source-toggle { position: absolute; width: 1px; height: 1px; opacity: 0; }
-.source-toggle-label { cursor: pointer; color: var(--ink-soft); font-size: .78rem; font-weight: 700; white-space: nowrap; border: 1px solid var(--line); padding: .3rem .65rem; border-radius: 3px; }
+.source-toggle-label { cursor: pointer; color: var(--ink-soft); font-size: .8125rem; font-weight: 700; white-space: nowrap; border: 1px solid var(--line); padding: .3rem .65rem; border-radius: 3px; }
 .source-toggle-label::before { content: '□'; margin-right: .4em; }
 #show-sources:checked + .topbar .source-toggle-label { color: var(--teal); background: var(--teal-pale); border-color: color-mix(in srgb, var(--teal) 35%, white); }
 #show-sources:checked + .topbar .source-toggle-label::before { content: '☑'; }
 #show-sources:focus-visible + .topbar .source-toggle-label { outline: 3px solid var(--orange); outline-offset: 3px; }
 #show-sources:not(:checked) ~ * .source-ref, #show-sources:not(:checked) ~ * .source-badge { display: none; }
-.source-ref { color: var(--subtle); font-size: .82em; }
+.source-ref { color: var(--subtle); font-size: .8125rem; }
 .hero { background: var(--hero); color: var(--hero-ink); overflow: hidden; }
 .hero-inner { max-width: 1440px; min-height: 440px; margin: 0 auto; padding: clamp(3rem, 6vw, 6rem) clamp(1.5rem, 5vw, 5rem); display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(340px, .9fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; }
-.eyebrow { color: var(--hero-kicker); font-size: .73rem; font-weight: 800; letter-spacing: .18em; margin: 0 0 1.2rem; }
+.eyebrow { color: var(--hero-kicker); font-size: .8125rem; font-weight: 800; letter-spacing: .18em; margin: 0 0 1.2rem; }
 .hero h1 { font-size: clamp(2.5rem, 4.5vw, 4.7rem); line-height: 1.12; letter-spacing: -.045em; max-width: 17ch; margin: 0 0 1.3rem; }
-.hero-sub { font-size: clamp(1rem, 1.4vw, 1.2rem); color: var(--hero-muted); margin: 0 0 2rem; max-width: 40ch; }
-.hero-link { display: inline-flex; align-items: center; gap: 1.7rem; padding: .7rem 1.15rem; background: var(--hero-ink); color: var(--hero); text-decoration: none; font-weight: 800; font-size: .9rem; border-radius: 4px; }
+.hero-sub { font-size: 1.3125rem; color: var(--hero-muted); margin: 0 0 2rem; max-width: 40ch; }
+.hero-link { display: inline-flex; align-items: center; gap: 1.7rem; padding: .7rem 1.15rem; background: var(--hero-ink); color: var(--hero); text-decoration: none; font-weight: 800; font-size: .9375rem; border-radius: 4px; }
 .hero-link:hover { background: var(--hero-button-hover); }
 .hero-map { border-top: 1px solid var(--hero-line); border-bottom: 1px solid var(--hero-line); }
-.hero-map-title { display: flex; justify-content: space-between; margin: 0; padding: .7rem 0; color: var(--hero-kicker); font-size: .75rem; font-weight: 800; letter-spacing: .09em; }
+.hero-map-title { display: flex; justify-content: space-between; margin: 0; padding: .7rem 0; color: var(--hero-kicker); font-size: .8125rem; font-weight: 800; letter-spacing: .09em; }
 .hero-map-title span { font-family: ui-monospace, monospace; }
 .hero-map ol { list-style: none; margin: 0; padding: 0; }
 .hero-map li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); gap: .8rem; padding: .8rem 0; border-top: 1px solid var(--hero-line); }
-.hero-map-index { color: var(--hero-secondary); font: 800 .82rem ui-monospace, monospace; padding-top: .13rem; }
-.hero-map strong { font-size: 1.04rem; }
+.hero-map-index { color: var(--hero-secondary); font: 800 .8125rem ui-monospace, monospace; padding-top: .13rem; }
+.hero-map strong { font-size: 1em; }
 .hero-map-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .1rem .5rem; }
-.hero-map-heading b { color: var(--hero-secondary); font-size: .78rem; font-variant-numeric: tabular-nums; }
-.hero-map li p { margin: .1rem 0 .35rem; color: var(--hero-muted); font-size: .85rem; line-height: 1.45; }
-.hero-map .source-badge { color: var(--hero-kicker); background: #ffffff12; border-color: var(--hero-line); font-size: .66rem; }
+.hero-map-heading b { color: var(--hero-secondary); font-size: .8125rem; font-variant-numeric: tabular-nums; }
+.hero-map li p { margin: .1rem 0 .35rem; color: var(--hero-muted); font-size: .8125rem; line-height: 1.45; }
+.hero-map .source-badge { color: var(--hero-kicker); background: #ffffff12; border-color: var(--hero-line); font-size: .8125rem; }
 .hero-map-outcome { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); gap: .8rem; padding: .8rem 0 1rem; border-top: 1px solid var(--hero-line); }
-.hero-map-outcome > span { color: var(--hero-secondary); font: 800 1.2rem/1.2 ui-monospace, monospace; }
-.hero-map-outcome strong { display: block; font-size: .92rem; line-height: 1.4; }
+.hero-map-outcome > span { color: var(--hero-secondary); font: 800 1.3125rem/1.2 ui-monospace, monospace; }
+.hero-map-outcome strong { display: block; font-size: .9375rem; line-height: 1.4; }
 .hero-map-outcome .source-badge { margin-top: .35rem; }
 .reading-shell { max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 240px minmax(0, 1fr); align-items: start; gap: 0; }
 .toc { position: sticky; top: 0; padding: 2rem 1.5rem 2rem clamp(1.5rem, 3vw, 3rem); max-height: 100vh; overflow-y: auto; display: flex; flex-direction: column; gap: .22rem; }
-.toc-title { color: var(--orange); font-size: .72rem; letter-spacing: .18em; font-weight: 900; margin-bottom: .6rem; }
-.toc a { display: block; padding: .48rem .55rem; color: var(--ink-soft); font-size: .82rem; line-height: 1.35; text-decoration: none; border-left: 2px solid transparent; }
+.toc-title { color: var(--orange); font-size: .8125rem; letter-spacing: .18em; font-weight: 900; margin-bottom: .6rem; }
+.toc a { display: block; padding: .48rem .55rem; color: var(--ink-soft); font-size: .8125rem; line-height: 1.35; text-decoration: none; border-left: 2px solid transparent; }
 .toc a:hover, .toc a:focus-visible { color: var(--teal); background: color-mix(in srgb, var(--teal) 9%, white); border-left-color: var(--teal); }
 .article { min-width: 0; background: var(--paper); border-left: 1px solid var(--line); }
 .article-inner { max-width: 1040px; margin: 0 auto; padding: 2.3rem clamp(1.5rem, 5vw, 5.5rem) 6rem; }
 .article h2 { scroll-margin-top: 1rem; margin: 4rem 0 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: clamp(1.65rem, 2.6vw, 2.45rem); line-height: 1.24; letter-spacing: -.035em; }
 .article h2:first-of-type { margin-top: 2.2rem; }
-.article h3 { margin: 2.7rem 0 .8rem; font-size: 1.2rem; line-height: 1.35; }
+.article h3 { margin: 2.7rem 0 .8rem; font-size: 1.3125rem; line-height: 1.35; }
 .article p { margin: 0 0 1.1rem; color: var(--ink-soft); }
 .article p strong { color: var(--ink); }
+.hero h1, .article h2, .article h3, figcaption { text-wrap: balance; }
+.article p, .article li { text-wrap: pretty; }
 .article > .article-inner > blockquote { border-left: 3px solid var(--teal); background: color-mix(in srgb, var(--teal) 7%, white); margin: 0 0 2.5rem; padding: 1rem 1.25rem; border-radius: 0 6px 6px 0; }
-.article blockquote p { margin: 0; color: var(--ink-soft); font-size: .9rem; }
+.article blockquote p { margin: 0; color: var(--ink-soft); font-size: .9375rem; }
 .article ol, .article ul { margin: 0 0 1.5rem; padding-left: 1.4rem; }
 .article li { margin: .35rem 0; }
 .article code { background: color-mix(in srgb, var(--teal) 7%, white); padding: .1em .28em; border-radius: 3px; color: var(--ink); overflow-wrap: anywhere; }
 .article a:not(.hero-link) { font-weight: 650; }
-.article table { border-collapse: collapse; display: block; overflow-x: auto; contain: paint; max-width: 100%; margin: 1.4rem 0 2rem; font-size: .9rem; }
+.article table { border-collapse: collapse; display: block; overflow-x: auto; contain: paint; max-width: 100%; margin: 1.4rem 0 2rem; font-size: .9375rem; }
 .article th, .article td { border-bottom: 1px solid var(--line); padding: .65rem .9rem; text-align: left; min-width: 7rem; }
 .article th { background: color-mix(in srgb, var(--teal) 7%, white); color: var(--ink); }
 .principle-grid { margin: 2.2rem 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1px; border: 1px solid var(--line); background: var(--line); }
 .principle { background: color-mix(in srgb, var(--teal) 3%, white); padding: 1.25rem 1.4rem; }
-.principle-number { color: var(--orange); font: 800 .8rem ui-monospace, monospace; }
-.principle h3 { margin: .55rem 0 .4rem; font-size: 1.1rem; }
-.principle p { font-size: .9rem; margin-bottom: .7rem; }
+.principle-number { color: var(--orange); font: 800 .8125rem ui-monospace, monospace; }
+.principle h3 { margin: .55rem 0 .4rem; font-size: 1.3125rem; }
+.principle p { font-size: .9375rem; margin-bottom: .7rem; }
 .reading-path, .mechanism-contrast { margin: 2rem 0 2.3rem; border: 1px solid var(--line); border-radius: 7px; background: #fff; box-shadow: 0 10px 25px #18362e0b; overflow: hidden; }
 .reading-path > figcaption, .mechanism-contrast > figcaption { display: block; padding: 1.15rem 1.3rem; background: color-mix(in srgb, var(--teal) 6%, white); border-bottom: 1px solid var(--line); }
-.reading-path > figcaption strong, .mechanism-contrast > figcaption strong { display: block; font-size: 1.15rem; line-height: 1.35; }
-.reading-path > figcaption p, .mechanism-contrast > figcaption p { margin: .3rem 0 0; font-size: .84rem; }
+.reading-path > figcaption strong, .mechanism-contrast > figcaption strong { display: block; font-size: 1.3125rem; line-height: 1.35; }
+.reading-path > figcaption p, .mechanism-contrast > figcaption p { margin: .3rem 0 0; font-size: .8125rem; }
 .reading-path ol { list-style: none; padding: .1rem 1.3rem 1rem !important; margin: 0 !important; max-width: none !important; }
 .reading-path li { display: grid; grid-template-columns: 2.4rem minmax(0,1fr); gap: .85rem; margin: 0 !important; padding: 1rem 0; position: relative; }
 .reading-path li:not(:last-child) { border-bottom: 1px solid var(--line); }
-.path-index { width: 2.25rem; height: 2.25rem; border: 2px solid color-mix(in srgb, var(--teal) 55%, white); border-radius: 50%; display: grid; place-items: center; color: var(--teal); background: #fff; font: 800 .8rem ui-monospace, monospace; z-index: 1; }
+.path-index { width: 2.25rem; height: 2.25rem; border: 2px solid color-mix(in srgb, var(--teal) 55%, white); border-radius: 50%; display: grid; place-items: center; color: var(--teal); background: #fff; font: 800 .8125rem ui-monospace, monospace; z-index: 1; }
 .reading-path li:not(:last-child)::before { content: ''; position: absolute; left: 1.07rem; top: 3.25rem; bottom: -1rem; width: 2px; background: color-mix(in srgb, var(--teal) 55%, white); }
 .path-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .7rem; }
-.path-title h3 { margin: .05rem 0 .35rem; font-size: 1.03rem; }
-.path-title span { color: var(--orange); font-size: .74rem; font-weight: 800; }
-.path-content > p { margin: 0 0 .55rem; font-size: .91rem; }
+.path-title h3 { margin: .05rem 0 .35rem; font-size: 1em; }
+.path-title span { color: var(--orange); font-size: .8125rem; font-weight: 800; }
+.path-content > p { margin: 0 0 .55rem; font-size: .9375rem; }
 .path-content dl { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .55rem; margin: .6rem 0; }
 .path-content dl > div { padding: .55rem .7rem; background: color-mix(in srgb, var(--teal) 3%, white); border-left: 2px solid color-mix(in srgb, var(--teal) 35%, white); }
-.path-content dt, .contrast-branch dt { color: var(--teal); font-size: .7rem; font-weight: 850; }
-.path-content dd, .contrast-branch dd { margin: .15rem 0 0; color: var(--ink-soft); font-size: .79rem; line-height: 1.5; }
+.path-content dt, .contrast-branch dt { color: var(--teal); font-size: .8125rem; font-weight: 850; }
+.path-content dd, .contrast-branch dd { margin: .15rem 0 0; color: var(--ink-soft); font-size: .8125rem; line-height: 1.5; }
 .contrast-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
 .contrast-branch { padding: 1.2rem 1.3rem; }
 .contrast-branch + .contrast-branch { border-left: 1px solid var(--line); }
-.contrast-branch h3 { margin: 0 0 .35rem; font-size: 1.15rem; color: var(--teal-dark); }
+.contrast-branch h3 { margin: 0 0 .35rem; font-size: 1.3125rem; color: var(--teal-dark); }
 .contrast-branch.b1 h3 { color: var(--orange); }
-.contrast-lead { margin: 0 0 .8rem !important; font-size: .88rem; }
+.contrast-lead { margin: 0 0 .8rem !important; font-size: .9375rem; }
 .contrast-branch dl { margin: 0 0 .8rem; }
 .contrast-branch dl > div { padding: .55rem 0; border-top: 1px solid var(--line); }
 .archify-disclosure { margin: 1.2rem 0 2rem; border: 1px solid var(--line); border-radius: 6px; background: color-mix(in srgb, var(--teal) 4%, white); }
-.archify-disclosure > summary { padding: .75rem 1rem; cursor: pointer; color: var(--teal); font-size: .85rem; font-weight: 800; }
-.archify-disclosure > summary span { margin-left: .7rem; color: var(--subtle); font-size: .76rem; font-weight: 500; }
+.archify-disclosure > summary { padding: .75rem 1rem; cursor: pointer; color: var(--teal); font-size: .8125rem; font-weight: 800; }
+.archify-disclosure > summary span { margin-left: .7rem; color: var(--subtle); font-size: .8125rem; font-weight: 500; }
 .archify-disclosure .archify-figure { margin: 0; border: 0; box-shadow: none; border-radius: 0; }
 .source-note { margin: .8rem 0 1.4rem; border-left: 2px solid var(--line); padding: .25rem 0 .25rem .85rem; color: var(--subtle); }
-.source-note > summary { cursor: pointer; font-size: .8rem; font-weight: 700; }
-.source-note > p { margin: .5rem 0 0; font-size: .8rem; }
+.source-note > summary { cursor: pointer; font-size: .8125rem; font-weight: 700; }
+.source-note > p { margin: .5rem 0 0; font-size: .8125rem; }
 .experiment-atlas { margin: 1.7rem 0 2.3rem; border: 1px solid var(--line); background: #fff; box-shadow: 0 10px 25px #18362e0b; border-radius: 7px; overflow: hidden; }
 .experiment-atlas figcaption { padding: 1.1rem 1.2rem; border-bottom: 1px solid var(--line); }
-.experiment-atlas figcaption strong { display: block; font-size: 1.1rem; }
+.experiment-atlas figcaption strong { display: block; font-size: 1.3125rem; }
 .experiment-head, .experiment-row { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.25fr) minmax(0,1.25fr); gap: 1.1rem; }
-.experiment-head { padding: .5rem 1.2rem; color: var(--subtle); background: color-mix(in srgb, var(--teal) 6%, white); font-size: .72rem; font-weight: 800; }
+.experiment-head { padding: .5rem 1.2rem; color: var(--subtle); background: color-mix(in srgb, var(--teal) 6%, white); font-size: .8125rem; font-weight: 800; }
 .experiment-row { align-items: start; padding: .95rem 1.2rem; border-top: 1px solid var(--line); }
 .experiment-row:first-child { border-top: 0; }
-.experiment-row p { margin: 0 !important; font-size: .82rem; line-height: 1.5; }
+.experiment-row p { margin: 0 !important; font-size: .8125rem; line-height: 1.5; }
 .experiment-question { display: flex; gap: .6rem; align-items: baseline; line-height: 1.4; }
-.experiment-question span { color: var(--orange); font: 800 .7rem ui-monospace, monospace; }
-.experiment-question strong { font-size: .88rem; }
+.experiment-question span { color: var(--orange); font: 800 .8125rem ui-monospace, monospace; }
+.experiment-question strong { font-size: .9375rem; }
 .experiment-row .source-badge { margin-top: .45rem; }
-.source-badge, .renderer-badge { display: inline-block; color: var(--teal); border: 1px solid color-mix(in srgb, var(--teal) 35%, white); background: color-mix(in srgb, var(--teal) 7%, white); padding: .25rem .48rem; border-radius: 3px; font-size: .72rem; line-height: 1.4; font-weight: 700; white-space: normal; }
+.source-badge, .renderer-badge { display: inline-block; color: var(--teal); border: 1px solid color-mix(in srgb, var(--teal) 35%, white); background: color-mix(in srgb, var(--teal) 7%, white); padding: .25rem .48rem; border-radius: 3px; font-size: .8125rem; line-height: 1.4; font-weight: 700; white-space: normal; }
 .figure-head { display: flex; justify-content: space-between; align-items: start; gap: 1rem; padding: 1.1rem 1.2rem; border-bottom: 1px solid var(--line); }
-.figure-kicker { display: block; color: var(--orange); font-size: .68rem; letter-spacing: .16em; font-weight: 900; margin-bottom: .25rem; }
-.figure-head h3 { margin: 0; font-size: 1.15rem; }
-.figure-head p { margin: .25rem 0 0; font-size: .8rem; }
+.figure-kicker { display: block; color: var(--orange); font-size: .8125rem; letter-spacing: .16em; font-weight: 900; margin-bottom: .25rem; }
+.figure-head h3 { margin: 0; font-size: 1.3125rem; }
+.figure-head p { margin: .25rem 0 0; font-size: .8125rem; }
 .archify-figure, .data-figure, .paper-figure { max-width: 100%; margin: 2rem 0 2.4rem; background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 25px #18362e0b; border-radius: 7px; overflow: hidden; }
 .archify-figure iframe { display: block; width: 100%; height: 610px; border: 0; background: color-mix(in srgb, var(--teal) 2%, white); }
-.archify-figure figcaption, .paper-figure figcaption { padding: .7rem 1.2rem; color: var(--subtle); background: color-mix(in srgb, var(--teal) 2%, white); border-top: 1px solid var(--line); font-size: .83rem; line-height: 1.5; }
+.archify-figure figcaption, .paper-figure figcaption { padding: .7rem 1.2rem; color: var(--subtle); background: color-mix(in srgb, var(--teal) 2%, white); border-top: 1px solid var(--line); font-size: .8125rem; line-height: 1.5; }
 .figure-hint { display: none; }
 .figure-viewport { overflow-x: auto; }
 .figure-viewport:focus-visible { outline: 3px solid var(--orange); outline-offset: -3px; }
-.paper-figure img { display: block; width: 100%; height: auto; padding: .6rem; background: #fff; }
+.paper-figure img { display: block; width: auto; max-width: 100%; height: auto; margin: 0 auto; padding: .6rem; background: #fff; }
 .display-math { overflow-x: auto; padding: 1rem 1.2rem; margin: 1.5rem 0; background: color-mix(in srgb, var(--teal) 5%, white); border-left: 3px solid var(--teal); font-size: 1.17rem; }
 .inline-math { display: inline-block; vertical-align: -.08em; white-space: nowrap; color: var(--ink); line-height: 1; }
 .inline-math .katex { font-size: 1em; }
@@ -213,30 +215,30 @@ a:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outli
 .segment { display: block; }
 .s0 { background: var(--teal); }.s1 { background: var(--orange); }.s2 { background: color-mix(in srgb, var(--teal) 35%, white); }
 .segment-legend { display: grid; grid-template-columns: repeat(3,1fr); gap: .6rem; padding: 0 1.2rem 1.3rem; }
-.segment-legend > div { display: flex; align-items: baseline; gap: .35rem; font-size: .8rem; line-height: 1.4; }
+.segment-legend > div { display: flex; align-items: baseline; gap: .35rem; font-size: .8125rem; line-height: 1.4; }
 .segment-legend strong { margin-left: auto; color: var(--ink); }
 .swatch { flex: 0 0 9px; width: 9px; height: 9px; border-radius: 50%; }
 .paired-chart { padding: 1rem 1.5rem .5rem; }
 .pair-row { padding: .8rem 0 1.2rem; border-bottom: 1px solid var(--line); }
 .pair-row:last-child { border-bottom: 0; }
-.pair-label { font-weight: 750; font-size: .89rem; margin-bottom: .32rem; }
+.pair-label { font-weight: 750; font-size: .9375rem; margin-bottom: .32rem; }
 .pair-track { position: relative; height: 26px; margin: 0 .42rem; }
 .pair-track::before { content: ''; position: absolute; inset: 11px 0 auto; height: 3px; background: color-mix(in srgb, var(--teal) 20%, white); border-radius: 3px; }
 .pair-connector { position: absolute; top: 9px; height: 7px; background: color-mix(in srgb, var(--teal) 50%, white); border-radius: 4px; }
 .pair-point { position: absolute; top: 5px; width: 16px; height: 16px; transform: translateX(-50%); border-radius: 50%; border: 3px solid var(--teal); background: #fff; }
 .pair-point.after { z-index: 1; background: var(--teal); box-shadow: 0 0 0 2px #fff; }
-.pair-values { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem 1rem; color: var(--ink-soft); font-size: .8rem; }
+.pair-values { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem 1rem; color: var(--ink-soft); font-size: .8125rem; }
 .pair-values span { white-space: nowrap; }
 .pair-values strong { color: var(--ink); font-variant-numeric: tabular-nums; }
 .pair-symbol { display: inline-block; width: 9px; height: 9px; border-radius: 50%; border: 2px solid var(--teal); margin-right: .3rem; }
 .pair-symbol.after { background: var(--teal); }
 .pair-delta { margin-left: auto; color: var(--teal); font-weight: 850; font-variant-numeric: tabular-nums; }
-.pair-axis { display: flex; justify-content: space-between; color: var(--subtle); font: 600 .67rem ui-monospace, monospace; margin: 0 .42rem; }
-.chart-table { border-top: 1px solid var(--line); padding: .6rem 1.2rem; font-size: .79rem; }
+.pair-axis { display: flex; justify-content: space-between; color: var(--subtle); font: 600 .8125rem ui-monospace, monospace; margin: 0 .42rem; }
+.chart-table { border-top: 1px solid var(--line); padding: .6rem 1.2rem; font-size: .8125rem; }
 .chart-table summary { cursor: pointer; color: var(--teal); font-weight: 700; }
 .chart-table table { margin: .6rem 0 !important; }
-.data-note { padding: .7rem 1.2rem; color: var(--ink-soft); background: color-mix(in srgb, var(--teal) 2%, white); border-top: 1px solid var(--line); font-size: .82rem; line-height: 1.5; }
-.page-footer { display: flex; justify-content: space-between; padding: 1.5rem clamp(1rem, 4vw, 4rem); color: var(--subtle); background: color-mix(in srgb, var(--teal) 9%, white); border-top: 1px solid var(--line); font-size: .8rem; }
+.data-note { padding: .7rem 1.2rem; color: var(--ink-soft); background: color-mix(in srgb, var(--teal) 2%, white); border-top: 1px solid var(--line); font-size: .8125rem; line-height: 1.5; }
+.page-footer { display: flex; justify-content: space-between; padding: 1.5rem clamp(1rem, 4vw, 4rem); color: var(--subtle); background: color-mix(in srgb, var(--teal) 9%, white); border-top: 1px solid var(--line); font-size: .8125rem; }
 @media (max-width: 1000px) {
   .reading-shell { display: block; }
   .toc { position: sticky; top: 0; z-index: 3; width: 100%; max-height: none; padding: .45rem .8rem; overflow-x: auto; overflow-y: hidden; flex-direction: row; align-items: center; white-space: nowrap; background: color-mix(in srgb, var(--teal) 3%, white); border-bottom: 1px solid var(--line); }
@@ -263,7 +265,7 @@ a:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outli
   .figure-head .source-badge, .figure-head .renderer-badge { margin-top: .6rem; }
   .archify-figure iframe { height: 480px; }
   .segment-legend { grid-template-columns: 1fr; }
-  .figure-hint { display: block; padding: .45rem .65rem; color: var(--subtle); font-size: .72rem; background: color-mix(in srgb, var(--teal) 2%, white); }
+  .figure-hint { display: block; padding: .45rem .65rem; color: var(--subtle); font-size: .8125rem; background: color-mix(in srgb, var(--teal) 2%, white); }
   .paper-figure img { width: 900px; max-width: none; padding: .2rem; }
   .pair-delta { margin-left: 0; width: 100%; }
 }
@@ -283,8 +285,711 @@ a:focus-visible, summary:focus-visible { outline: 3px solid var(--orange); outli
   .archify-figure iframe { height: 320px; }
   .article h2 { break-after: avoid; }
 }
-</style></head>
-<body data-theme="cobalt"><a class="skip-link" href="#content">Skip to content</a><input class="source-toggle" id="show-sources" type="checkbox"><header class="topbar"><a class="brand" href="#top">PAPER / READING</a><span>A source-grounded reading atlas</span><label class="source-toggle-label" for="show-sources">Show source locations</label><a href="#content">Start reading ↘</a></header><div id="top" class="hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">DEEP READING ATLAS · ENGLISH</p><h1>MechVQA: a mechanical-drawing benchmark, and the 4B model that tops it</h1><p class="hero-sub">Mechanical drawings break general MLLMs at three levels — dense reading, projection-consistent reasoning, standards-aware judging. MechVQA measures each level separately, and MechVL shows domain post-training closes much of the gap.</p><a class="hero-link" href="#section-1">Enter the reading atlas <span aria-hidden="true">↘</span></a></div><div class="hero-map"><p class="hero-map-title">Whole-paper map <span>01 — 03</span></p><ol><li><span class="hero-map-index">01</span><div><div class="hero-map-heading"><strong>Problem</strong><b>3 compounding factors</b></div><p>High annotation density hides decisive cues; weak domain priors mishandle drafting conventions; spatial reasoning fails under strict projection rules. Adjacent benchmarks cover only slices.</p><span class="source-badge">PDF §1</span></div></li><li><span class="hero-map-index">02</span><div><div class="hero-map-heading"><strong>Benchmark</strong><b>gates at every step</b></div><p>Expert-filtered drawings, OCR + MLLM metadata with human verification, three QA-generation routes, cross-model question validation, majority-voted answers, and a leakage-controlled 8:1:1 split.</p><span class="source-badge">PDF §3, Fig. 2a</span></div></li><li><span class="hero-map-index">03</span><div><div class="hero-map-heading"><strong>Model &amp; evidence</strong><b>SFT → DAPO ×2</b></div><p>MechVL-4B: SFT for schema and grounding, then two-stage self-play DAPO with a format/accuracy/quality reward. Ablations isolate stages, RL algorithm, and reward design.</p><span class="source-badge">PDF §§4–5, Tables 2–3</span></div></li></ol><div class="hero-map-outcome"><span aria-hidden="true">↳</span><div><strong>A 3,281-drawing, 20,778-pair benchmark with quality-gated verifiable answers, plus a 4B baseline reaching Total 84.85 — +5.94 over the best open-source and +7.57 over the best closed-source MLLM tested.</strong><span class="source-badge">PDF §§3–5, Tables 1–2</span></div></div></div></div></div><div class="reading-shell"><nav class="toc" aria-label="Contents"><div class="toc-title">Reading path</div><a href="#section-1">01 / The whole paper at a glance</a><a href="#section-2">02 / Building MechVQA: from drawings to verifiable QA pairs</a><a href="#section-3">03 / The measurement design: what is being counted</a><a href="#section-4">04 / MechVL: the training ladder behind 84.85</a><a href="#section-5">05 / Experiment atlas: which result answers which question</a><a href="#section-6">06 / Synthesis: what the evidence supports, and its boundaries</a></nav><main id="content" class="article"><div class="article-inner">
+@font-face { font-family: "Learning Fandol Song"; src: url(data:font/woff2;base64,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) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Learning Fandol Song"; src: url(data:font/woff2;base64,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) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Learning Fandol Hei"; src: url(data:font/woff2;base64,d09GMk9UVE8AACMwAA4AAAAALPwAACLaAAFMzAAAAAAAAAAAAAAAAAAAAAAAAAAAGYE6DchCG4EwBmAOCACBbAE2AiQDg1AEBgWDJgcgFyQYgWobAyxRlHBeOMFXBTaR6QLfBzhoSmLoeUnTPkuybH984x+9yLXwgTzb0pJrXp4/GSHJ7ABts4MWE4Yo4R1gN3ZiJWDS6gALrECm2+y5saxm7rvO/S2Igv34zd6937ybJNGk4InSxCu0TilEqlgolKLyegKAgrv/POkWT/44b9g2+5fxsWzyN1G3F2stYFkEbBgCtoLuxkbRviG2Qk1oC5ZIaMEA1nZeuKO//wNqGc+XV98q+7M4rVP1XtWKR1y/jB4hcKWVFmcmDX7Ze9qTMvq/udLO7FH2ANWe2i2xkH0VrkJXV+FklvKT5gBnjjl3hVzPFUhVsq3R2S1ly5wtEBpZiUICOlGlAeUJa+sPuV7NLvyj5WmJw7wKFgdPlaSaAv5d+AAUACAqkgcLe/V6ZgHAuCdUiAHGQ6FCCDAeCVUKwAveC6C904O4XAyZYEwoCzaoVFAjQdUnDbGmRJOO+zfrRQur/lvC6mpRyhXejNkD2QuWZ7daI2AQbQGwte6gKNeFilqlLLVO7H35EuUXNPAnc4m1chL86YBaAtFLEGbJHpv9J+G3NnBdNkxC85pMC+4P+Yfw4UnneSeMhdOP03MALii8We3jrj17S6XE+8dTY4VfsF/NIPsvNcre5411CbK6Fik7Swi6pYvr2PlqnwqPb8qGVtVNKbmZbE9Ae6L+Cxxnj91vQMMYENUA/lj8AlADoAskAygD9AAGAaOAacBuwBHAScBpwHdBc6A3obegd6GPuDzj8hwmvrIAlRCPv29oOMGaUlRW6GP1thmd1fcGtyF3qBtUw44JNM7v7SxH4R6zr9gCVkf4VtlL/Dq4bfDs4DQimbV+ZxuJv9vjXdd79d+b8F6ieeb7n77f/v1B78dYOC2KP/j8g74f7Ld8oI5Xj1hrHzb7cMmHh21C/rerTaRNmk35R/U/avbRMPJf5IchnShWyiOtpRZJ7UeNpR6hvrL9ijfjNtuLNCl0OC2FVvjx9x9PtjtkdzPs27CJ9qfsqz7pQZ9Jv2/8xdie0ZcRwcgwvWdaxLzxfyMdwj61Ozw0f29eBSmWQ2xLg63sp5wfGi7lxHGeWtHPKn2I8wUo4RSY+VoXakEWYRao57YSSivaqA/IhUyr2iyOy43f1HOfrzFTKTFQH04BxdvJ9cjb0aUFuQBKUK/Zp/o+yi4bw+abgMja+m9DtdjJPkS23lBa1pTteQOowh/mLrBd+DHcIGh5UgY8ePQEZ4po5ZSfxCEcWHs6Kq8dUAUeLDPMNUeZyRMF08AeXJLhxzrcjRvYkVWJoCmn12KqRJcGZssIZ4cnUj6/5OM9eEMfqzdAYrFrOCrHryZeE+zUt0Y64exhqTCK2yKXZPKncYYZHba1OdQGNmV1W1v/eG1Rj1HBphFbpnA2NVbNQ1iX+qnLzX5sKrFDG/y8G6/dhnQP6MXggY+LhMSVttFTbCDkCfk8SEQFiuX1k96gCbb2mSwrCpKC9JQ3jbJ1lGd5gOeI50QqblXsyb0FANhule07JsYQyexZwTcRHh06mHOiM3pr/DBGyxnF4hEw2kAtWS+K/sXQFwTHgfGM6e5r2znhW6pWLMwL2LoMaS+d+WAUIS5PSoM9+K/XmwBd5klJ3Yds+InnTtdeNJ056fOkcaESI1nZVwlHtq7ZvBw/uZsOTNLfGYn28/yGI8CPPELBdtr9JceIsIf5PzdPG6+Nrv6zSf9gMuu2Mytehn74o09NgNG7iRc69p9NN19wqv5mt4aeNai4u4rZTnzziuX10p+8/NSB3IHQ2JWS9pKAZuZlp7qPZhhVnZsRqx57O7rzoPL41jTZh9isTxb/J66f+w2YllU6XOaVyjDO6QqWEZjX1+xm04/gyAzMuXAmXI1w2Atzr8LcnHKmI50r0D1Z516INYF00fhIFjqykE7/gC72nws2AHHJiPNkA6jzDXMv/NlSm0rW9NpI94hAVr27gyolQlok5YkUvnhNR2rO4735AlzFXtvCMyIWtInZtJlzS89iz6DHHeWV0z7VhPbZZNhqI4h1vsVGALlgi60L7NbGNK2Dg4O/MW/4Y0WyHyQtN3vbHANyaeXvCZXomyJ5Yw/n5OGibo2ueVZvW3ezWAlE7tqr3wzUZ/AclwH/u6R0jPPIqfbshIvoCDM0w1bqeUNAK1b4m+PMQ6PlAMYM1ig7tpJcboOhwzSHaZYwvmvVWoOkDaRpmlJW9Okqj1eMtnDtMd+dyKgLeeAc+yTrNvwcegCvXZ5rNchOfBqsyGFuCFPFjRWVfkZhtmELbJRkViHvldlkZI90iHtneOCTwt5qxPoMt5RBSr5kXhc1mrGQG+FRnaOcMOUKmGC3Nqit7+toGwbpwVtQjmnWxwRwXKcLb4inbkPaS8x7pTT4FqcDIA837f/H7YkjsC+tsrMfGu0E7CbKlSbzWocGGhBxBg0j+d8bvUt4jgKx9/ClI/enk8Tch0BdLScWF0ceh7sSL5xx10R/VkG4AU1lUq04x3OObA5Xsb6GyH1gUzaRxZcIZd6cMhFCMCldVw+FzyLYJ98g0JVS2tIMP1lAxU8EbS9YmW5ldW7c4OcOnr9aiEa2cjfhdFWhN9aym+fOlHLMi+9zrzw0AtfsKfIJEQc1bzwPDN+P8Cb2u6HLCcHvFT1rtSA/pJXzb0oerD4IQfY/evFwzNXvDkPa05+uJN44aaxsWfz5BL9otx7gsQL3tNvv8TFndh3JnTDlpE2akl2dnd4NrdQL+iSJ2PO6ot2t+bfjUN6w7DiFz8afOlpUSrRr7BiXAeduSElwDMc6iilDzGPX1yLiJ0ZDursc3aGNtgHvdg4ypFdu7agK1mmKf2+WVy6E5RlKr6OmVjrxnPc+9njiTROIL36CHZb9+uDLfvKWzlYIQqzNo2913H+KfSZ/ush06eyCPjOitZxSJI2bfjvUYiv6ZOSfbXC+x1iF5ITz/UZHQOn3Lj3t79070IULf1/2GguWXxmXaT7RtHZTCeyRoSgSQo/XXwYbZFPaFrF5J5SjbJWvmhJA8iEc+VOZpepznoC3Tmk+H6i4eK1k7wlpbh7c2+AWj2csHFNJajSmTzwixvTjgn+frkBzZrdoun+4aoBnlZS29JbjD0bRlN4ZkVK5sYpBWQYlOAg15yt6kA2XYtdqV3ZI2psuxTAUdynXgvx1BKm8Qe33IMGi+uGLX1pn9/gb1B5WHzp+MsdY3dxPeMI0afJT42vDLi81a8/dJtekJDHKbfzFoxMZnkv9/vy5f0lizJDLVdE9SsBTXnzh7K1rl0YNSS4tj00sPvkopyDvB/tLTs63GLslOZdSeMfZ4l25aOK2nY7DzP8yUi+ftkQh3O4+P1uJ/edtXHDgGYW4Ocf21Z8zwQEEuKAOR8g6s+kAYbtQBA0saC+IZ1SE7h/r8HQi53Tlqtd0ey8RuqyH1uJtfTrPgSZDEqLHNhu31aNZR0e2HTMW5SWx87UIO+v9FSdWDZ989YNPyZpnJozzhDbXSKale4KmwpbtNGgm3DUXjqZrzS4vpDdjUMjDlLevTplpkNgV7hAGFUVA+iYyzmoeGVKbGPVZV0I29CHuyeWr2kqgeMuOrkoE/XJyFdZfsthhosDpw2oOQkW9leOOMii+Zocn0qZfSq3E+ls2dVV7K6Q+M83mS+d1sUmPy+lFYiPWpUQMtxFl1q5V3BvCHycwFbZTrhl4uESn61Rv7A8JWDTToM43sRy5Us2rgUqCuHdi0RWCVF/rwkqvFuRFeiCc782kDu3fY100uS+HN48YamluheZJuT0QkXH6PYeSOvr3vdvmxIWjR/zG/CkPKaBtUbNcBGp3QX4T3tPSxvSc87jwx067En9haA+aPFI6PnOSwI8CkVRecbgg2zwYP2tMvZeJ3AgHNqKRAxpsQLlwauPAbdAuee20GH7etAHZEt33xdMfb9fAG0AspqmFYiiQ/EliwVzo6ysFlzLSOzcgVN/uJfkF91+DasyGWluQIZLDUUk0D7sJgYxjrIQE8h1Gc4F0+Vf2q57MSyE7DmM2HfAsz8S+ppXBaszYCWxzQ58R8sCH56UDK7Qg//wcCgPbtVY3Yhj4rX88e2K8913+V4mgJmAl5UJ+rrG44wtkkJlamO8NhaNXsR2gYB4UiEqeMf0xprJ/G8agggjyNBMX3zhRA9qXjWef++PHKx2G5ySlInSLOmnhbfFfnqGgVirA75wKYEdJKPU5tu+6Zl71UJ4+VKxwMpHDF2AhCpHP4E/BKHUuWHcG2mmSDweMMmRAcqRo4lKrRT0zdkK8yjDc9wuOX7ofDiFxAUUfUU4izIAdCo2wGAiLr/PNzoxpKwsh6Zn/DYWLV3BUEHmLWBTcqSNZWAD93MnbKoVqi7hHmHGhJ99wr1a6FyqE10ayhVYcFbH5VtyfmIXJRSb0sqN6CgNsv57KLNDzmdrArrHvuzAu31CL+7h4w3URE+xQspbtQ+koaZYY9QUUu/FvNJQIlPc17NXgEg8Z7qvbjt02Yys19ITpFK8sHy3uK4Fk/xmYiEHAfbiAe+fs1NXHI8SZwp9qDBo0jZwojISbObSh1ja5cSnccK8WP/hmoyb8QKbaQPovdIl+wKVfagIyT7AajpYA8WoQEiy8GeCeHFz0S2nrP51xIzvqIiy/fxRci9j/u75X+aGnKj++7tBCA1J3O3Ip7t+S7ofeQhsDHUwM0xf5R0b7RKhsI2ADtsk/MvqiK7Ig/KGoxIi7EzALj1aXewEjC6mYW35hKsqdvRaeeMWCV3oS6g1g2ebqzsztHHjo9LBrDD7COQdhWw6QNZT+jTeQTgSFfHSXYQh1aemImrHi12zacnkcMHSDhRH+px5Cyrz4uEXc1/8bgW36ERnkiayWb86dE8pom7jeiczUnIX54t88Q3qt4NdI6fiVkxhu5IMwhMADXpCinpwRTDyKIicKoTpz7Q6OtNdwPRBAfI3UozRK+o4gWkaM3+CKKLM6ya6xj2bheNZMwePyi1SLozBjW2e0AER0CXB38idn9zoBHSqZvboQUg/z0+8cx0FX4HvQewi/LpDcLGpOUWlJ94tiP8IHrBZOFIjIU5tNXxb5yEJ+iSdzBMiO3f//gBwj6sgZIRRJIeRBPiQ3+60csXdBBy0BtOFBeYrUp1Ty7pggVUBWfMuXuF/ZU+RzebW6bVgNifoNaIi1qDPtGvuBG3PBsL2ywI8HCGDIoQdyLaNyvJJBPHzp5nXj1a4gUJWZNB09SJ4Dc1TvE5GDi+ujyb8jWS4sEr8V5u9HGQ6USadOfTr+1o1Zd0xwqHkOBz1JKuieBE1eE7JTESSO3t2w4wzIvpJ9u8I5e8VJcIdJTi6etZ5nIs6fX337WWX3qxEW/4Lt+k6OvqipVE5ndCtI9fu6y4mDc5C6bkNtD6bAgNM10tEPGA4uA8mGe4OtCWAVmFlx4Bbo/zB1q/pEwK2ECKbSi4FRTjngNAcGWDB9SDGL0hZ6qrLKIIqAgr4cmZLtfByOM28zBIJABP6iqDG5S9ox6Di2vkmX77CKAs+2JSNf3bE/4ry4YLiFiTpVv6/EdiBvAYap2CCLBajs+sEKe9uKY8hbd5zZVKyPHafq1x/lMD9DdSBdbs/ITHeP7ZnbFxZbzazZWn9/FgAiCV+5KSOC7rY4TY6g1lQxq483XhSoJwrPMHzBaA8YZLiKZrqaP4r2C1SRdA7ijfydcS7NUyHm5UYMq8nItAarCUf9UjzOB/+wHiTTLj92KTgkguTf2PSRSBxNzJ6t3a7cXn2JXCEOU7vF3RG3cg3poWJFAQWyBVYc1TJBFHfkbUaiJcC+jx094BoFYbaPRP2uHBkxNlYPVN2Oxl11aFfIE08b8LQgD57QOAfPxbSqn+vQTCu67SLeeKMiH5OF/TkL1PA1YyqRER6/dZUjNqza0sXcuzrlMxWv6sX0sI4t7xoUUw64pEurhbxx2WFe65smi3bi814wr05LvF6EtVei9i2aqd0EH1kG0AWfuxgwYAFDLNnFiIMsuSdTnyE2x5s+auOL144GkDjLErZoyXSt1o31k2x+rE6EVCqJujlzEVx4CfbLCTn1BEKvFuTMcRvHR+6M8gGdftpGkLas8TmuKr7VXW98b+pR2akshzakUnv37MreNm3fqq3vhPbLdTFR0lMV7byTFUmYxzFet/Fc0Hc+tpl7ELp10gkKa7ftRyoFRt2YtWgJdGF9+EflXgyVakG0b0K9Z5h2XlY+sum06XH1Q4Cw6AbM1zPSB0rGQHjZRvHq7zlylOOXjl86Vj6R6GT3x9g8hXx2uwNFGodVC6ikjbqNX/IMR19KR+HlnKj3GsK66Pye3F60+p68cHqFNMrUuP+Th/5T/oelBxZtPgRtuysfzV4zlQWJ3ZysiGhBab85M9kNY9TR6+vMPruZk3kx4Z7dPZdaKiNtWfGrQH1reqokN87dlgm1824tPid7i9fGYedPyzLH47fu1tYXoN0dzsEmQPnKjBHFOYW8f2F7s39NbiIqHTZuw5GH0hFY03U2fsLBLvdS7iXYjVbdlaePrlJlMlt3vvt82IJbKQwxMe5pibDhd18Sw+I5z8/P7Lh905TyLJIwuyBVJ9g13bRstLoMT59JSUs0fkOneQQN6GzCgcVKXDsOFS2e60CFygbV5pUy2Oz33oidZYWB50G7OIJKiSTKhMu1nCw0ZIYkPZxS3PUyCor/KdaC8qEnaeinrR73hTWsnmR5t60NKUH0ZDZZxafBNnjtRc9wfm/CS/z+JP5r45amPcy7hd6qk5G55gq0uZ+yrSs4LfiPUVOTOOqWPHBQr2YWFD9K7ZVsmK6H2quepq26eoSP1+RrsZWgvehZvKWnaTVj+pQmqkJaoGeCo6VWxCgOTdlY3ulCKQYqlwFIm724MkHGG+C557JFe9Vz1P7Cqy7bjx07Nn50yCBNQ2HD4Tu5TbU/dG+WeVDtlcqaJRhgN/aXlTyKa7MMpL1eHFFca14hn3QSSOqkIL5ro6h6WjgIPxwOrwm5UdvEMxxm5aEeI0gbvPZ0AM68tqbH0cWbhHnCJJz2oLb1Se5FMXzxriNNB5gXnx2CtUX0t+lfrcSM8SqH5g4ot4iYM9Qz6zdj7SncKJDrXB7luHrSzoa/WXlNqgwtBpeVVcCPVHIFozxsRSRi5V8YCahOFh3t/WnQUx+OKvdI5aEe0NwGr4IU3gkzlHlR4UV5KTmPUCqthIvLR1uKI0pWLFDE+HlUdqsWPKFbdyzM9NvovHYdVNxOiUG3w3Pz1Vwc85CoihHgKIlRt/Gb25Bata9USi0zYWe99AQe+Fc/gQXyTyASlUhffkYss3cLh2XJ2by8kpFkReS2RalpsedhSsI9BcUvgjNd+DEvun5o+KWcijlqHGQzDh/bzR7W3AMH5j2A/X5qykDxwrXy81mgx1m1yq292bihfOiSqeJKs98atklLyq07vxk7X+TGD5xj9GbHzZf0xmf39+UmZOWZabQ0ALbuQjgsX7Q3HX79+3cEWryhL54VXC1OaT0TJFdl3MDKgrisZ/fNKn1lX9RtX5gQ31yIGFyAOXIt3lyoNFxbNKKzhVjbUVHpZNR5/JljOPwIWVelpL2fjnvmWnMEgpFiSs8f6RTFoZ7b2ZFPjPvXVK9eO7S4/jC49a68t2DlZD4k1uzIQUnXJ5zS4YO9u6W0QP8zWK1bxpjTLorlDd+7sAGpdD8qD++zDc8eS7uXaNxHGxmhz7eXThz2Z4+gpdfkaN1alYA5ePRasgV6cLKJA0pHhPKHUskJl+dL/OZOZJEuyInXsOKDx3gvL/234/QRpEWUPxf8lrRHiR7jNBZppwVS7ZxYZueejbs1jK9bKipJc28Waseg44jV+XI1q0jsXlv2La2c9O2qGmmXGF3+jw9GwtSNMtXih+uSHAa3q5T9C9vmoSrh1pa2ZtNLOhnsZxNInJl2rAltnv/Hmlp5lxRZ/288RsI64KcSuhO1xGZKB+WdP+JBsD+M47CVDE7IhQflymdVVIH2DoIzE1K5SQOdwmXrKIAgkCGXLuW1IWglYYb47v7/Vo4eI6/rJ7IE1uglRUCfjemXL2IuUa+aWYXXp1OrNufVBDyzo+MvhwVysVtuw7pSWDckdG0KdyUuqY+F28EqDcadw/McQxJNkHJHskVWHFUyrMPPsgP50BstSqqhz0i/yiol0rhLeLmFl8uAem/9qktQ8rz8uYM2Qpva1G6ioalGsbWKBXenBEecPKxW4ekb8xkRIg4cxJAqoBImpdQJnh+3scmwrRENypHxsm1n3ndjEKOY5Z6zIepV2qwMn5bMVHUuSA4MSNTEo1Y0xCeDri5UF6vs73b1C61yC/IV7V+EvKCUFu27ZOHNRi1M0jR+O7mJ8mwsP1xkcivdu2+9sNCywkiCWsoKUfeY90Tzo6J4k15FiMN6bcKD+HfzMoikClGBmXVhBA0dQTCziGokkRJj4FQODe/2iy+Eajdx0b3GFVLpwjOXFuSASVzkLqbNOTJRjBWgdvx2Rt8ikzbnXubZawmWXnjtuEiWNsmMyoz8K518ZqmTKxJGIBUJNQZRXitJAjy16s5hxGXApnp12py3WqbGvTO09KHoZ5f6c+BUzExsLItdjWEoVcz4QA6niN98Y53wstZ5WZAbgYtCznAu0zIPgCyPZeNor9Bc1mVcU0UNnayMXoSr1qYGlvlCnh0d+wTUySg2At+7Av6LXG9zxMWuaNLsSGNjkcjLNie3zw9YrVYxl/xpzDRrulwGMdC2KbsClSigAnnFpL8tyNwy6TNDMmlIQpQHPqS5vGU26A2DdcPhlrb+PpZFkSwqJAlBtqWXzxIczFih2aOPNmDkEZ9yiXs1ovta2ruAOvWK+JhiCBTZtyTfRlvAm2OA/qUF9Jss+tgRWCGHsxUyub2laXkjfYq6uj2LSXMMLfiOSrBLhoyd2y00R6FEbVDr6TS1ri6jl17Xa7As2AOHM3WiA97htHefehOmM1IgIGDHW8bktzZ0iDukSmmdvK61rr+ejq6XRQsYoyeF0RqUKOpszCuKirK6qq1q8/1plbZuTGph6CCMtFYGKtPVqYZC8/bm7Z3lUYtes12N+QBOOftOsfj1RtFfDJeYxD3pXNbKW/l43pf3V717XLQqrC8bsBkm7tDEtkcSQZPZOhV2xwi9czPfWIGOdHb1xER61dqIEoGX9HvL266O32u/VKlt0/V2tevELk2rtXglUUm0Kdhutno7XVoiIvLW9ub2Fp26t4Mm53oOVXR7OB70M9snPQgUIRZfaax2WD3hNX4hjCvRe1JYnWSmLvdKo7JIc1BjEjdpGkmAY4W2jojl/8IqaUnoClxxGYpK4VoqnULofPzRs2semp5frCm/OuGkuARlOHedOGsE7vOc2TvBJVNRB94ZTyxcc5f9O7x5Htyww7OVOlKzdHMK/GpAQLNOB6qrjbi/sKOggkG45znJWpTYd39uY+NEbVKm5+jLexehO/iWZ6aeSntfzPqtv7xSPRCY+rVZpR5Hb7ADteVwr70Dc+FDM8c1Gw7G2jdtwW+D3tordZX1xo/HvQ1WrIZtSwmzzp7ZDNu3EVAXpNj0y7brId200oGEvuvWYHWrxh5wvBngOzAZWMEjjGMhFBhgX/85wyOGTzvwf8P4ksevTjU8G/04Avjg8SzROee33KHBb0bYssjhDqxSosh2wP3hH6HDoSHjo1DJIpv77UUXTl+zTf/ija43RNkaE+DExdgdn4zgwIySWnM40bacGewgzNiM04q+OBb/aukLohW/vNnw+OSqBpVmoJElqtTogGMXY3LACHRDt3+p8OpB8I04x7MPbw5XVmWQFXoeYSXMLTfEmegVXeJ0Bm3UYY1wtkGFc1ZQB1Q0RwvUSmo6a3bQsAECSDCGXjSSkHbSZrXWBtLTANWhFtvMSLwLPLnAvzvulmO87YKY4c6VHoe5qSoz5ZcO3hHLMGvQZ9bSm2fPFNOefe9GLdI/Jtzgr4COkQDrt8Gu+f8mltyvWw0oqka8D8nVEorwOyc6aD/APhJs4HtFQPSenwEAY6zuXkNoJzhxTashdhNfhTZQyOkvhPQZWRmrQ6vd14HdBdKS0nBXytU7RsxQCsf/CkJmLbDHMMZ2ImgKmQOqUddguoiJyyE44UW9d7Z3apeg7xpB3IsqNi7lyOpzpiev3oJRPaOWMCmQJvbaTx3zGeHU9JgLpa1FQOKavdTNsUd5nFD5/KZzxm/N2gv9Y8EhBO3lfSuc4pBY45+DEqLb1t46GYVWbdFDFlCjXmJfFgxeA06UYtYr4QQ+cgpMQxoRgaBzcCkS4T8OllAE8cYiYgoyl07kSfCsQmFzg/oNjIVD76wxV9WrSFhv82BpAnEz4vbVOki1a3rsSg3YFXqLwQ1vQaG3so9RtmiXwR1Y+FN708Tm5TodtC1K3rGQ7EjCK8VUvWJIl2URq1FPcd1jwCcvLLxVVySoRBhPji/MZAKHCaOTvYIMC1qhkMWt5XvPnkwrsZkH4iPXDqxdxYyWek9gTMLCo1OUUcOGNZOLlbsFHXSknhhx6SNVz4zHV86lVFECAccbaksuB0J5zCrBJSPxWP9FXj1MJNixVCMvg5IUlA2/c/O+7LXype7gLo7N4JitolUCJQfPxLNo9vaGmZoifcwn+lXxVt7c1xrthtrxPpblsBpUhncF+P6X51mffxSycOMSPxGWx81kPIF3qThujz7A/Oekhuv/P2nmftf7Xtz6qsf88H1PwrYPP6jT1g+EccUDKABAEiBzh1IqAzb7iwpATEI7G2UqwOrJmAtQTWQAUIFqeDx9LYYFFhfUQIL7byHcYiCUUiSOG1kpEdYcizgAoCMKg0YQi9GETyCR+r/C7lTB9NGshEMsfZUAgAwooRIP8AaLu+eH0oMQsb10t+KuxicBsUgbT7tpVNzoR7EJhZ8qbK8kwOfWVdDhcQEAFYbCFKwX3A+7kjesJnFUrcsG2x33vLf1oT7Rp/vC8tgObBfO6pW5VSJ3jpvqJHTeOCqYtCJnQsUUbFbMKpvg9fMLPN6y6B3heNT2cX+v62f+Hv979O9BwOK1RV6A6YOp0pRvAm/+6gWA8sNOMzZA1QNoUU1CzDaGuvG2pgUqr7aO/EZszA+k6uH783lM991HetyXE/BmbsfGjYpOeRWIUfjBhZ7NHgmorOSIZAVEXaDOP0BXxwmTgUPrP8A9NDUZlLtAqIfHNkmTBIKYTGIiQZjE7rgsyh0zscvCHmayB6PM0SQgH4cNnZ8XQmsBM0MJqlt8PVJdhaoqfIEF7LyiKjQxwt3rmAeBlS1VaxMEi2+o3RAP9fTkVTs41n7KrPqAjKsFhq4ab1U4arGLGmyxdrBJQEEWo1ocwM8Zjowdi7nxDwswU+Bcv0uP+ZeMfpSPGL8ZFjUXfRhU+KquIvx0F4tRRLR3WdVuVloG9HJz2NmmoNBomK5q5PcPuS7tAHREqLJs9RbGwjcM6dxojTrDCyOSO75Vlh5lcMmnOv0GGuFFGYhfBsj9R6oqgKCsdGQPZrU0G6DXH4Uiuz+aFUF/jDCKhbGi/XEGbDsQPG48JFBq0q6FWINGKmw7ZWMAP/5V9dbhgbxMUDlxnTaZkELtG4qMQR1eVs7HHFKZi+Up3kCdiIO38PfyQH5CHyFOonhJYE7Ki/N+8iJ1CpY7QBlYlO1cUa58E5Gg0VWsUiOqap7gJ5Uw3lVOSKqOQ72plRETCSAc3BgiUFAIQuKNiZIUSW2mHLmywKpmK0Cbi/FjnF8ugB41C/X182T/kDvxG1sHidlsBEVHc3g3MfKiPiOA0g5xb1apaq1+tyh+T5K8qJedw8zi83fNNkn4FGwhOEsU+ik19/9e9Dzlffpp+P+xF7OZkU1mp85280BGe3bCZvawpYJzmE3lyKHcqcZyKYZ11mXIc7/mtEmStFifZsoplJIxVlUxTgEAAAA=) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Learning Fandol Hei"; src: url(data:font/woff2;base64,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) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Learning Fandol Fang"; src: url(data:font/woff2;base64,d09GMk9UVE8AACWsAA4AAAAAMFwAACVYAAFMzAAAAAAAAAAAAAAAAAAAAAAAAAAAGYE6Dc8ZG4EwBmAOCACBbAE2AiQDg1AEBgWDMAcgFyQYgWobZC9RlJJiP7KvCmxj+lB9wEvjC2ooQ4YYsqNnodkZYC5k2xzX5LDI2Ttt6de86GkyQpLZ+ee31d8XhEiXFRiFGN1ggli1a0T9PepEhpORqzPOXwnqx9jv3aGeIEISTWTRkMmaaZ3QGaKFQiiUYvr/++udVl/Z0d7d32K6q17v1yFBJstBMEuyLakFZLEtgzyxA7iIqFzZ//93qf/A99z58sOT5UhrSUV0yUkZJ1gitDlMBp7A2CEYRwoAOYxbzlbTi29q/d29lxl/zWPXO6kyE0BwCC0jySA7siyxbWlENBqJzRQ0BOHiLGRDfACQayWtPaLJbQ/OgSUccmJ/18992t1PdPlXlkhC91yNrTHJK2WTI0qJXznFlMER2Bp9gJgyR9ga1znXKnD1DtiR9BVGVIc4H2bKzDjVxToPnl9QD0qdAXjNPAABAC9BDBS6GRAWB/jHymI14J8pi5WAf66sLAaWsLoE29cV02esk0CkMCIqpkpQQ1D+fyePIrPnPifZeaoDK/8n4UKVlxQVQ4/dHLgeFQlVtQMYQm0ANMVRz9hWFueUaNuUfNkPl1jcTbX/EswKh4niLxE0K4ZnJcgsFy2f29/sL4YOSKarw4j6n16UmU6i0bSJimj4OUgDmICwOg7bUU/qzQr0sb11N0NVJ/17ObHZJMFKGqUsLqk+vZoal5t0Z+kwFRzsQDBeHw6oAHaDzwzIBtSAFigJ0Ax0AD3A/4ANwE5gHzANvApYDzwHngcvgdcZXwPjG4DIPQdUqsy/p8EwgnWFa1LgrXkF4VYW8h116UhD1Whzx7ZOvc5AzMIuXlcy9iYuDLe0h4Tv6Nna81pH0Vurc5bg2vdYV9pfr/ucKBloG7hOCiJVknoGT5P5Q/7kFUOPKAbD+ZTf1FoaibZDa6HtplvRW+iHGTyGBSOdUcroYqxmWjD/Yp5lmbCqWOvZsexx9mkOl5PDaeY84PK40dwV3Lc8U95q3nO+Nb+M/0BgIugWPBaWCS8AAjNnzjw8s2ymdObJmX/0rqPb6D/4b82iZ52a9bvzL5gtnh3XX3hhh7mPLuo678J8ev6S+SyViM9O9Le2idXJ8zzqTdgard/DdXEH0RaUj1HSF3c1AV5W0FlFXTlfa6igE2+zaod03aEk7vdnm/IpxRyaws2gtRmrrWkwWlqCafG/6QfPMYIJuW7OKO3VAG7FKdezulQC94WP2eloP3ROaRjzcmclUDfvwUTlQ94YQCSqhQWo+FbAthiDIa2vUXiBNQYcuqgKX1s00tWvJla5cTbBNJkEUwNyOR2s28emZJagvgx93A/7YYJ2s2eYdtaWOdiNaww6GM1US6PGrcyH9RsMpEkFmhp0EqlTn2dgouakujUHqay/YNTMu9EeRevWF1syWybDptLTKSegv3gtc6ObGtaMhCQc/wRGcPMsi6yRUq1m1Ewd4hFtBkP6FdFzhns619YcFHYrnAYRrhqsYouzlM0zaQWH6kXCzKzO4X+S0dzsaCbO2FCGjv7DMu3nrqtshM7WyK7jyYsjH0b02VppQ0NTe54oTvM3ljtxSmzKUfpE2HFmeRcz/7CxBO28h6WR9uu9dct+AWXu2K90ijufWui613edvr6gbtLFwBN7PqwoLMevFs5p7eFnENnuyqlSYVrx+OAEedK6BoZ1XyT+fpILk2/IXCYU+v77W3vs8x9VOxJAPb1ofrPz5LUNdz66Ow1xL8cOdw7Dso1mizXPnKh0li4KXvfT6QkVtwXe1HXT900oZThSVi3W5gr35N4O/TOz7fXp5KreRf7vJlIXbLDZwXjJfPEtRCX6D7cZqqIJo0uzYFr4G3aaMkZwTm3q83JnBVAJ0WYMKq4HlqLJBSA5GxZd3ExEuoQa6cGQk7PGCXqHA+Z6U6ABugtHOBGbXACWMLm4bIZB+JL7UMESh0qIAnaoIyrUoJ1oDUmeTwA5dhUKlDqQ9iQ4XfwPcX0tx2exkzAafY6SXvEzBGhkpDCI9vyPDxP6WkDh5sWRm+rbWb9NoI9Cx8tHfDGbFUj73abV0vqe6JdTvHcr4Eq8DuaJ9g4/bCxaVp3M+sLw5HBbN+z6zMmujt1CnQafzQa4r6OO1wvwpe0eGtPpluICL8vyrIZ4bxNxJf489hIsy+rru202T376bH9HjWc4cusLM8pURlc9otz3MKiKIW8NYDEnxes+unFK2NEAJjFlIxFJ1klL0LRdNCqnJsBJTIo/sHfOmF9apHGCi6xVXlWQLcalnK3fRaov98K87CqDwDo4Y3ddv+vg9B9vevo9nVpOU4n4/pCosHgZF0veIj/pU/THWkk3mUtkY1qVomVuC0vV0Grye40oNgCunOWaQExzLNRpdNhVm2WJo/HKOYGxqUQ3p01LNafX9WEfUhfc6ZWcu/NVxp12e+iEHfJkVQnEy5x5peA+9sabJPlTTybOz2osr2IOpvhQ8KDgVT99WbIvNQtO9e5Ee3j83Mp4HzOeKy1PERz0IfJGJl2rq26sFEqqO0cXSPntEmCWsTLhYLRW35Wl2oHNJEZIewpuhKRFZ20358yd4zheRaEMD96Mk+N4qQYPIyLseYWiD3tnoFCABZI5uHv3AsAO8NduI5H0x+fsLR1zOq1Gveny7qpDn2mKr1rsrtj/8iWzVx1APQr9FWv8wQW61m1KTXTdr+6DLqRLDhxsfXpBx1H0SOcD0484rQ/MJXT+nRl75V2GVn896DRytleBSPjYzkPusvHv/T6tLD3VxEgdYs1aYtweSZhE2rCvDpeIllZJcMijX9P/+JZge7lo9fGsgcvTEA65VhMN6UJtRm6rUubGVqU+CiuIu+IpWBBeAdzJkxdGBjJgkVdBTeg5j7AyhR0xKecPW5lfRk+G6JlpWKB69MMEfrNoWDU11n0PbwQJuvvXQgja3T8m+swJVlNDQ7x1DibVBF+8aLj75OuRRaaH2slmn12AxirZ0lXFYyw284YSg5esmnf06orq2tDdsda/3S0lLn/zFdmk3lN7OL149PwSicVMK0C9hoYqq7BVi/3TMDm9qm/5tvcfAITGvXxzjXto4qy1Jhked/dvc8Z7L5m+mL6uODq1Bx87psgtYyCx58eDq91UR46NEbu1zOaQuodttHXNrf2JGy+9EK3vwyXehzx9Nn3l1oPldxygdWS+p2JCQtdp5OYy4XzVPx/62bg5E5XotIRPK+t275qyHFALIpRdgJh8XJhw+sqUh3p/V6Yu7OqohRqJDi+mOUchG9DphK+Cl+joo1ITjeBam8E7w6E20ZHFbxm5zn13P1hgbF515vsNk3I26PHe+5v3O7sfCIkQuu/YipXvXq9pgGLtqmxEnaWl+o8Z2xR1/Nx/H3nDzRcpfifYn1O6dufhiQ/eaPiqi+eVh4sy7z+8cXGN01lW9BLsviqu30SYmXzoq6nRilgCeaOTZ97pDvtJ6fpFPtFi8YBDllumb4kWSKRJNRw00BjodP0OZGQsNYWPzVy6Esug9/FXn6bpAfbf969zcw5aUv7C1Ja4iv4heP2t9pDX/Xv9XRjt77sX4N9XXrR+b8HuDUvVb5f6u4Uzw48skuU7SmTmAu75dug6uH+MQdUNWs0KxEe5yJiGgoKJO5s9vzlt21SSsETBp61qV+V8f7Cl47bdw08VclrCLStG7RZvhXULuWk6UU68ps0UdTvQDjFR2UmfBfGH0tWjtSlp8jTOhsQzqfFoOQZUWbbg4qYFnti6e7c4o3NEv/tK4taVGMr947eUbTaGEVNRdIivwGoTDXbsGPWqbLsKiVEsMq3Kip/Feosxox2yWhUSt2RBhalt6piHVWa1SWVKfN4bcmzu6aIWUXguEx3Rt4ftXhwFbY+3WRMuDZznHuCnzV/+tEBlaNAzdaqsNMPyJLdaVM0KLCTLO2JoJXoDSkjOkn5gAQnL65neEWMjQdMf76Iz8V3Xp9GAjfv0ZO8vofsuviizQKQZikEFMn7qPm9AWNdVFLIrGdARhftKUOFi0MVAgSdCgAEKZ2Dg/AR2+G6eY1Gxe1WBxjMYA1TYM7ox7Wn6Vs3vRw9ixN2ShxLqteYBN2/i6O1tUtfUN7En/FU9YCAopRACJjOVfEqo9iGt3Z9nL9q8bPHTt9DHya2PZ+89uvcikL3s0jPJUBreI7dhbWBM7tDa7BJBU3izYF40Y8ptBbqCnYTC7RgvMqiK35sNAmXQ6D9nFp6ZW2io22Ykw6wM65TkkABmwOsVx/mH755/1SD66aiVTXudBW8AZoKHL5K74nO5AvbtYAliLFiMXFaaU7sDZT76456iHX4W+JX7/p1dthuFvttDBUyl3sVbpQZiipGM0H3Q2z8oX1sBE6HzemcFZr1t39cQdqlLRYAmNMBxPojAzb/qqg6GDYTFAJ8KyA0CZTbGOXnwEqzf88Vi5vbTT0ysFGIwZSTzb59SX0+G+zI9s2f/eh+m6/vBLeNA9ggkcsLDB1wP4dgufg5WH+q8WWhEQ0q7oYi5PjVrWnL8qFyAbUZESDG/2DvKJbnk/+H2YHTAog0CcAE3ojC8lurmBdb72JcsklpOJ2pB7AmJA9S9A9pgKuDcyzVhMrEac7eexUyLHEZMYkfy2fh0rlAUTEuGNSERDC8XwP3u+5/K8DqqXRBY7mNvskjqOI2og3KPV/yqcAUMQ08eNxVVuuS0S6HxIDxxXxRQzlVqiU7fMrJAoym0MJ9+MWiAvrl3siYMBVSHgGZ5wOXJlHYtyXIG1gilii2uXIyh5wNAGJrhFIJ0+uiNT3cxx/q0/AU8FKSxhn3PPN49iFae0msZj4a5WIKLXJIrgpG7kOjcroAjyWfZzotov6NHcTZSsd+kZJgKrzHCvvSp5It/4JqPCFcvAaKPfNNp77KDDeB4ce3SgGPJFB9rrJmzCHlgPYbf7xHmqvpjJRKNGVaABnWhbkFjrKUp9kYyDIa5MJCwz5R1CESFSiqGEBoez+kiAk34kBh5j8pZg2Y8z0EKEkx3t6JG+GXA6uQ9wYe8beD2roCDAmZjKcqnJcd7ZGSx19Z5jN1orShJcl7kFiYhMzoHJOAaaQRQ5xiaw9xoh0C2aL2RtgQrCe7ldd2op7HR4pxIjxkbMf3hqYnKXBF04FKApdU6XAssg9Hx5O9LXCrfMIy50TXTa+e0eYyWwPEv30ixBUYq+zLea9hYsNzAYWKYCwISf7krYItThnUWb0dLTaeFl1fDHAK2fYJXnVgAHkVIRSIk4KAUheRDwhSmkU8xi723QxVKYRQCKaum/wQWs52mj8+ajWbz0eFRs6Ynz8s6oRIOAmlTgLQRuBtbaeXjwzWnydiisAUCe+W6OHPA/OCdsuOLArVbtqKg06v2uA9iLuD1p6YYEnKRkBrStATWd7ac9if3SAUoC4f8anCrVFNmDjnKzywTHmUfhd/74L2gEfJTfNTRBDRGMIUCiljsvSpWqIfRQmCOz1zXDbvJ77pmaRl9xTB5/SguzJGmM1YSxXO+AGe7gxJOaHun196PxpditIedcqmx1NpZI1Tu9eXl6RoBUY6Me22+lWnSS6ZFwVESqds/m7OiamlqdEZkp3221Sotd+kLjdhqVfUS0XQ42uJe9bn+s69vSfw4Nfamxc6ap4GwysMN2oALY44CtVOvCQvnf+A/6pc3LdA6NfkGOrtmn3WLkMLqTD81BxxOTZHurvZ0fXeeBtaFYMH+ozu7L36iminrRuKI6iipoamw/6WTGTdvF6x6otOPEdoW8mQLx4jWsFSnBFJsk6+WzXD2X0zR/fX/ur5IiLp37Zyz6W5y7qf+uCGlf37SwEw0bIh/L8hXbJ9bmRc7eRSO3Ijend+fibkLIouNhIFzV1cRlXo27q7TErymP9a7nhkKW/p7gj3xidN9272qnNgjH8f/mNaZsFTfHCxgpqV+q9OcfyX75WufMLorZgpmQPzMHw+DPRMyvTh9xRSei9lVMOtQtq5c3DwyDoUXPTdNc+KsnYFso7DnemwRKItfm9rmINfFEaI/rDYtAtXRd7MlYFHyuWByvIpJ0SrzLODfQqFpRASs7fjg+KXRRvjlnjBEnHHKKX4s8wZTI24fvrR343CkQW3UG1JpnJ4jjwa5Dg4SffumTYNAePTdrAWFH2clipO+3C3/E1mRB1lwefLVz+KqH3Dj4O/S88C3ywTdlPaJVRLq5eFkqAqfEnBBL7zYazL3pHD1Q6fFGdigwfS2y6qP3wesSk4LiqkyHIEGUJm7ARuTb6XDJ8yGDHiwk2k8ZJYK9XL7J4zuFSjkc9NkoN5lhIm5opXSkGi7eNkOQAdY/9cBS5P3BcO4g2HYYe4HbBaKnplarWvm6hDPkE6YNiLCk1fN5fMKG/nQILggCQ0kDkUrzciUoceo36EuQCJWLDhipsU/RQ/0feZx/7566uoCTxJQvMrISl3eBUQl+k/O9VCwCG85i90W0kLOU81ty1FbKKtaAC6eo5jvQ5GJtrCtvRaaVatqErx2VmI6nHxzHuvNRvaU9o/KqEGsisDibD0tnvrxOazNpifgaKGO5aaKo1BcOnZzkAicyS74MbvUHsq36fi0NHfKUbiqGElirxiMbgOhcN/klK3Hz6Y8BHxLpmcvCBlqkqeLE11Eb1Rr+oLFqcQUTS/Yeow3Ipkmghzr56mM/nDvzFnZa53H59sako7E3hHA39eiNfynIV3PZDycICINiY1FRZ8+InhappcmWzUdLgxc12deWWI36ebLZbQlRS/OLTl1FSgsK/8E6wjiy7L8OZJ4FdrQA1N1/ubkXe4WgAyCwer8tznpcsgkTmNgu0Xz72eALF6kILP31owLt2SeJZPWV9fnbCl9XetR+GocahUNd+aCCuY4wA1uKij5nNHDiWA3lff/QHho2VnQnz10dm0t6e3t+je7Q7tEISbl/uGKgwc6otZtV5XmDgJeQvGlDIVldVV/Ze7p67OrU+fDURKses2Y/sKmesMtEv/OzQ1KayG/6Fc8TRkMs4NVfx5JwUh4ZDGK/VftINtZHs5b9Fp32sMJVYRim5N6bHfm5gGw4FSoQ8PPve3RjsADCg41DM3IVnATOo97hWMUVs1ovnDbunEw8WGztLXS9jNvA0NDUjpcg1L/wwI9s2xd7yr8IvXKD5sYKlFalQxj4QV4C1xAnQ1yZ8iMh0s9CT/Aebi/I2pFpfP//RukfIpif9v2tLd8m2cpbq76+UlZF7dAMDynv507uMituPCzT66MrhPuJhwOiXKkLmDsDqC2UE21QT8yUtrBv1u05Ej6l7WVHnMq2leHTKHmXCTs6vDi7nSr6r81+kYV0yWfaBHjZUcPLipsqYvkxKCxqs8V1EUbAhVkyOwZC4Kvy7Q/dtGD3lp5sv33R8ZOFCKF3I+unSaTMK+ny6fd0Txt6bOpmoIDZfndv/Kysaw6GZrDPGjk/aRZtx3o0X2UxrE8EVmDf+zD37aQ+UiRXHKC5i4OwfAieTHd5IOeBXMksTGPpOKu9W3ss42qF37LVqgK74rMBI1/mCFqJ78pyh8neDD/WQsB3Eoh788pFV9UXHL1zQ3gevFui/Zhb/rd5MM+hfOUSRjbbHNuBkfb7ZTFIXKs0dMt6lglTeFA5clQE+btlV6Ov3+NByqDTZ4IUsI7BGUoN35ycnzo/ebCkjp+HrAh+VBQRnMTj7ZoosrWtSdDY3hLG1XUDE33OpK5OMktrqK023DPp4/iLROwa8k3v24m47riTL2BvqYfGdiPRXmakkrmkUVTjQhl+XNwYq/nQiIrWTJK+uZsrktrFA133wAmGHu2wwRGub8hi5wbV6Cx92qg/rimFdi5rV/QlOzOOes3pN0E7g5iOgoVvoNj7YmJm1O3u62nTiAQnC5/mftn5wOmMhFzz6L5DzNEXeT93oVzlEn02Kc4PAim9s4qwdKVz5PO+jvy9u/KezgZMAA1ORqvu+nk9dn14/cB07VzyaMPXazzwNBI7R+nNgs3zUvHIP91mQJr86TFm6bc+296KZmZtWXzrmMPgPeyE/zyze1l5S4XA3vJPoxe3jIihan1D7IO7un22xtjHfGfK+XiWuapRSNdWDnmNvSeZOeKWgU8QVVUcEfremAR5dDo/A0uBBU/ymx6qKncZTI7F/geOhXtO/euHPL0UoBWhxxsH4/5lQ75O24Q76zmnOYlE90vm4xWYOR/mpKHKPS/63KTNs+zvz6AZIbirQ1Zvh9/4k2YrfAoVnude5Gqi4bHDfUnXCRi36JfNh2pAs7LPPUcqeWOp5qoMxk8Vpzvu1vlwxQMAhog+SmSQ+GHGYdcSctAh8UF2kPc61MwR7DBpoW3A3p41izXhcMkmPeaMf29PewJdElc94eyIdrIJyUFk9n72bl3K/O2O0eu9vAgvsoUB0YeGuobaalyJW7Vc5zMqWsKV9onFRYIqx2L/AbLBm55W7Xt4TcBM5OPZCWXff9P/b1cTJhHAfOF6todN9RnAtgYbz6MhasxDhM9Eb1hkEtgVP7zfvP6f2jK7mFjoj4c4Rs4RIz6rY5JABNhj3w6KTv5VpbxytW4Yp4ETEk+Ew9friKO/S7W/HKUHx97MwEBCTIzWygODD4ZVOFz8mtwDpBjCkSQHV4nyIK/8ZNAhPsv9jplXgFmfZ3YSpwpJjYCZ6bN5P8rAQLlpDHArBaVbzPwYroJ2ORyGbm85SoLMmvDZ9a43LSM+RBVNDRY7zUs6Fl16SXZxac23EYHro77FwQXp1ZRaA4eJRzC2FeR9uu5b0PVV3fbh0XyRVXNSXqfuUvDY+mEiqOYylYLknI1k+HwSwOqu52AEdw3LR1mOvSAVVkGvG5LqewY7Sk95lpYkt8RtAqO8aExsw5n/oHFzXPQqfVhLhThbsHiT4ZkMgGzZM4LUG0ROl663xtCtPCGHKE2somzOAUsoQH0i/LyJFeT6NYQlNoR2+OE6+lTsV4Ut5hTZ9T+LoICe3mw9WQfbyLgsF3UTPb69UkwElm5NukIU1zNV8wIMNdafEWhCDbxiDTLnFRotbvnICrRDwJL1OxvjHqkOIDPcjtkVu2Lkm6V5rVKLFQzqQt6QxggXgKt/ChB0VXh50C2IXZ+f/2qgYnLTXZuXRAju3l9XqZ3h3K3zBcleZolx0Ggtt3c+f/epM8V/iooxixhcDszxEhqo54QwmFq4u5BIbfOjBsU7YwAi21taCdg36CR9Kp/8+eVp7Uyd9VpNrrMYzcmEIWeW6PXOqVqqLc7WbvwukXPBG5YPfXKJr9ofIauQSUrTjt8Iw2L5IU5YoaKx2L87kbWsCLrc31wrl4ouOMGp03pSDxq+fGvb0d20alPW6JBLWo9dFVNeasXFbb+A07i78fHDkUxTdeUO7RtFo157bJMoGC6ja2NzdUX0GFiTmeJQWAbmHZab9t4Zt+Pt3b9UK2Vld9z88GkYCIqVHO7xSoBRDHaoJr5ZcEsskZLtuP4lg0QiSjEMc7U9wQlHTdHbMNj9azHYDSioYWmwCW6w2GXk8vbzKwdMK4nw/cXQcCTDc3YQ7jMnJlQUNsmU2jnT37OTybeKmeg2NQT9tpKY1ahrv5+tbak8ZgQJwTK8YpJWG9AK9dOcZmA6WAdVjeYrGqSrUzQKheLqA8UQrXZtXF0uy0jJ9HX6KVyaaWssr7SXsVYqyri/whKomVBOXSI29W9uvW6Te02u8327E2B4foaooenyCKuqFbULIklfeWecs+w6U0Y94gQWgj2Nw/2i79HXrfXvY3hjtPNtWNJL+lFPatnbxsXqAyFFXikaV044tcdc7g55mkhZdoH2JUt5oyhYwl5xtnpV318i7twc/fO18b8v0HONhitpoKRN4msqDJOBCcChdNo1hsGlaViKss1KhtVRq1Vz6BR1pQmGPEixx5ujYJm5tOE3VrZ1icWLw10eLjlGh0uGssFCWpDGtT6SkdnJkV1K/DgMk9eb1f/waT4ajnG9eDFY/e+7k3qXv/0NsHRbHGBRhK7tAyhqGwZqMfgNuY19trf3rlv24Fg+4aVLzfLjtFXxrpXtjhLX15wzwS6umve8Htn+tTV88eMLf0nol12ocSh+k5T2NIy+9d3W3nzVWnrt++9WNaTQ5FMkZ0huMmfND2rec1O0be3pmaL5RZEUu+97BufyhROlWJbYXq2NPEvh3Nc+zk9q7x8xr8cLcfvjlLhZ67w/N4uRZ8dLM+dvsdhPFvMrT0Gp4sTVAsGtaGHC+FTvWy8tzpFvynpPDEGbuAsTI/4Xx1Ziz+AS0JMdK8c3/fIg4lv68Wg4xoIhZurD9317fDVk2bcn+AtUqGAvg2yyha3GYu7EnxS2hv7bn5h15eJKRKhqjUfPgMxUUyokXhDR4Q+TqLongZWXXxrXdqQ/q5v6tBjTeSc/jf4mcVp1LMGS7EU9ajCQUyzHjVcyim2soTHvTR3EqyBBjnoRzc0zOYarmAB8znIbmqQjdUeTKNEe6ZLKq8giSkr8Zg/R0tribOBp0vS+0+XpD40r056ZHVh8w6Jn7QDPnkOjhxb65NigRavx49TxwrBPf3f/x7pxOmZF/d+UgkT6RO+g1Ev4SwywR8a4eV/545Uw8coCbeMLSmyjN35M0mLMUg+fjP/+ysFNhDPm3PUAfb6TSQTe/fKNRk3fGqw7Rwky4mE9UqiAA9HzxkXuHubO27emrct6xiDcdQYs8UnzKIb6f9d7Z3e+/XlyPqFnofIU7A3JHIcN4Kvy3WFAebwny/Z6wxzX/bnC+nDd6/qm6Em/W3mnwH3JlPkQovKn49+Yo/gdbFeP3krHPvS2GXRoa/0lukOTJGk6LLg/Mfpn/5dUFBzAOX5NIWbUwMXrRl02nZH225Vbi+GwKsZvzp2uwvcng2QTrWkOkRa/EFtW9v3O7s7zdq6DekvYYCHPXZ5sW8OpZJelBfmcIIH0Uad8t/WsxI+LtrUMNttHp38b0ZlehXjdFIWS+26nDmiW2daO1UbD/0ti6QOXZcuqJC0D4wRyYjPDNAgOeVOSWkBhepiuKZfx7wOdBOtYblDWsjToa22aVZ4A3r1VD0pQI7dVoZEuO3YvQeDZeDqdQQTt/nMiDSR/Q7h7xYNTT+teHq/e/h4bsraL/Pg+hyD1l+gyc1LvO8CD4b2b66VVT9k14toaMO4XjzX7h9cNjKIGECn9C6/8hsnGzdX/99U9a2NMR2JySb+xQRa/+YSKwJPZuPRO6n7jcDSIpkwTLSHqKGRlvZXoE4DMUGDyY9ZvNYd2RqF3WndqZKj47vT3e++ngDwVurvrnMLHboMQ+HSmkN9ZVtMAT3oalzrlqFY0PLTPK1A12UKu2xXVyDWbaUIMA74ADSxS3uh5Znp+v2tsEiz4CDK2zUzwlLbA1B86O+2XTw1fdRDtnPmCqXxnuyTFxkZCjdjNCveHcTdQhX8oE2u5jazZYX4yfiRcbloBe/L08nymeG6IZ4YvnBBcJU7/mSp2CUa07aS626i00v2rl0IJWsKnq5K6PXk/Tkff24fY618Ka+5vVQiZAAFRJgVE42vhCal9OZ/DovHZlKHltaPm0vr2yYdOUW4qtt3rxGJJ/tHVY3KHyL9rmf+Ws4CEAAI7IQ97RfJhybMKwj4yrCVaysB+WJLAkxCARFLnAfLZVqPIBIyvhcTYP4TeUIWKRNw8zdiBh6ahCoNANhP5Zt2/DSY0icCYn4XKiwDUltjGAY+ezMpIjq0PwR0BOw8IPB/YldtFgqkk8yqeW/6+AMvhNlLpHTe40xdg6iydzBVKbwMbBOmVFiFvgAwIawfRt3RbEgLMa6zCQxkarTUGnvcrtW1vfbWdB2RMqUiqbHeqN6EPl5/VD/IUGm0bF6OhLMZURYOM6RC94gtq+v5F9p2TzymnL9tTZu/B4kDfy79ufBnAoAnW0+2APDo8VH6o4xH9APde6cBpOtjGwfTmuUyaaitoqDDC3nn1phmUtze8QjyxuBXH3YTAQyvnnje87/uLyUJKcQjBl7YMQBF+ZfF4/aumVOlFFwjPFNoSnz8AA3lDZxnLi8SMANXRYdokIsueBeBFZF8nQRyTtAcs9AOzWIEY5Sh3GbGLGb1KQKIU5z7feIOkGcmz+dAPw+zy2u38V9gmyvYZBclFTk5M5vIAJbxB/jkvJ0KtXAvJ9Wu2rQVbPtw35uWU68Bg+LSzJn1CzCIBEinZLY+L9gKxBV3Yr3VYvaZvQWytMWNA4wIjaZJwk58EiRZC0NAHPL2YeGP4ytQsiTJhhLiQvSXu/dNopdedKCbkuTMvAMYUMjjpDgEtcQp2Kr7hswGsfUGOjx7AYB1Hjg4AcRLROkFUQhxCnSA/xsIEzCOERZVAEYS9TVIRdNXmDAQFQ2QPqAAooBKAOCkbBAJHTrFjAhgPBDCFTEQRpY3EOGi8kA0eyBGu82VwzIMO75KlKpTTi1fQYQmtW7mdmzYFjGyoWbPUqFKK+bqAygVy4lTtRblvk8vYtWaOKZ8G8Uw5Z5aFS1p5Wy9NHs2bHTlzY8P/2T31Q4l8yjhpS9XQa3EdrAUZFqUWEIEFVimVcrOjqn2yWZWne01iygVyrUpT9FrqanYAR25E3sOnuQUw/34S5j1YSJFCT/PP0KciEmI7njnjx0jNAJ6+4+IvGE9wDQlWgPkLjIlNTtFlYItdtivtY+txrYwLxysRnBFiqc97bHnUM77CbGG0l3ja5FgJ/g+J+0HnQHr72TG7bcPOpfE4CUa+ScaCS22b8XOWGBfzxtLlcUt5ns9jV1tRavYuH3pliZJdcD+6HTbx5i2kybqwTQM1JOCyXt956azaQA=) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+body { background: radial-gradient(ellipse at 0 20%, #dbe8ff88, transparent 48%), radial-gradient(ellipse at 100% 70%, #e8e3fa66, transparent 44%), #f3f6fb; font-family: "Times New Roman", "Learning Fandol Song", serif; font-size: 18px; line-height: 1.85; }
+h1, h2, h3, .topbar, .toc, figcaption, .source-badge, .hero-map, .hero-sub, .page-footer { font-family: Arial, "Learning Fandol Hei", sans-serif; }
+pre, code { font-family: ui-monospace, "SFMono-Regular", Menlo, "Learning Fandol Fang", monospace; }
+.topbar { position: sticky; top: 0; z-index: 40; background: #f9fbfff0; backdrop-filter: blur(16px); border-color: #d9e3f0; }
+.hero { background: radial-gradient(ellipse at 82% 24%, color-mix(in srgb, var(--teal) 36%, transparent), transparent 50%), radial-gradient(ellipse at 14% 0, color-mix(in srgb, var(--teal) 30%, transparent), transparent 50%), var(--hero); }
+.hero-map { border: 1px solid #a9c9f04a; padding: 16px 22px; border-radius: 16px; background: #d1e6ff08; }
+.reading-shell { position: relative; z-index: 2; padding-top: 28px; gap: 18px; }
+.article { background: #ffffffed; border: 1px solid #dae3f0; border-radius: 20px; box-shadow: 0 12px 42px #223f6d06; margin-right: 22px; }
+.article-inner { padding-top: 38px; }
+.toc { font-size: 13px; }
+.article h2 { border-color: #dce5f0; }
+@media (max-width: 1050px) { .article { margin: 0 18px; } .reading-shell { padding-top: 18px; } }
+@media (max-width: 600px) { body { font-size: 17px; } .article { margin: 0 10px; border-radius: 14px; } .hero-map { padding: 12px 16px; } }
+@media print { body { background: white; } .article { border: 0; box-shadow: none; margin: 0; } .reading-shell { padding: 0; } .hero { background: white; } }
+</style><!-- Fandol license:
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+                            Preamble
+
+  The GNU General Public License is a free, copyleft license for
+software and other kinds of works.
+
+  The licenses for most software and other practical works are designed
+to take away your freedom to share and change the works.  By contrast,
+the GNU General Public License is intended to guarantee your freedom to
+share and change all versions of a program- -to make sure it remains free
+software for all its users.  We, the Free Software Foundation, use the
+GNU General Public License for most of our software; it applies also to
+any other work released this way by its authors.  You can apply it to
+your programs, too.
+
+  When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+them if you wish), that you receive source code or can get it if you
+want it, that you can change the software or use pieces of it in new
+free programs, and that you know you can do these things.
+
+  To protect your rights, we need to prevent others from denying you
+these rights or asking you to surrender the rights.  Therefore, you have
+certain responsibilities if you distribute copies of the software, or if
+you modify it: responsibilities to respect the freedom of others.
+
+  For example, if you distribute copies of such a program, whether
+gratis or for a fee, you must pass on to the recipients the same
+freedoms that you received.  You must make sure that they, too, receive
+or can get the source code.  And you must show them these terms so they
+know their rights.
+
+  Developers that use the GNU GPL protect your rights with two steps:
+(1) assert copyright on the software, and (2) offer you this License
+giving you legal permission to copy, distribute and/or modify it.
+
+  For the developers' and authors' protection, the GPL clearly explains
+that there is no warranty for this free software.  For both users' and
+authors' sake, the GPL requires that modified versions be marked as
+changed, so that their problems will not be attributed erroneously to
+authors of previous versions.
+
+  Some devices are designed to deny users access to install or run
+modified versions of the software inside them, although the manufacturer
+can do so.  This is fundamentally incompatible with the aim of
+protecting users' freedom to change the software.  The systematic
+pattern of such abuse occurs in the area of products for individuals to
+use, which is precisely where it is most unacceptable.  Therefore, we
+have designed this version of the GPL to prohibit the practice for those
+products.  If such problems arise substantially in other domains, we
+stand ready to extend this provision to those domains in future versions
+of the GPL, as needed to protect the freedom of users.
+
+  Finally, every program is threatened constantly by software patents.
+States should not allow patents to restrict development and use of
+software on general-purpose computers, but in those that do, we wish to
+avoid the special danger that patents applied to a free program could
+make it effectively proprietary.  To prevent this, the GPL assures that
+patents cannot be used to render the program non-free.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.
+
+                       TERMS AND CONDITIONS
+
+  0. Definitions.
+
+  "This License" refers to version 3 of the GNU General Public License.
+
+  "Copyright" also means copyright-like laws that apply to other kinds of
+works, such as semiconductor masks.
+
+  "The Program" refers to any copyrightable work licensed under this
+License.  Each licensee is addressed as "you".  "Licensees" and
+"recipients" may be individuals or organizations.
+
+  To "modify" a work means to copy from or adapt all or part of the work
+in a fashion requiring copyright permission, other than the making of an
+exact copy.  The resulting work is called a "modified version" of the
+earlier work or a work "based on" the earlier work.
+
+  A "covered work" means either the unmodified Program or a work based
+on the Program.
+
+  To "propagate" a work means to do anything with it that, without
+permission, would make you directly or secondarily liable for
+infringement under applicable copyright law, except executing it on a
+computer or modifying a private copy.  Propagation includes copying,
+distribution (with or without modification), making available to the
+public, and in some countries other activities as well.
+
+  To "convey" a work means any kind of propagation that enables other
+parties to make or receive copies.  Mere interaction with a user through
+a computer network, with no transfer of a copy, is not conveying.
+
+  An interactive user interface displays "Appropriate Legal Notices"
+to the extent that it includes a convenient and prominently visible
+feature that (1) displays an appropriate copyright notice, and (2)
+tells the user that there is no warranty for the work (except to the
+extent that warranties are provided), that licensees may convey the
+work under this License, and how to view a copy of this License.  If
+the interface presents a list of user commands or options, such as a
+menu, a prominent item in the list meets this criterion.
+
+  1. Source Code.
+
+  The "source code" for a work means the preferred form of the work
+for making modifications to it.  "Object code" means any non-source
+form of a work.
+
+  A "Standard Interface" means an interface that either is an official
+standard defined by a recognized standards body, or, in the case of
+interfaces specified for a particular programming language, one that
+is widely used among developers working in that language.
+
+  The "System Libraries" of an executable work include anything, other
+than the work as a whole, that (a) is included in the normal form of
+packaging a Major Component, but which is not part of that Major
+Component, and (b) serves only to enable use of the work with that
+Major Component, or to implement a Standard Interface for which an
+implementation is available to the public in source code form.  A
+"Major Component", in this context, means a major essential component
+(kernel, window system, and so on) of the specific operating system
+(if any) on which the executable work runs, or a compiler used to
+produce the work, or an object code interpreter used to run it.
+
+  The "Corresponding Source" for a work in object code form means all
+the source code needed to generate, install, and (for an executable
+work) run the object code and to modify the work, including scripts to
+control those activities.  However, it does not include the work's
+System Libraries, or general-purpose tools or generally available free
+programs which are used unmodified in performing those activities but
+which are not part of the work.  For example, Corresponding Source
+includes interface definition files associated with source files for
+the work, and the source code for shared libraries and dynamically
+linked subprograms that the work is specifically designed to require,
+such as by intimate data communication or control flow between those
+subprograms and other parts of the work.
+
+  The Corresponding Source need not include anything that users
+can regenerate automatically from other parts of the Corresponding
+Source.
+
+  The Corresponding Source for a work in source code form is that
+same work.
+
+  2. Basic Permissions.
+
+  All rights granted under this License are granted for the term of
+copyright on the Program, and are irrevocable provided the stated
+conditions are met.  This License explicitly affirms your unlimited
+permission to run the unmodified Program.  The output from running a
+covered work is covered by this License only if the output, given its
+content, constitutes a covered work.  This License acknowledges your
+rights of fair use or other equivalent, as provided by copyright law.
+
+  You may make, run and propagate covered works that you do not
+convey, without conditions so long as your license otherwise remains
+in force.  You may convey covered works to others for the sole purpose
+of having them make modifications exclusively for you, or provide you
+with facilities for running those works, provided that you comply with
+the terms of this License in conveying all material for which you do
+not control copyright.  Those thus making or running the covered works
+for you must do so exclusively on your behalf, under your direction
+and control, on terms that prohibit them from making any copies of
+your copyrighted material outside their relationship with you.
+
+  Conveying under any other circumstances is permitted solely under
+the conditions stated below.  Sublicensing is not allowed; section 10
+makes it unnecessary.
+
+  3. Protecting Users' Legal Rights From Anti-Circumvention Law.
+
+  No covered work shall be deemed part of an effective technological
+measure under any applicable law fulfilling obligations under article
+11 of the WIPO copyright treaty adopted on 20 December 1996, or
+similar laws prohibiting or restricting circumvention of such
+measures.
+
+  When you convey a covered work, you waive any legal power to forbid
+circumvention of technological measures to the extent such circumvention
+is effected by exercising rights under this License with respect to
+the covered work, and you disclaim any intention to limit operation or
+modification of the work as a means of enforcing, against the work's
+users, your or third parties' legal rights to forbid circumvention of
+technological measures.
+
+  4. Conveying Verbatim Copies.
+
+  You may convey verbatim copies of the Program's source code as you
+receive it, in any medium, provided that you conspicuously and
+appropriately publish on each copy an appropriate copyright notice;
+keep intact all notices stating that this License and any
+non-permissive terms added in accord with section 7 apply to the code;
+keep intact all notices of the absence of any warranty; and give all
+recipients a copy of this License along with the Program.
+
+  You may charge any price or no price for each copy that you convey,
+and you may offer support or warranty protection for a fee.
+
+  5. Conveying Modified Source Versions.
+
+  You may convey a work based on the Program, or the modifications to
+produce it from the Program, in the form of source code under the
+terms of section 4, provided that you also meet all of these conditions:
+
+    a) The work must carry prominent notices stating that you modified
+    it, and giving a relevant date.
+
+    b) The work must carry prominent notices stating that it is
+    released under this License and any conditions added under section
+    7.  This requirement modifies the requirement in section 4 to
+    "keep intact all notices".
+
+    c) You must license the entire work, as a whole, under this
+    License to anyone who comes into possession of a copy.  This
+    License will therefore apply, along with any applicable section 7
+    additional terms, to the whole of the work, and all its parts,
+    regardless of how they are packaged.  This License gives no
+    permission to license the work in any other way, but it does not
+    invalidate such permission if you have separately received it.
+
+    d) If the work has interactive user interfaces, each must display
+    Appropriate Legal Notices; however, if the Program has interactive
+    interfaces that do not display Appropriate Legal Notices, your
+    work need not make them do so.
+
+  A compilation of a covered work with other separate and independent
+works, which are not by their nature extensions of the covered work,
+and which are not combined with it such as to form a larger program,
+in or on a volume of a storage or distribution medium, is called an
+"aggregate" if the compilation and its resulting copyright are not
+used to limit the access or legal rights of the compilation's users
+beyond what the individual works permit.  Inclusion of a covered work
+in an aggregate does not cause this License to apply to the other
+parts of the aggregate.
+
+  6. Conveying Non-Source Forms.
+
+  You may convey a covered work in object code form under the terms
+of sections 4 and 5, provided that you also convey the
+machine-readable Corresponding Source under the terms of this License,
+in one of these ways:
+
+    a) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by the
+    Corresponding Source fixed on a durable physical medium
+    customarily used for software interchange.
+
+    b) Convey the object code in, or embodied in, a physical product
+    (including a physical distribution medium), accompanied by a
+    written offer, valid for at least three years and valid for as
+    long as you offer spare parts or customer support for that product
+    model, to give anyone who possesses the object code either (1) a
+    copy of the Corresponding Source for all the software in the
+    product that is covered by this License, on a durable physical
+    medium customarily used for software interchange, for a price no
+    more than your reasonable cost of physically performing this
+    conveying of source, or (2) access to copy the
+    Corresponding Source from a network server at no charge.
+
+    c) Convey individual copies of the object code with a copy of the
+    written offer to provide the Corresponding Source.  This
+    alternative is allowed only occasionally and noncommercially, and
+    only if you received the object code with such an offer, in accord
+    with subsection 6b.
+
+    d) Convey the object code by offering access from a designated
+    place (gratis or for a charge), and offer equivalent access to the
+    Corresponding Source in the same way through the same place at no
+    further charge.  You need not require recipients to copy the
+    Corresponding Source along with the object code.  If the place to
+    copy the object code is a network server, the Corresponding Source
+    may be on a different server (operated by you or a third party)
+    that supports equivalent copying facilities, provided you maintain
+    clear directions next to the object code saying where to find the
+    Corresponding Source.  Regardless of what server hosts the
+    Corresponding Source, you remain obligated to ensure that it is
+    available for as long as needed to satisfy these requirements.
+
+    e) Convey the object code using peer-to-peer transmission, provided
+    you inform other peers where the object code and Corresponding
+    Source of the work are being offered to the general public at no
+    charge under subsection 6d.
+
+  A separable portion of the object code, whose source code is excluded
+from the Corresponding Source as a System Library, need not be
+included in conveying the object code work.
+
+  A "User Product" is either (1) a "consumer product", which means any
+tangible personal property which is normally used for personal, family,
+or household purposes, or (2) anything designed or sold for incorporation
+into a dwelling.  In determining whether a product is a consumer product,
+doubtful cases shall be resolved in favor of coverage.  For a particular
+product received by a particular user, "normally used" refers to a
+typical or common use of that class of product, regardless of the status
+of the particular user or of the way in which the particular user
+actually uses, or expects or is expected to use, the product.  A product
+is a consumer product regardless of whether the product has substantial
+commercial, industrial or non-consumer uses, unless such uses represent
+the only significant mode of use of the product.
+
+  "Installation Information" for a User Product means any methods,
+procedures, authorization keys, or other information required to install
+and execute modified versions of a covered work in that User Product from
+a modified version of its Corresponding Source.  The information must
+suffice to ensure that the continued functioning of the modified object
+code is in no case prevented or interfered with solely because
+modification has been made.
+
+  If you convey an object code work under this section in, or with, or
+specifically for use in, a User Product, and the conveying occurs as
+part of a transaction in which the right of possession and use of the
+User Product is transferred to the recipient in perpetuity or for a
+fixed term (regardless of how the transaction is characterized), the
+Corresponding Source conveyed under this section must be accompanied
+by the Installation Information.  But this requirement does not apply
+if neither you nor any third party retains the ability to install
+modified object code on the User Product (for example, the work has
+been installed in ROM).
+
+  The requirement to provide Installation Information does not include a
+requirement to continue to provide support service, warranty, or updates
+for a work that has been modified or installed by the recipient, or for
+the User Product in which it has been modified or installed.  Access to a
+network may be denied when the modification itself materially and
+adversely affects the operation of the network or violates the rules and
+protocols for communication across the network.
+
+  Corresponding Source conveyed, and Installation Information provided,
+in accord with this section must be in a format that is publicly
+documented (and with an implementation available to the public in
+source code form), and must require no special password or key for
+unpacking, reading or copying.
+
+  7. Additional Terms.
+
+  "Additional permissions" are terms that supplement the terms of this
+License by making exceptions from one or more of its conditions.
+Additional permissions that are applicable to the entire Program shall
+be treated as though they were included in this License, to the extent
+that they are valid under applicable law.  If additional permissions
+apply only to part of the Program, that part may be used separately
+under those permissions, but the entire Program remains governed by
+this License without regard to the additional permissions.
+
+  When you convey a copy of a covered work, you may at your option
+remove any additional permissions from that copy, or from any part of
+it.  (Additional permissions may be written to require their own
+removal in certain cases when you modify the work.)  You may place
+additional permissions on material, added by you to a covered work,
+for which you have or can give appropriate copyright permission.
+
+  Notwithstanding any other provision of this License, for material you
+add to a covered work, you may (if authorized by the copyright holders of
+that material) supplement the terms of this License with terms:
+
+    a) Disclaiming warranty or limiting liability differently from the
+    terms of sections 15 and 16 of this License; or
+
+    b) Requiring preservation of specified reasonable legal notices or
+    author attributions in that material or in the Appropriate Legal
+    Notices displayed by works containing it; or
+
+    c) Prohibiting misrepresentation of the origin of that material, or
+    requiring that modified versions of such material be marked in
+    reasonable ways as different from the original version; or
+
+    d) Limiting the use for publicity purposes of names of licensors or
+    authors of the material; or
+
+    e) Declining to grant rights under trademark law for use of some
+    trade names, trademarks, or service marks; or
+
+    f) Requiring indemnification of licensors and authors of that
+    material by anyone who conveys the material (or modified versions of
+    it) with contractual assumptions of liability to the recipient, for
+    any liability that these contractual assumptions directly impose on
+    those licensors and authors.
+
+  All other non-permissive additional terms are considered "further
+restrictions" within the meaning of section 10.  If the Program as you
+received it, or any part of it, contains a notice stating that it is
+governed by this License along with a term that is a further
+restriction, you may remove that term.  If a license document contains
+a further restriction but permits relicensing or conveying under this
+License, you may add to a covered work material governed by the terms
+of that license document, provided that the further restriction does
+not survive such relicensing or conveying.
+
+  If you add terms to a covered work in accord with this section, you
+must place, in the relevant source files, a statement of the
+additional terms that apply to those files, or a notice indicating
+where to find the applicable terms.
+
+  Additional terms, permissive or non-permissive, may be stated in the
+form of a separately written license, or stated as exceptions;
+the above requirements apply either way.
+
+  8. Termination.
+
+  You may not propagate or modify a covered work except as expressly
+provided under this License.  Any attempt otherwise to propagate or
+modify it is void, and will automatically terminate your rights under
+this License (including any patent licenses granted under the third
+paragraph of section 11).
+
+  However, if you cease all violation of this License, then your
+license from a particular copyright holder is reinstated (a)
+provisionally, unless and until the copyright holder explicitly and
+finally terminates your license, and (b) permanently, if the copyright
+holder fails to notify you of the violation by some reasonable means
+prior to 60 days after the cessation.
+
+  Moreover, your license from a particular copyright holder is
+reinstated permanently if the copyright holder notifies you of the
+violation by some reasonable means, this is the first time you have
+received notice of violation of this License (for any work) from that
+copyright holder, and you cure the violation prior to 30 days after
+your receipt of the notice.
+
+  Termination of your rights under this section does not terminate the
+licenses of parties who have received copies or rights from you under
+this License.  If your rights have been terminated and not permanently
+reinstated, you do not qualify to receive new licenses for the same
+material under section 10.
+
+  9. Acceptance Not Required for Having Copies.
+
+  You are not required to accept this License in order to receive or
+run a copy of the Program.  Ancillary propagation of a covered work
+occurring solely as a consequence of using peer-to-peer transmission
+to receive a copy likewise does not require acceptance.  However,
+nothing other than this License grants you permission to propagate or
+modify any covered work.  These actions infringe copyright if you do
+not accept this License.  Therefore, by modifying or propagating a
+covered work, you indicate your acceptance of this License to do so.
+
+  10. Automatic Licensing of Downstream Recipients.
+
+  Each time you convey a covered work, the recipient automatically
+receives a license from the original licensors, to run, modify and
+propagate that work, subject to this License.  You are not responsible
+for enforcing compliance by third parties with this License.
+
+  An "entity transaction" is a transaction transferring control of an
+organization, or substantially all assets of one, or subdividing an
+organization, or merging organizations.  If propagation of a covered
+work results from an entity transaction, each party to that
+transaction who receives a copy of the work also receives whatever
+licenses to the work the party's predecessor in interest had or could
+give under the previous paragraph, plus a right to possession of the
+Corresponding Source of the work from the predecessor in interest, if
+the predecessor has it or can get it with reasonable efforts.
+
+  You may not impose any further restrictions on the exercise of the
+rights granted or affirmed under this License.  For example, you may
+not impose a license fee, royalty, or other charge for exercise of
+rights granted under this License, and you may not initiate litigation
+(including a cross-claim or counterclaim in a lawsuit) alleging that
+any patent claim is infringed by making, using, selling, offering for
+sale, or importing the Program or any portion of it.
+
+  11. Patents.
+
+  A "contributor" is a copyright holder who authorizes use under this
+License of the Program or a work on which the Program is based.  The
+work thus licensed is called the contributor's "contributor version".
+
+  A contributor's "essential patent claims" are all patent claims
+owned or controlled by the contributor, whether already acquired or
+hereafter acquired, that would be infringed by some manner, permitted
+by this License, of making, using, or selling its contributor version,
+but do not include claims that would be infringed only as a
+consequence of further modification of the contributor version.  For
+purposes of this definition, "control" includes the right to grant
+patent sublicenses in a manner consistent with the requirements of
+this License.
+
+  Each contributor grants you a non-exclusive, worldwide, royalty-free
+patent license under the contributor's essential patent claims, to
+make, use, sell, offer for sale, import and otherwise run, modify and
+propagate the contents of its contributor version.
+
+  In the following three paragraphs, a "patent license" is any express
+agreement or commitment, however denominated, not to enforce a patent
+(such as an express permission to practice a patent or covenant not to
+sue for patent infringement).  To "grant" such a patent license to a
+party means to make such an agreement or commitment not to enforce a
+patent against the party.
+
+  If you convey a covered work, knowingly relying on a patent license,
+and the Corresponding Source of the work is not available for anyone
+to copy, free of charge and under the terms of this License, through a
+publicly available network server or other readily accessible means,
+then you must either (1) cause the Corresponding Source to be so
+available, or (2) arrange to deprive yourself of the benefit of the
+patent license for this particular work, or (3) arrange, in a manner
+consistent with the requirements of this License, to extend the patent
+license to downstream recipients.  "Knowingly relying" means you have
+actual knowledge that, but for the patent license, your conveying the
+covered work in a country, or your recipient's use of the covered work
+in a country, would infringe one or more identifiable patents in that
+country that you have reason to believe are valid.
+
+  If, pursuant to or in connection with a single transaction or
+arrangement, you convey, or propagate by procuring conveyance of, a
+covered work, and grant a patent license to some of the parties
+receiving the covered work authorizing them to use, propagate, modify
+or convey a specific copy of the covered work, then the patent license
+you grant is automatically extended to all recipients of the covered
+work and works based on it.
+
+  A patent license is "discriminatory" if it does not include within
+the scope of its coverage, prohibits the exercise of, or is
+conditioned on the non-exercise of one or more of the rights that are
+specifically granted under this License.  You may not convey a covered
+work if you are a party to an arrangement with a third party that is
+in the business of distributing software, under which you make payment
+to the third party based on the extent of your activity of conveying
+the work, and under which the third party grants, to any of the
+parties who would receive the covered work from you, a discriminatory
+patent license (a) in connection with copies of the covered work
+conveyed by you (or copies made from those copies), or (b) primarily
+for and in connection with specific products or compilations that
+contain the covered work, unless you entered into that arrangement,
+or that patent license was granted, prior to 28 March 2007.
+
+  Nothing in this License shall be construed as excluding or limiting
+any implied license or other defenses to infringement that may
+otherwise be available to you under applicable patent law.
+
+  12. No Surrender of Others' Freedom.
+
+  If conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot convey a
+covered work so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you may
+not convey it at all.  For example, if you agree to terms that obligate you
+to collect a royalty for further conveying from those to whom you convey
+the Program, the only way you could satisfy both those terms and this
+License would be to refrain entirely from conveying the Program.
+
+  13. Use with the GNU Affero General Public License.
+
+  Notwithstanding any other provision of this License, you have
+permission to link or combine any covered work with a work licensed
+under version 3 of the GNU Affero General Public License into a single
+combined work, and to convey the resulting work.  The terms of this
+License will continue to apply to the part which is the covered work,
+but the special requirements of the GNU Affero General Public License,
+section 13, concerning interaction through a network will apply to the
+combination as such.
+
+  14. Revised Versions of this License.
+
+  The Free Software Foundation may publish revised and/or new versions of
+the GNU General Public License from time to time.  Such new versions will
+be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+  Each version is given a distinguishing version number.  If the
+Program specifies that a certain numbered version of the GNU General
+Public License "or any later version" applies to it, you have the
+option of following the terms and conditions either of that numbered
+version or of any later version published by the Free Software
+Foundation.  If the Program does not specify a version number of the
+GNU General Public License, you may choose any version ever published
+by the Free Software Foundation.
+
+  If the Program specifies that a proxy can decide which future
+versions of the GNU General Public License can be used, that proxy's
+public statement of acceptance of a version permanently authorizes you
+to choose that version for the Program.
+
+  Later license versions may give you additional or different
+permissions.  However, no additional obligations are imposed on any
+author or copyright holder as a result of your choosing to follow a
+later version.
+
+  15. Disclaimer of Warranty.
+
+  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
+APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
+HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
+OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
+THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
+IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
+ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+  16. Limitation of Liability.
+
+  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
+THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
+GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
+USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
+DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
+PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
+EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
+SUCH DAMAGES.
+
+  17. Interpretation of Sections 15 and 16.
+
+  If the disclaimer of warranty and limitation of liability provided
+above cannot be given local legal effect according to their terms,
+reviewing courts shall apply local law that most closely approximates
+an absolute waiver of all civil liability in connection with the
+Program, unless a warranty or assumption of liability accompanies a
+copy of the Program in return for a fee.
+
+                     END OF TERMS AND CONDITIONS
+
+            How to Apply These Terms to Your New Programs
+
+  If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these terms.
+
+  To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+state the exclusion of warranty; and each file should have at least
+the "copyright" line and a pointer to where the full notice is found.
+
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) <year>  <name of author>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+Also add information on how to contact you by electronic and paper mail.
+
+  If the program does terminal interaction, make it output a short
+notice like this when it starts in an interactive mode:
+
+    <program>  Copyright (C) <year>  <name of author>
+    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; type `show c' for details.
+
+The hypothetical commands `show w' and `show c' should show the appropriate
+parts of the General Public License.  Of course, your program's commands
+might be different; for a GUI interface, you would use an "about box".
+
+  You should also get your employer (if you work as a programmer) or school,
+if any, to sign a "copyright disclaimer" for the program, if necessary.
+For more information on this, and how to apply and follow the GNU GPL, see
+<http://www.gnu.org/licenses/>.
+
+  The GNU General Public License does not permit incorporating your program
+into proprietary programs.  If your program is a subroutine library, you
+may consider it more useful to permit linking proprietary applications with
+the library.  If this is what you want to do, use the GNU Lesser General
+Public License instead of this License.  But first, please read
+<http://www.gnu.org/philosophy/why-not-lgpl.html>.
+
+  As a special exception, if you create a document which uses this font, and
+embed this font or unaltered portions of this font into the document, this
+font does not by itself cause the resulting document to be covered by the
+GNU General Public License. This exception does not however invalidate any
+other reasons why the document might be covered by the GNU General Public
+License. If you modify this font, you may extend this exception to your version
+of the font, but you are not obligated to do so. If you do not wish to do so,
+delete this exception statement from your version.
+ --></head>
+<body data-theme="cobalt"><a class="skip-link" href="#content">Skip to content</a><input class="source-toggle" id="show-sources" type="checkbox"><header class="topbar"><a class="brand" href="#top">PAPER / READING</a><span>A source-grounded reading atlas</span><label class="source-toggle-label" for="show-sources">Show source locations</label><a href="#content">Start reading ↘</a></header><div id="top" class="hero"><div class="hero-inner"><div class="hero-copy"><p class="eyebrow">DEEP READING ATLAS · ENGLISH</p><h1>MechVQA: a mechanical-drawing benchmark, and the 4B model that tops it</h1><p class="hero-sub">Mechanical drawings break general MLLMs at three levels — dense reading, projection-consistent reasoning, standards-aware judging. MechVQA measures each level separately, and MechVL shows domain post-training closes much of the gap.</p><a class="hero-link" href="#section-1">Enter the reading atlas <span aria-hidden="true">↘</span></a></div><div class="hero-map"><p class="hero-map-title">Whole-paper map <span>01 / 03</span></p><ol><li><span class="hero-map-index">01</span><div><div class="hero-map-heading"><strong>Problem</strong><b>3 compounding factors</b></div><p>High annotation density hides decisive cues; weak domain priors mishandle drafting conventions; spatial reasoning fails under strict projection rules. Adjacent benchmarks cover only slices.</p><span class="source-badge">PDF §1</span></div></li><li><span class="hero-map-index">02</span><div><div class="hero-map-heading"><strong>Benchmark</strong><b>gates at every step</b></div><p>Expert-filtered drawings, OCR + MLLM metadata with human verification, three QA-generation routes, cross-model question validation, majority-voted answers, and a leakage-controlled 8:1:1 split.</p><span class="source-badge">PDF §3, Fig. 2a</span></div></li><li><span class="hero-map-index">03</span><div><div class="hero-map-heading"><strong>Model &amp; evidence</strong><b>SFT → DAPO ×2</b></div><p>MechVL-4B: SFT for schema and grounding, then two-stage self-play DAPO with a format/accuracy/quality reward. Ablations isolate stages, RL algorithm, and reward design.</p><span class="source-badge">PDF §§4–5, Tables 2–3</span></div></li></ol><div class="hero-map-outcome"><span aria-hidden="true">↳</span><div><strong>A 3,281-drawing, 20,778-pair benchmark with quality-gated verifiable answers, plus a 4B baseline reaching Total 84.85 — +5.94 over the best open-source and +7.57 over the best closed-source MLLM tested.</strong><span class="source-badge">PDF §§3–5, Tables 1–2</span></div></div></div></div></div><div class="reading-shell"><nav class="toc" aria-label="Contents"><div class="toc-title">Reading path</div><a href="#section-1">01 / The whole paper at a glance</a><a href="#section-2">02 / Building MechVQA: from drawings to verifiable QA pairs</a><a href="#section-3">03 / The measurement design: what is being counted</a><a href="#section-4">04 / MechVL: the training ladder behind 84.85</a><a href="#section-5">05 / Experiment atlas: which result answers which question</a><a href="#section-6">06 / Synthesis: what the evidence supports, and its boundaries</a></nav><main id="content" class="article"><div class="article-inner">
 <blockquote>
 <p><strong>Reading orientation.</strong> General multimodal LLMs fail on mechanical engineering drawings in ways that go beyond recognition: dense annotations hide decisive cues, projection rules demand cross-view correspondence, and drafting standards require domain knowledge. This paper contributes both a yardstick and a climber: MechVQA, a 20,778-pair benchmark built under multi-stage quality gates, and MechVL, a 4B domain-specialized model whose SFT→DAPO training ladder reaches a Total score of 84.85, above every open- and closed-source baseline tested. Original paper: Qian Kou, Xiaofeng Shi (equal contribution, co-corresponding), Yulin Li, Xiaosong Qiu, Xinyang Wang, Hua Zhou, Cao Dongxing, <em>MechVQA: Benchmarking and Enhancing Multimodal LLMs on Comprehensive Mechanical Drawing Understanding</em> (ICML 2026). <span class="source-ref">This reading uses arXiv:2605.30794v2 (7 July 2026), 28 pages: main text §§1–6 plus appendices A–C; Figs. 1–18; Tables 1–7.</span></p>
 </blockquote>
