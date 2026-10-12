@@ -57,7 +57,7 @@ button { cursor: pointer; }
 .hero-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1.15fr 1fr; align-items: center; gap: 64px; }
 .eyebrow, .section-label { font-family: var(--mono); font-size: var(--fs-small); font-weight: 500; letter-spacing: .14em; line-height: 1.6; }
 .eyebrow { color: #bdcfe9; margin-bottom: 26px; }
-h1 { margin: 0; font-family: var(--sans); font-size: clamp(40px, 4.6vw, 66px); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; overflow-wrap: anywhere; }
+h1 { margin: 0; font-family: var(--sans); font-size: clamp(40px, 4.6vw, 66px); font-weight: 700; letter-spacing: -.02em; line-height: 1.25; word-break: keep-all; overflow-wrap: anywhere; }
 h1 em { color: #a9d9e6; font-style: normal; }
 .hero-lead { max-width: 35em; margin: 26px 0; color: #d5e1f1; font-family: var(--sans); font-size: 18px; line-height: 1.9; }
 .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--dark-muted); font-size: var(--fs-small); }
@@ -197,6 +197,7 @@ th:first-child, td:first-child { padding-left: 0; }
 .stepper.is-stepping .step-notes > li[aria-current="step"] { border-left-color: var(--accent); background: #fff; color: var(--ink); box-shadow: 0 6px 20px #223f6d0d; }
 .stepper.is-stepping .step-notes > li[aria-current="step"]::before { background: var(--accent); color: #fff; }
 .stepper > figcaption { margin-top: 18px; }
+.stepper-wide { --stage: 760px; }
 @media (max-width: 900px) {
   .hero { padding-top: 140px; }
   .hero-inner { gap: 36px; grid-template-columns: 1fr; }
@@ -265,6 +266,10 @@ th:first-child, td:first-child { padding-left: 0; }
   .stepper-controls { grid-area: controls; }
   .step-notes { grid-area: notes; margin-top: 0; }
   .stepper > figcaption { grid-area: caption; }
+  /* A wide stage, such as a timeline, stacks the stage above its notes, which run in two columns. */
+  .stepper.stepper-wide { display: block; }
+  .stepper.stepper-wide > .step-notes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; margin-top: 22px; }
+  .stepper.stepper-wide > .step-notes > li + li { margin-top: 0; }
   .footer { max-width: none; margin: 0 0 0 var(--side); padding: 28px var(--page-pad) 48px; border-top: 1px solid var(--line); }
   .footer > * { max-width: var(--content); }
 }
