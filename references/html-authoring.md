@@ -57,11 +57,11 @@ assets/lesson-template.html 的导航、开头、正文和页脚均为真实 HTM
 
 HTML 属性里的 LaTeX 反斜杠不需要加倍。属性值中的双引号、& 和尖括号按 HTML 转义。数学通过 data-tex 明确标记，构建器不猜测普通文本中的美元符号。
 
-新增图示使用内联 SVG，带 viewBox、title 和必要说明。演示区可用 diagram-panel，双列比较可用 compare-grid，条件标签可用 pill。长表格外包 table-scroll。
+新增图示使用内联 SVG，带 viewBox、title 和必要说明。按阶段展开的机制用分步图 figure.stepper，写法见 references/animation.md。演示区可用 diagram-panel，双列比较可用 compare-grid，条件标签可用 pill。长表格外包 table-scroll。桌面全页版式下，其他需要占满内容宽度的块加 wide 类。
 
 正文引用可用 source-ref 链接到文末来源条目的 id。文末用 details.references 与 reference-list 组织来源，点击正文引用时会展开来源区。图注和视频时间不放入折叠来源列表。
 
-机制动画先读 references/animation.md。示例把状态计算和播放分开，分别位于 examples/retry-model.js 与 examples/retry-demo.js；源码用普通本地 script 引用，构建器会内嵌。按内容保留必要控件，避免为了使用组件而增加动画。
+机制动画先读 references/animation.md。分步图只需标注 data-step 与说明列表，控件由 lesson.js 生成。参数联动演示把状态计算和播放分开，示例位于 examples/retry-model.js 与 examples/retry-demo.js；源码用普通本地 script 引用，构建器会内嵌。
 
 ## 离线资源
 

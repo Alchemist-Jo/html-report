@@ -27,7 +27,7 @@ A field or course textbook with prerequisites, exercises and review rounds belon
 
 ## Visual design and the rendered audit
 
-[Visual design](references/visual-design.md) fixes the type scale at six sizes per width, the reading column at 648px for Chinese and 576px for English, figure labels at 12px or more on a 390px screen, WCAG AA contrast, and one accent hue with one caution hue. `scripts/render-audit.mjs` checks these on the rendered page:
+[Visual design](references/visual-design.md) fixes the type scale at six sizes per width, the reading measure at 648px for Chinese and 576px for English (828px and 672px in the full-page desktop layout at 1280px and wider), figure labels at 12px or more on a 390px screen, WCAG AA contrast, and one accent hue with one caution hue. `scripts/render-audit.mjs` checks these on the rendered page:
 
 ~~~sh
 node scripts/render-audit.mjs docs/learning-example.html --widths 1440,390 --out build/audit --print

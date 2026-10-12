@@ -30,7 +30,7 @@
   --fs-small: 13px;
   --fs-ui: 15px;
   --fs-lead: 21px;
-  /* One reading column for text, figures, panels and tables: 36 Chinese characters at the 18px body size, or about 70 Latin characters in English. */
+  /* Reading measure: 36 Chinese characters at the 18px body size, or about 70 Latin characters in English. Below 1280px it is the one column for text, figures, panels and tables; the full-page layout at the end widens prose and lets figures use the content width. */
   --measure: 648px;
   --card-pad: 52px;
 }
@@ -49,7 +49,7 @@ button { cursor: pointer; }
 .reading-progress { position: fixed; z-index: 60; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #749cf4, #71ccd3); transform: scaleX(0); transform-origin: left; }
 .site-nav { position: fixed; z-index: 50; top: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; max-width: calc(100vw - 32px); padding: 6px; border: 1px solid #ffffffb3; border-radius: 50px; background: #f8fbfff0; box-shadow: 0 8px 32px #0c23471a; backdrop-filter: blur(18px); overflow-x: auto; scrollbar-width: none; }
 .site-nav::-webkit-scrollbar { display: none; }
-.site-nav a { flex: 0 0 auto; padding: 5px 17px; border-radius: 40px; color: var(--muted); font-family: var(--sans); font-size: var(--fs-ui); text-decoration: none; white-space: nowrap; }
+.site-nav a { flex: 0 0 auto; padding: 5px 17px; border-radius: 40px; color: var(--muted); font-family: var(--sans); font-size: var(--fs-ui); text-decoration: none; white-space: nowrap; transition: background .2s ease, color .2s ease; }
 .site-nav a.active, .site-nav a:hover { background: var(--accent-soft); color: var(--accent); }
 .hero { position: relative; overflow: hidden; padding: 154px max(28px, calc((100vw - 1200px) / 2)) 110px; color: var(--dark-text); background: radial-gradient(ellipse at 82% 24%, #246c865c, transparent 49%), radial-gradient(ellipse at 14% -12%, #5966d15e, transparent 51%), linear-gradient(135deg, #101b38, #0c2138 74%, #153348); }
 .hero::before { position: absolute; content: ""; width: 720px; height: 720px; top: -380px; right: -160px; border: 1px solid #a1bce322; border-radius: 50%; box-shadow: 0 0 0 90px #a1bce309, 0 0 0 180px #a1bce306; pointer-events: none; }
@@ -84,7 +84,7 @@ strong { font-weight: 700; }
 .intro { font-size: var(--fs-lead); line-height: 1.8; color: #354f72; }
 .source-note, figcaption, .small { color: var(--muted); font-size: var(--fs-ui); line-height: 1.8; }
 .source-note { margin-top: 20px; }
-.source-ref { display: inline-block; margin-left: 4px; padding: 1px 5px; border-radius: 4px; background: #edf2fb; color: #355da5; font: var(--fs-small)/1 var(--sans); vertical-align: super; text-decoration: none; white-space: nowrap; }
+.source-ref { display: inline-block; margin-left: 4px; padding: 1px 5px; border-radius: 4px; background: #edf2fb; color: #355da5; font: var(--fs-small)/1 var(--sans); vertical-align: super; text-decoration: none; white-space: nowrap; transition: background .15s ease; }
 .source-ref:hover { background: #dce8fa; }
 figure { margin: 34px 0; }
 figure img { display: block; max-width: 100%; height: auto; margin: auto; border-radius: 10px; }
@@ -164,6 +164,39 @@ th:first-child, td:first-child { padding-left: 0; }
 .parameter-control output { font-family: var(--mono); min-width: 24px; }
 .diagram-panel .trace-step { text-align: left; padding: 17px 15px; color: var(--dark-text); font-weight: 400; background: #ffffff04; border: 1px solid #799bbe88; transition: background 180ms ease, border-color 180ms ease; }
 .diagram-panel .trace-step[aria-current="step"] { background: #344d6d; border-color: #d3bc8e; }
+/* Stepped figure: figure.stepper > .stepper-stage holds parts marked data-step; ol.step-notes holds one note per step. lesson.js adds the controls. Without scripts the complete figure and every note stay visible. */
+.stepper { margin: 38px 0; padding: 28px 30px 24px; border: 1px solid var(--line); border-radius: 16px; background: #f7f9fd; }
+.stepper-stage svg { display: block; width: 100%; max-width: var(--stage, 480px); height: auto; margin: 0 auto; overflow: visible; }
+.stepper [data-step] { transition: opacity .3s ease, visibility 0s; }
+.stepper [data-step].is-off { opacity: 0; visibility: hidden; transition: opacity .3s ease, visibility 0s linear .3s; }
+.stepper [data-travel] { opacity: 0; pointer-events: none; }
+.stepper :is([data-enter="grow-x"], [data-enter="grow-y"], [data-enter="pop"]) { transform-box: fill-box; }
+.stepper [data-enter="grow-x"] { transform-origin: left center; }
+.stepper [data-enter="grow-y"] { transform-origin: center bottom; }
+.stepper [data-enter="pop"] { transform-origin: center; }
+.stepper-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 20px; font-family: var(--sans); }
+.stepper-controls button { min-height: 44px; padding: 0 16px; border: 1px solid #c3d2e6; border-radius: 8px; background: #fff; color: var(--accent); font-size: var(--fs-ui); font-weight: 600; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.stepper-controls button:hover:not(:disabled) { background: var(--accent-soft); border-color: #9db6dc; }
+.stepper-controls button:disabled { color: #8193ab; cursor: default; }
+.stepper-controls .stepper-play { min-width: 88px; border-color: var(--accent); background: var(--accent); color: #fff; }
+.stepper-controls .stepper-play:hover:not(:disabled) { border-color: #2b4f8f; background: #2b4f8f; color: #fff; }
+.stepper-progress { display: flex; flex-basis: 100%; align-items: center; justify-content: space-between; gap: 12px; }
+.stepper-dots { display: flex; margin-left: -8px; }
+.stepper-controls .stepper-dot { min-width: 26px; padding: 0; border: 0; background: transparent; }
+.stepper-controls .stepper-dot:hover:not(:disabled) { background: transparent; }
+.stepper-dot::before { content: ""; display: block; width: 10px; height: 10px; margin: auto; border: 1.5px solid #8ea6c8; border-radius: 50%; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.stepper-dot.is-done::before { border-color: #9db6dc; background: #9db6dc; }
+.stepper-dot[aria-current="step"]::before { border-color: var(--accent); background: var(--accent); transform: scale(1.3); }
+.stepper-status { color: var(--muted); font-size: var(--fs-small); line-height: 1.5; }
+.step-notes { margin: 22px 0 0; padding: 0; list-style: none; counter-reset: step; font-family: var(--sans); font-size: var(--fs-ui); line-height: 1.75; }
+.step-notes > li { position: relative; margin: 0; padding: 10px 14px 10px 46px; border-left: 3px solid transparent; border-radius: 0 8px 8px 0; counter-increment: step; transition: background .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease; }
+.step-notes > li + li { margin-top: 4px; }
+.step-notes > li::before { content: counter(step); position: absolute; top: 12px; left: 12px; width: 22px; height: 22px; border-radius: 50%; background: #e3eaf5; color: var(--accent); font: 700 var(--fs-small)/22px var(--sans); text-align: center; transition: background .25s ease, color .25s ease; }
+.stepper.is-ready .step-notes > li { cursor: pointer; }
+.stepper.is-stepping .step-notes > li { color: var(--muted); }
+.stepper.is-stepping .step-notes > li[aria-current="step"] { border-left-color: var(--accent); background: #fff; color: var(--ink); box-shadow: 0 6px 20px #223f6d0d; }
+.stepper.is-stepping .step-notes > li[aria-current="step"]::before { background: var(--accent); color: #fff; }
+.stepper > figcaption { margin-top: 18px; }
 @media (max-width: 900px) {
   .hero { padding-top: 140px; }
   .hero-inner { gap: 36px; grid-template-columns: 1fr; }
@@ -200,13 +233,49 @@ th:first-child, td:first-child { padding-left: 0; }
   .flow-connector svg { transform: rotate(90deg); }
   .comparison-row { grid-template-columns: 112px minmax(0,1fr) 30px; gap: 10px; }
   .parameter-control { grid-template-columns: auto minmax(70px,1fr) auto; gap: 10px; }
+  .stepper { padding: 22px 16px 16px; }
+  .stepper-controls { gap: 6px; }
+  .stepper-controls button { padding: 0 11px; }
+  .stepper-controls .stepper-play { min-width: 64px; }
+  .step-notes > li { padding-right: 8px; }
+}
+/* Full page on desktop screens: navigation becomes a fixed left sidebar and the sections form one continuous page. Prose keeps a readable measure; figures, stepped figures, tables, panels, grids and code use the content width. Narrower screens keep the card layout above. */
+@media screen and (min-width: 1280px) {
+  :root { --side: 248px; --page-pad: 64px; --content: 1120px; --measure: 828px; --figure-max: 920px; }
+  html:lang(en) { --measure: 672px; }
+  html { scroll-padding-top: 28px; }
+  body { background: #fff; }
+  .site-nav { top: 0; left: 0; transform: none; flex-direction: column; gap: 2px; width: var(--side); max-width: none; height: 100vh; padding: 40px 16px 24px; border: 0; border-right: 1px solid var(--line); border-radius: 0; background: #f6f8fc; box-shadow: none; backdrop-filter: none; overflow-x: hidden; overflow-y: auto; }
+  .site-nav::before { content: "目录"; padding: 0 14px 14px; color: var(--muted); font: var(--fs-small)/1.6 var(--mono); letter-spacing: .14em; }
+  html:lang(en) .site-nav::before { content: "Contents"; }
+  .site-nav a { padding: 9px 14px; border-radius: 8px; white-space: normal; line-height: 1.5; }
+  .reading-progress { left: var(--side); width: calc(100% - var(--side)); }
+  .hero { margin-left: var(--side); padding: 112px var(--page-pad) 92px; }
+  .hero-inner, .hero-foot { max-width: var(--content); }
+  main { max-width: none; margin: 0 0 0 var(--side); padding: 0 var(--page-pad); }
+  section { max-width: var(--content); padding: 72px 0 44px; border: 0; border-radius: 0; background: transparent; box-shadow: none; scroll-margin-top: 0; }
+  section + section { margin-top: 0; border-top: 1px solid var(--line); }
+  section > * { max-width: var(--measure); }
+  section > :is(h2, figure, .table-scroll, .compare-grid, .diagram-panel, .code-block, .wide) { max-width: none; }
+  main figure:not(.stepper) svg { max-width: var(--figure-max); }
+  main figure > figcaption { max-width: var(--measure); }
+  .stepper { display: grid; grid-template-columns: minmax(0, var(--stage, 480px)) minmax(0, 1fr); grid-template-rows: auto 1fr; grid-template-areas: "stage notes" "controls notes" "caption caption"; column-gap: 44px; align-items: start; padding: 32px 36px 26px; }
+  .stepper-stage { grid-area: stage; }
+  .stepper-controls { grid-area: controls; }
+  .step-notes { grid-area: notes; margin-top: 0; }
+  .stepper > figcaption { grid-area: caption; }
+  .footer { max-width: none; margin: 0 0 0 var(--side); padding: 28px var(--page-pad) 48px; border-top: 1px solid var(--line); }
+  .footer > * { max-width: var(--content); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 @media print {
-  .skip-link, .site-nav, .reading-progress, .copy-button, .controls { display: none; }
+  .skip-link, .site-nav, .reading-progress, .copy-button, .controls, .stepper-controls { display: none; }
+  .stepper [data-step] { opacity: 1 !important; visibility: visible !important; }
+  .stepper [data-travel] { display: none; }
+  .stepper.is-stepping .step-notes > li { border-left-color: transparent; background: none; color: var(--ink); box-shadow: none; }
   /* Dark panels hold light text and figures, so they keep their backgrounds when the browser drops background graphics. */
   .hero, .diagram-panel, .code-block { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   .hero { padding: 40px 36px; }

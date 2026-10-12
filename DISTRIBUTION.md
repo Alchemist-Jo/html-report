@@ -1,6 +1,6 @@
-# html-report 3.0
+# html-report 3.1
 
-This repository retains the html-report identity and its existing Markdown report renderer. The learning-html acquisition, teaching, design, animation and standalone HTML resources are merged into the same skill entrypoint. Version 3.0 rewrites SKILL.md as a staged agent workflow, adds the paper deep-read route from the upstream paper-reading skill as references/paper-deep-read.md, and replaces the design notes with references/visual-design.md and the rendered audit in scripts/render-audit.mjs.
+This repository retains the html-report identity and its existing Markdown report renderer. The learning-html acquisition, teaching, design, animation and standalone HTML resources are merged into the same skill entrypoint. Version 3.0 rewrites SKILL.md as a staged agent workflow, adds the paper deep-read route from the upstream paper-reading skill as references/paper-deep-read.md, and replaces the design notes with references/visual-design.md and the rendered audit in scripts/render-audit.mjs. Version 3.1 gives the lesson theme a full-page desktop layout at 1280px and wider, with a sidebar and a wider measure, and adds the stepped figure component `figure.stepper` to lesson.css and lesson.js, with its quality bar in references/animation.md.
 
 The generic report remains suitable for technical explanations, research notes, code, data, comparisons and papers. Course and learning tasks additionally use worked examples, practical variations and reasoned solutions.
 

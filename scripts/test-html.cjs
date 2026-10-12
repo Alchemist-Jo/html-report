@@ -56,6 +56,52 @@ test('compact source references open their source disclosure', () => {
   source.dispatchEvent(new page.context.window.Event('click'));
   assert.equal(page.document.querySelector('details.references').open, true);
 });
+function stepperPage(reduced = false) {
+  const page = makeDOM(path.join(root, 'examples/retries.source.html'), [], reduced);
+  page.document.querySelectorAll('main section').forEach(node => { node.getBoundingClientRect = () => ({top: 300}); });
+  vm.runInContext(fs.readFileSync(path.join(root, 'assets/lesson.js'), 'utf8'), page.context);
+  const figure = page.document.querySelector('figure.stepper');
+  const control = name => figure.querySelector('.stepper-controls ' + name);
+  const press = node => node.dispatchEvent(new page.context.window.Event('click'));
+  const hidden = () => [...figure.querySelectorAll('[data-step].is-off')].map(node => node.dataset.step);
+  return {page, figure, control, press, hidden};
+}
+test('stepped figures open on the overview, step, play, pause off-screen and reset', () => {
+  const {page, figure, control, press, hidden} = stepperPage();
+  const buttons = [...figure.querySelectorAll('.stepper-controls > button')];
+  const [play, previous, next, reset] = buttons;
+  assert.equal(figure.querySelectorAll('.stepper-dot').length, 5);
+  assert.equal(control('.stepper-status').textContent, '全图 · 共 5 步');
+  assert.deepEqual(hidden(), []);
+  assert.equal(previous.disabled, true);
+  press(next);
+  assert.ok(hidden().length > 0 && hidden().every(step => Number(step) > 1));
+  assert.equal(figure.querySelector('.step-notes > li[aria-current="step"]').textContent, '客户端发送请求 A，金额 10。');
+  press(figure.querySelectorAll('.stepper-dot')[4]);
+  assert.deepEqual(hidden(), []);
+  assert.equal(next.disabled, true);
+  assert.equal(play.textContent, '重播');
+  press(play);
+  assert.equal(control('.stepper-status').textContent, '第 1 / 5 步');
+  assert.equal(play.getAttribute('aria-pressed'), 'true');
+  assert.equal(page.timers.size, 1);
+  page.advanceTimer();
+  assert.equal(control('.stepper-status').textContent, '第 2 / 5 步');
+  page.observers.at(-1)([{isIntersecting: false, intersectionRatio: 0}]);
+  assert.equal(page.timers.size, 0);
+  assert.equal(play.getAttribute('aria-pressed'), 'false');
+  press(previous);
+  assert.equal(control('.stepper-status').textContent, '第 1 / 5 步');
+  press(reset);
+  assert.deepEqual(hidden(), []);
+  assert.equal(figure.classList.contains('is-stepping'), false);
+});
+test('reduced motion keeps manual stepping and removes playback', () => {
+  const {figure, control, press} = stepperPage(true);
+  assert.equal(control('.stepper-play').hidden, true);
+  press(figure.querySelectorAll('.stepper-controls > button')[2]);
+  assert.equal(control('.stepper-status').textContent, '第 1 / 5 步');
+});
 test('the native HTML route embeds fonts, math, scripts and source anchors', () => {
   const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'html-report-native-'));
   try {

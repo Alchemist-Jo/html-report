@@ -37,9 +37,11 @@ Body text keeps a line height of 1.7 to 1.85. Headings use 1.25 to 1.35. Heading
 
 ## Measure and alignment
 
-Text sits in one reading column. In Chinese the column holds about 36 characters at 18px, which is 648px. In English it holds about 70 Latin characters, which is 576px. The lesson theme sets this through `--measure`, and `html:lang(en)` switches the value.
+Text sits at one reading measure. In Chinese the measure holds about 36 characters at 18px, which is 648px. In English it holds about 70 Latin characters, which is 576px. The lesson theme sets this through `--measure`, and `html:lang(en)` switches the value.
 
-Paragraphs, figures, tables, callouts and panels share the same left and right edges inside the column. The opening hero may span the page width. Inside the column, a component that needs more width scrolls locally (see the narrow-screen rules) rather than breaking the edge.
+Below 1280px the lesson theme sets each section as a card one measure wide. Paragraphs, figures, tables, callouts and panels share the same left and right edges inside it. A component that needs more width scrolls locally (see the narrow-screen rules) rather than breaking the edge.
+
+At 1280px and wider the lesson becomes one continuous page, because a single card column leaves most of a desktop screen empty. Navigation moves to a fixed left sidebar, a rule separates the sections, and the measure widens to 828px in Chinese, about 46 characters, and 672px in English. Figures, stepped figures, tables, comparison grids, diagram panels and code blocks use the full content width, up to 1120px, and start on the prose's left edge. An SVG inside a plain figure is capped at 920px so its labels stay near the body size. A stepped figure sizes its stage through `--stage`, 480px by default. Any other block that should span the content width takes the class `wide`. The opening hero spans the page width at every size.
 
 ## Spacing and grouping
 

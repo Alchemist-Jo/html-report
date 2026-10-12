@@ -27,7 +27,7 @@
 
 ## 视觉设计与渲染检查
 
-[视觉设计](references/visual-design.md) 规定：每个宽度最多六级字号；中文阅读栏 648px，英文 576px；在 390px 屏幕上图内文字不小于 12px；对比度满足 WCAG AA；只用一个强调色和一个警示色。`scripts/render-audit.mjs` 在渲染后的页面上检查这些约束：
+[视觉设计](references/visual-design.md) 规定：每个宽度最多六级字号；中文阅读宽度 648px，英文 576px，1280px 及以上的桌面全页版式中为 828px 与 672px；在 390px 屏幕上图内文字不小于 12px；对比度满足 WCAG AA；只用一个强调色和一个警示色。`scripts/render-audit.mjs` 在渲染后的页面上检查这些约束：
 
 ~~~sh
 node scripts/render-audit.mjs docs/learning-example.html --widths 1440,390 --out build/audit --print

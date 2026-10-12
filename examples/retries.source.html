@@ -47,6 +47,39 @@
       <h2 data-nav="问题">响应丢失后，超时无法说明动作是否完成</h2>
       <p class="intro">客户端发起一次累加 10 的请求，服务端已经执行，响应却没有到达。此时再次发送请求，可能使累计金额从 10 变成 20。<a class="source-ref" href="#ref-aws" aria-label="来源 1：AWS">[1]</a></p>
       <p>这里有两个独立事件：业务动作已经完成，客户端得到了结果。响应丢失只能说明第二个事件没有被客户端确认。客户端仅凭超时无法判断服务端是否完成了动作，因此重试需要考虑重复执行的影响。</p>
+      <figure class="stepper" style="--stage: 440px">
+        <div class="stepper-stage">
+          <svg viewBox="0 0 380 322" role="img" aria-labelledby="loss-title">
+            <title id="loss-title">客户端发送请求 A，服务端累加到 10，响应丢失；客户端超时后重发 A，服务端再次累加到 20。</title>
+            <defs><marker id="loss-arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="none" stroke="#5d7fb8" stroke-width="1.4"/></marker></defs>
+            <g font-size="17" fill="var(--ink)" text-anchor="middle">
+              <rect x="4" y="4" width="112" height="44" rx="9" fill="#fff" stroke="#9db6dc"/><text x="60" y="32">客户端</text>
+              <rect x="264" y="4" width="112" height="44" rx="9" fill="#fff" stroke="#9db6dc"/><text x="320" y="32">服务端</text>
+              <path d="M60 48V318M320 48V318" stroke="#c3d2e6" stroke-dasharray="4 6"/>
+              <text data-step="1" x="190" y="86">请求 A · 金额 10</text>
+              <path data-step="1" data-enter="draw" id="loss-request" d="M60 98H310" fill="none" stroke="#5d7fb8" stroke-width="1.6" marker-end="url(#loss-arrow)"/>
+              <circle data-step="1" data-travel="#loss-request" r="5" fill="var(--accent)"/>
+              <g data-step="2" data-enter="pop"><rect x="264" y="114" width="112" height="40" rx="8" fill="var(--accent-soft)" stroke="#9db6dc"/><text x="320" y="140">累计 0 → 10</text></g>
+              <text data-step="3" x="252" y="182">返回 10，途中丢失</text>
+              <path data-step="3" data-enter="draw" id="loss-response" d="M320 194H182" fill="none" stroke="#5d7fb8" stroke-width="1.6"/>
+              <path data-step="3" data-enter="pop" d="M158 184L176 202M176 184L158 202" stroke="var(--warm)" stroke-width="2.6" stroke-linecap="round"/>
+              <text data-step="4" x="70" y="228" text-anchor="start">超时</text>
+              <text data-step="4" x="190" y="246">重试 A · 金额 10</text>
+              <path data-step="4" data-enter="draw" id="loss-retry" d="M60 258H310" fill="none" stroke="#5d7fb8" stroke-width="1.6" marker-end="url(#loss-arrow)"/>
+              <circle data-step="4" data-travel="#loss-retry" r="5" fill="var(--accent)"/>
+              <g data-step="5" data-enter="pop" fill="var(--warm)"><rect x="264" y="274" width="112" height="40" rx="8" fill="#faf1e3" stroke="var(--warm)"/><text x="320" y="300">累计 10 → 20</text></g>
+            </g>
+          </svg>
+        </div>
+        <ol class="step-notes">
+          <li>客户端发送请求 A，金额 10。</li>
+          <li>服务端执行累加，累计金额从 0 变为 10。</li>
+          <li>携带结果 10 的响应在途中丢失，客户端没有收到。</li>
+          <li>客户端等到超时，按原参数再次发送 A。</li>
+          <li>服务端没有识别出重复请求，再次累加，累计金额变为 20。</li>
+        </ol>
+        <figcaption>响应丢失后的无条件重试。教学构造，串行处理示意。</figcaption>
+      </figure>
       <p>我们用一个内存中的累计金额示例研究这个问题。累计金额从 0 开始，每次新请求增加 10。示例只处理串行调用，记录不会过期，执行过程中也不模拟进程崩溃。</p>
       <div class="compare-grid">
         <article><h3>每次调用都执行</h3><p>执行两次相同的累加，累计金额依次为 10、20。程序只看金额，无法识别第二次调用的意图。</p></article>

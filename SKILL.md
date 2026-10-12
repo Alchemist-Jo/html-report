@@ -3,7 +3,7 @@ name: html-report
 description: Explains one body of material (a paper, a video or lecture series, a document, code, data or a comparison) as one self-contained offline HTML report or lesson. Runs a staged agent workflow with source fallbacks, ledgers, parallel segment subagents for long inputs, a fixed type scale, and a rendered audit at 1440 and 390px with direct screenshot inspection. Use when the user asks to deep-read a paper as a web page, turn a video, course, document, code or data into an HTML explanation or learning page, build an interactive explainer, or fix the layout, fonts, contrast or figures of such a page. Not for a field textbook with prerequisites, exercises and review rounds (textbook-anything), LaTeX notes from a YouTube or Bilibili URL (youtube-render-pdf, bilibili-render-pdf), paper slides (paper-to-html, topic-paper-talk), or project progress reports (research-report). 触发词：论文精读、读论文做成网页、HTML 报告、学习资料、视频讲解、交互讲解、代码讲解、数据报告、网页排版、配色、对比度。
 license: MIT
 metadata:
-  version: "3.0.0"
+  version: "3.1.0"
 ---
 
 # HTML Report
@@ -20,7 +20,7 @@ The deliverable is one self-contained HTML file with its editable source. The fi
 - read as one document even when segments were drafted separately
 - place every figure next to the paragraph that uses it, with its source page, figure number or video time visible
 - keep every source number verbatim, and label teaching calculations, simulations, redraws and the writer's inference as such
-- follow one type scale, one reading column and stated colour roles ([visual design](references/visual-design.md))
+- follow one type scale, one reading measure and stated colour roles ([visual design](references/visual-design.md))
 - pass `scripts/render-audit.mjs` at 1440 and 390px, with every screenshot tile opened and inspected
 - for learning material, contain a worked example, guided practice and an independent variation, each with a reasoned answer
 - end with a synthesis that connects the mechanisms and evidence and states their scope
@@ -31,7 +31,7 @@ Write in the language of the user's request. Chinese requests get Chinese pages.
 
 The reader is a careful peer studying alone. After reading, that reader can explain the main mechanism in their own words, recompute the worked example, and find the source location behind each important claim. Each section moves from motivation to the core idea, then the mechanism, then an example or evidence, then what to retain. Formalism arrives after the plain-language intuition, and every symbol is explained where it appears.
 
-The page should look designed by one person for this material. One reading column, six text sizes, colour with a stable meaning, and figures whose labels are readable on a phone are part of comprehension.
+The page should look designed by one person for this material. One reading measure, six text sizes, colour with a stable meaning, and figures whose labels are readable on a phone are part of comprehension.
 
 ## Routes
 
@@ -109,14 +109,14 @@ Bias the search for frames toward recall before precision. For each concept, gen
 
 Redraw a relationship that a screenshot shows poorly. Use inline SVG for diagrams and a plotting library for data, and label every redraw with its source. Original paper figures appear with a visible reading cue before them that names the panel and the point to notice.
 
-Use interaction only when the reader changes or follows something that reveals a relationship: a parameter, a branch, a state across stages. Interaction starts from a user action, can pause, step and reset, and the page still teaches the same relationship with scripts disabled. [Animation](references/animation.md) gives the state model.
+Animate what unfolds in stages. A mechanism, pipeline, protocol or data flow whose parts arrive in order becomes a stepped figure (`figure.stepper` in the lesson theme). Its parts enter step by step, a numbered note beside the figure explains each step, and the reader can play, pause, step, jump to a step and reset. Give each staged mechanism its own stepped figure, so the count follows the material and has no fixed cap. Motion carries the process itself: a line drawn in the direction of flow, a packet travelling the path it takes, a bar growing to its value, a branch appearing where it splits. Use a parameter-driven demo when the reader changes an input and watches a relationship respond. Every animated figure opens on its complete static state, and the page teaches the same relationship with scripts disabled. [Animation](references/animation.md) gives the component, the state model and the quality bar.
 
 ## Visual Design
 
 [Visual design](references/visual-design.md) holds the rules and the shipped values. The invariants that most often fail:
 
 - six text sizes per width at most, taken from the scale variables
-- one reading column: 648px for Chinese, 576px for English, with figures and tables on the same edges
+- one reading measure: 648px for Chinese and 576px for English; at 1280px and wider the lesson theme becomes a full page with a sidebar, prose at 828px or 672px, and figures, stepped figures, tables and panels across the content width on the prose's left edge
 - figure labels at least 12px when rendered at 390px; the repair order is enlarge, reflow, local scroll, split
 - WCAG AA contrast measured against the pixels behind the text
 - one accent hue and one caution hue, each with one meaning, and a second encoding for every colour difference
