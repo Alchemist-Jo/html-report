@@ -256,9 +256,10 @@ th:first-child, td:first-child { padding-left: 0; }
   section { max-width: var(--content); padding: 72px 0 44px; border: 0; border-radius: 0; background: transparent; box-shadow: none; scroll-margin-top: 0; }
   section + section { margin-top: 0; border-top: 1px solid var(--line); }
   section > * { max-width: var(--measure); }
-  section > :is(h2, figure, .table-scroll, .compare-grid, .diagram-panel, .code-block, .wide) { max-width: none; }
-  main figure:not(.stepper) svg { max-width: var(--figure-max); }
-  main figure > figcaption { max-width: var(--measure); }
+  /* :where() keeps these defaults at the lowest specificity, so a page's own figure or caption class overrides them. */
+  section > :where(h2, figure, .table-scroll, .compare-grid, .diagram-panel, .code-block, .wide) { max-width: none; }
+  :where(main figure:not(.stepper)) svg { max-width: var(--figure-max); }
+  :where(main figure) > figcaption { max-width: var(--measure); }
   .stepper { display: grid; grid-template-columns: minmax(0, var(--stage, 480px)) minmax(0, 1fr); grid-template-rows: auto 1fr; grid-template-areas: "stage notes" "controls notes" "caption caption"; column-gap: 44px; align-items: start; padding: 32px 36px 26px; }
   .stepper-stage { grid-area: stage; }
   .stepper-controls { grid-area: controls; }
